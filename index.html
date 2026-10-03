@@ -1,0 +1,2353 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1a1030">
+<meta name="description" content="史上最強整合【星座算命＋塔羅盤＋人類圖】旗艦平台：12星座運勢、每日/週/月運、星座配對、78張塔羅牌意、三牌陣、凱爾特十字、每日一牌、人類圖四大類型、能量中心、閘門通道。免費線上算命運勢。">
+<meta name="keywords" content="星座,星座運勢,塔羅,塔羅牌,塔羅占卜,人類圖,Human Design,每日運勢,星座配對,上升星座,塔羅牌陣,能量中心">
+<meta name="author" content="念十回 の 星靈宇宙">
+<link rel="canonical" href="https://cosmic-oracle.example.com/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3CradialGradient id='bg' cx='0.5' cy='0.4' r='0.75'%3E%3Cstop offset='0' stop-color='%232b1a55'/%3E%3Cstop offset='1' stop-color='%23100a24'/%3E%3C/radialGradient%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ffd86b'/%3E%3Cstop offset='1' stop-color='%23ff9d5c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='31' fill='url(%23bg)'/%3E%3Cellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%23a25dff' stroke-width='1.6' opacity='0.7' transform='rotate(-24 32 32)'/%3E%3Cpath d='M32 12l3 6.1 6.7 1-4.8 4.7 1.1 6.7L32 27l-6 3.5 1.1-6.7-4.8-4.7 6.7-1z' fill='url(%23g)'/%3E%3Ccircle cx='20' cy='18' r='1.6' fill='%23ffd86b'/%3E%3Ccircle cx='46' cy='22' r='1.2' fill='%23b388ff'/%3E%3Ccircle cx='14' cy='40' r='1.1' fill='%23ff9d5c'/%3E%3Ccircle cx='49' cy='46' r='1.4' fill='%23ffd86b'/%3E%3Ccircle cx='27' cy='48' r='1' fill='%23b388ff'/%3E%3Ccircle cx='32' cy='50' r='2.2' fill='%23a25dff'/%3E%3C/svg%3E">
+<title>念十回 の 星靈宇宙 — 星座算命×塔羅盤×人類圖 最強旗艦平台</title>
+<style>
+/* ============ 設計系統 Design Tokens ============ */
+:root{
+  --bg:#f4f1f9; --bg2:#ffffff; --bg3:#e9e4f5;
+  --text:#241a3d; --text2:#5a4f78; --text3:#8a80a8;
+  --card:#ffffff; --card2:#f8f6fd; --border:#e2daf0;
+  --brand:#6a3de8; --brand2:#a25dff; --accent:#ffd86b; --accent2:#ff9d5c;
+  --ok:#2ecc71; --warn:#f39c12; --err:#e74c3c; --info:#3498db;
+  --shadow:0 8px 30px rgba(60,30,120,.10); --shadow2:0 4px 16px rgba(60,30,120,.08);
+  --r:14px; --r2:10px;
+  --maxw:1200px;
+  --grad:linear-gradient(135deg,#6a3de8,#a25dff 55%,#ff9d5c);
+  --grad2:linear-gradient(135deg,#ffd86b,#ff9d5c);
+}
+[data-theme="dark"]{
+  --bg:#0f0a1e; --bg2:#171031; --bg3:#221748;
+  --text:#ece6ff; --text2:#b8aee0; --text3:#8a7fb5;
+  --card:#1b1238; --card2:#221744; --border:#342763;
+  --brand:#a25dff; --brand2:#c59bff; --accent:#ffd86b; --accent2:#ff9d5c;
+  --shadow:0 8px 30px rgba(0,0,0,.45); --shadow2:0 4px 16px rgba(0,0,0,.35);
+  --grad:linear-gradient(135deg,#6a3de8,#a25dff 55%,#ff9d5c);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;transition:background .35s,color .35s;-webkit-font-smoothing:antialiased}
+a{color:var(--brand);text-decoration:none}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,select,textarea{font-family:inherit;color:var(--text);background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px;outline:none;transition:border .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--brand)}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+.hidden{display:none!important}
+/* 星塵背景 */
+.starfield{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.starfield .star{position:absolute;border-radius:50%;background:#fff;animation:twinkle 4s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.15}50%{opacity:.9}}
+
+/* ============ Top Nav + Sticky Nav ============ */
+.topbar{background:linear-gradient(90deg,var(--brand),var(--brand2));color:#fff;font-size:.82rem;padding:6px 0}
+.topbar .container{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.topbar a{color:#fff;opacity:.9}
+.topbar .top-links{display:flex;gap:16px;flex-wrap:wrap}
+.header{position:sticky;top:0;z-index:900;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.2rem}
+.brand .logo{width:38px;height:38px;border-radius:10px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#fff}
+.nav-links{display:flex;gap:6px;align-items:center}
+.nav-links a{padding:8px 14px;border-radius:var(--r2);color:var(--text2);font-weight:600;font-size:.95rem;transition:.2s;position:relative}
+.nav-links a:hover{background:var(--bg3);color:var(--brand)}
+.nav-links a.active{background:var(--grad);color:#fff}
+.dropdown{position:relative}
+.dropdown>.dd-btn{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--r2);color:var(--text2);font-weight:600;font-size:.95rem;cursor:pointer}
+.dropdown:hover>.dd-btn{color:var(--brand)}
+.dd-menu{position:absolute;top:110%;left:0;min-width:220px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow);padding:8px;display:none;flex-direction:column;gap:2px;z-index:50}
+.dropdown:hover .dd-menu{display:flex}
+.dropdown.open .dd-menu{display:flex}
+.dd-menu a{padding:9px 12px;border-radius:8px;color:var(--text2);font-weight:500}
+.dd-menu a:hover{background:var(--bg3);color:var(--brand)}
+.nav-right{display:flex;align-items:center;gap:8px}
+.theme-toggle,.hamburger{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;background:var(--bg3);color:var(--text2);transition:.2s}
+.theme-toggle:hover,.hamburger:hover{color:var(--brand);background:var(--border)}
+.hamburger{display:none}
+/* 麵包屑 breadcrumb */
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:.85rem;color:var(--text3);padding:14px 0 0;flex-wrap:wrap}
+.breadcrumb a{color:var(--text3)}
+.breadcrumb a:hover{color:var(--brand)}
+.breadcrumb .sep{opacity:.5}
+.breadcrumb .cur{color:var(--brand);font-weight:600}
+
+/* ============ Sidebar + Mobile Menu ============ */
+.sidebar{position:fixed;top:0;left:0;height:100vh;width:290px;background:var(--card);border-right:1px solid var(--border);z-index:1000;transform:translateX(-100%);transition:transform .3s ease;display:flex;flex-direction:column;box-shadow:var(--shadow)}
+.sidebar.open{transform:translateX(0)}
+.sidebar-head{padding:18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.sidebar-nav{flex:1;overflow-y:auto;padding:12px;min-height:0}
+.sidebar-nav .grp{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);padding:14px 12px 6px;font-weight:700}
+.sidebar-nav a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;color:var(--text2);font-weight:500}
+.sidebar-nav a:hover{background:var(--bg3);color:var(--brand)}
+.sidebar-nav a.active{background:var(--grad);color:#fff}
+.sidebar-foot{padding:14px;border-top:1px solid var(--border);font-size:.8rem;color:var(--text3);text-align:center}
+.sidebar-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999;opacity:0;pointer-events:none;transition:.3s}
+.sidebar-overlay.show{opacity:1;pointer-events:auto}
+
+/* ============ Buttons / Badges / Chips ============ */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:var(--r2);font-weight:700;font-size:.95rem;transition:.2s;border:1px solid transparent}
+.btn-primary{background:var(--grad);color:#fff;box-shadow:var(--shadow2)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.btn-outline{background:transparent;border-color:var(--border);color:var(--text2)}
+.btn-outline:hover{border-color:var(--brand);color:var(--brand)}
+.btn-ghost{background:var(--bg3);color:var(--text2)}
+.btn-ghost:hover{color:var(--brand)}
+.btn-sm{padding:7px 14px;font-size:.85rem}
+.btn-lg{padding:15px 30px;font-size:1.05rem}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:.75rem;font-weight:700}
+.badge-b{background:var(--brand);color:#fff}
+.badge-a{background:var(--accent);color:#3a2a00}
+.badge-ok{background:var(--ok);color:#fff}
+.badge-warn{background:var(--warn);color:#fff}
+.badge-err{background:var(--err);color:#fff}
+.badge-info{background:var(--info);color:#fff}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;background:var(--bg3);color:var(--text2);font-size:.85rem;cursor:pointer;transition:.2s;border:1px solid transparent}
+.chip:hover{border-color:var(--brand);color:var(--brand)}
+.chip.on{background:var(--grad);color:#fff}
+
+/* ============ Cards ============ */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px;box-shadow:var(--shadow2)}
+.card-hover{transition:.25s}
+.card-hover:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.grid{display:grid;gap:20px}
+.g-2{grid-template-columns:repeat(2,1fr)}
+.g-3{grid-template-columns:repeat(3,1fr)}
+.g-4{grid-template-columns:repeat(4,1fr)}
+.g-5{grid-template-columns:repeat(5,1fr)}
+.g-6{grid-template-columns:repeat(6,1fr)}
+
+/* ============ Section / Headings ============ */
+.section{padding:52px 0}
+.sec-head{margin-bottom:26px}
+.sec-eyebrow{color:var(--brand);font-weight:800;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase}
+.sec-title{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;margin:6px 0 8px}
+.sec-sub{color:var(--text2);max-width:720px}
+h1{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;line-height:1.25}
+h2{font-size:1.5rem;font-weight:800}
+h3{font-size:1.15rem;font-weight:700}
+
+/* ============ Hero ============ */
+.hero{position:relative;padding:70px 0 80px;text-align:center;overflow:hidden;background:url("assets/hero_day.webp") center/cover no-repeat}
+[data-theme="dark"] .hero{background:url("assets/hero_night.webp") center/cover no-repeat}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,.08) 45%,rgba(255,255,255,.55));z-index:0}
+[data-theme="dark"] .hero::before{background:linear-gradient(180deg,rgba(15,8,35,.5),rgba(15,8,35,.15) 45%,rgba(15,8,35,.65))}
+.hero .container{position:relative;z-index:2}
+.hero-title{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:clamp(2rem,5.5vw,3.6rem);font-weight:900;margin:10px 0 16px}
+.hero p{font-size:1.1rem;color:var(--text2);max-width:760px;margin:0 auto 8px}
+.hero .stats{display:flex;gap:34px;justify-content:center;margin-top:34px;flex-wrap:wrap}
+.stat{text-align:center}
+.stat b{font-size:1.7rem;font-weight:900;color:var(--brand);display:block}
+.stat span{color:var(--text3);font-size:.85rem}
+.hero-actions{display:flex;gap:14px;justify-content:center;margin-top:28px;flex-wrap:wrap}
+
+/* ============ Tabs ============ */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:2px solid var(--border);margin-bottom:22px}
+.tab{padding:11px 20px;font-weight:700;color:var(--text3);border-bottom:3px solid transparent;margin-bottom:-2px;cursor:pointer;transition:.2s}
+.tab:hover{color:var(--brand)}
+.tab.on{color:var(--brand);border-color:var(--brand)}
+
+/* ============ Accordion ============ */
+.accordion{border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.acc-item{border-bottom:1px solid var(--border)}
+.acc-item:last-child{border-bottom:none}
+.acc-head{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;cursor:pointer;font-weight:700;transition:.2s}
+.acc-head:hover{background:var(--bg3)}
+.acc-head .acc-ico{transition:transform .3s;color:var(--brand)}
+.acc-item.open .acc-ico{transform:rotate(180deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .35s ease;background:var(--card2)}
+.acc-body-in{padding:0 18px 16px;color:var(--text2)}
+
+/* ============ Timeline ============ */
+.timeline{display:grid;grid-template-columns:90px 30px 1fr;gap:0;position:relative}
+.tl-item{display:contents}
+.tl-time{padding:14px 0;font-weight:700;color:var(--brand);text-align:right;font-size:.9rem}
+.tl-node{display:flex;justify-content:center;align-items:center;position:relative}
+.tl-dot{width:14px;height:14px;border-radius:50%;background:var(--grad);box-shadow:0 0 0 4px var(--bg3);justify-self:center}
+.tl-line{position:absolute;top:0;bottom:0;width:2px;background:var(--border);left:50%;transform:translateX(-50%)}
+.tl-content{padding:14px 0 22px 6px}
+.tl-content h4{font-size:1rem}
+.tl-content p{font-size:.9rem;color:var(--text2);margin-top:4px}
+
+/* ============ Tree View ============ */
+.tree{list-style:none}
+.tree li{margin:2px 0}
+.tree .tree-node{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;cursor:pointer;transition:.15s;font-weight:500}
+.tree .tree-node:hover{background:var(--bg3)}
+.tree .tree-children{margin-left:22px;border-left:1px dashed var(--border);padding-left:8px;list-style:none}
+.tree .tgl{color:var(--brand);width:18px;text-align:center;transition:.2s}
+.tree li.collapsed>.tree-children{display:none}
+.tree li.collapsed>.tree-node .tgl{transform:rotate(-90deg)}
+
+/* ============ Tag Cloud ============ */
+.tagcloud{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
+.tagcloud a{padding:6px 14px;border-radius:20px;background:var(--bg3);color:var(--text2);font-size:.85rem;transition:.2s}
+.tagcloud a:hover{background:var(--grad);color:#fff;transform:scale(1.05)}
+
+/* ============ FAB + Back to top + Context menu ============ */
+.fab{position:fixed;right:22px;bottom:90px;width:56px;height:56px;border-radius:18px;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:var(--shadow);z-index:800;transition:.25s}
+.fab:hover{transform:scale(1.08) rotate(10deg)}
+.fab-label{position:absolute;right:66px;background:var(--card);color:var(--text);padding:6px 12px;border-radius:8px;font-size:.8rem;white-space:nowrap;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.2s}
+.fab:hover .fab-label{opacity:1}
+.back-top{position:fixed;right:22px;bottom:22px;width:48px;height:48px;border-radius:14px;background:var(--card);border:1px solid var(--border);color:var(--brand);display:flex;align-items:center;justify-content:center;font-size:1.3rem;box-shadow:var(--shadow);z-index:800;opacity:0;pointer-events:none;transition:.3s}
+.back-top.show{opacity:1;pointer-events:auto}
+.context-menu{position:fixed;min-width:200px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow);z-index:1200;padding:6px;display:none}
+.context-menu.show{display:block}
+.context-menu button{display:flex;align-items:center;gap:10px;width:100%;padding:9px 12px;border-radius:8px;font-size:.9rem;text-align:left}
+.context-menu button:hover{background:var(--bg3)}
+
+/* ============ Popover（彈出浮層） ============ */
+.popover{position:relative;display:inline-flex}
+.popover > .pv-btn{cursor:pointer;display:inline-flex;align-items:center;gap:5px;border:1px solid var(--border);background:var(--card);color:var(--text2);border-radius:var(--r2);padding:6px 12px;font-size:.85rem;font-weight:600;transition:.2s}
+.popover > .pv-btn:hover{color:var(--brand);border-color:var(--brand);box-shadow:var(--shadow2)}
+.popover > .pv-btn .pv-caret{margin-left:2px;font-size:.7rem;opacity:.7}
+.pv-panel{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translate(-50%,6px);min-width:230px;max-width:300px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow);padding:14px 16px;z-index:60;opacity:0;visibility:hidden;pointer-events:none;transition:.22s}
+.popover.pv-top-right .pv-panel{left:auto;right:0;transform:translateY(6px)}
+.popover.pv-top-left .pv-panel{left:0;transform:translateY(6px)}
+.popover.pv-bottom .pv-panel{top:calc(100% + 10px);bottom:auto;transform:translate(-50%,-6px)}
+.popover.pv-bottom.pv-top-left .pv-panel,.popover.pv-bottom.pv-top-right .pv-panel{transform:translateY(-6px)}
+.popover:hover .pv-panel,.popover:focus-within .pv-panel,.popover.open .pv-panel{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,0)}
+.popover.pv-top-right:hover .pv-panel,.popover.pv-top-right.open .pv-panel,.popover.pv-top-right:focus-within .pv-panel{transform:translateY(0)}
+.popover.pv-top-left:hover .pv-panel,.popover.pv-top-left.open .pv-panel,.popover.pv-top-left:focus-within .pv-panel{transform:translateY(0)}
+.popover.pv-bottom:hover .pv-panel,.popover.pv-bottom.open .pv-panel,.popover.pv-bottom:focus-within .pv-panel{transform:translate(-50%,0)}
+.popover.pv-bottom.pv-top-left:hover .pv-panel,.popover.pv-bottom.pv-top-right:hover .pv-panel,.popover.pv-bottom.pv-top-left.open .pv-panel,.popover.pv-bottom.pv-top-right.open .pv-panel{transform:translateY(0)}
+.pv-panel::before{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:7px solid transparent;border-top-color:var(--border)}
+.popover.pv-top-right .pv-panel::before{left:auto;right:18px}
+.popover.pv-top-left .pv-panel::before{left:18px}
+.popover.pv-bottom .pv-panel::before{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--border)}
+.pv-panel h4{margin-bottom:8px;font-size:.95rem}
+.pv-panel p{margin:4px 0;font-size:.82rem;color:var(--text3);line-height:1.55}
+.pv-panel .pv-tag{display:inline-block;font-size:.68rem;background:var(--bg3);color:var(--brand);padding:2px 8px;border-radius:20px;margin:6px 4px 2px 0;font-weight:600}
+.pv-panel .pv-cta{display:inline-flex;margin-top:10px;font-size:.8rem}
+.pv-panel .pv-close{position:absolute;top:8px;right:10px;font-size:.8rem;opacity:.6;cursor:pointer;border:none;background:none;color:var(--text2)}
+.pv-panel .pv-close:hover{opacity:1;color:var(--brand)}
+
+.hd-info-table td{padding:10px 12px;border-bottom:1px solid var(--border);font-size:.9rem}
+.hd-info-table tr:last-child td{border-bottom:none}
+.hd-info-table td:first-child{color:var(--text3);width:110px;white-space:nowrap}
+
+/* ============ Cards grid for tarot / zodiac ============ */
+.cd{background:var(--card);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow2);cursor:pointer;transition:.25s;display:flex;flex-direction:column}
+.cd .cd-top{overflow:hidden}
+.cd:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.cd .cd-top{height:150px;display:flex;align-items:center;justify-content:center;font-size:2.6rem;background:var(--grad);color:#fff;font-weight:900;position:relative}
+.cd .cd-top img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease}
+.cd:hover .cd-top img{transform:scale(1.08)}
+.cd .cd-top .cd-sym{position:absolute;right:8px;bottom:4px;font-size:1.7rem;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.65);line-height:1;font-weight:900}
+.cd .cd-body{padding:14px 16px;flex:1}
+.cd .cd-body h4{font-size:1rem;margin-bottom:4px}
+.cd .cd-body p{font-size:.82rem;color:var(--text3);line-height:1.5}
+.cd .cd-foot{padding:10px 16px;border-top:1px solid var(--border);font-size:.78rem;color:var(--text3)}
+.tarot-card{aspect-ratio:2/3;border-radius:14px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:2.8rem;background:var(--card2);cursor:pointer;transition:.3s;box-shadow:var(--shadow2);position:relative;overflow:hidden}
+.tarot-card:hover{transform:translateY(-6px) rotate(1deg)}
+.tarot-card.back{background:var(--grad)}
+.tarot-card.back::after{content:"✦";color:#fff;font-size:2rem}
+.tarot-card.reveal{animation:revealCard .7s ease}
+@keyframes revealCard{0%{transform:rotateY(90deg);opacity:0}100%{transform:rotateY(0);opacity:1}}
+/* ---- 翻牌卡 flip-card（整合自星盤閣塔羅） ---- */
+.flip-wrap{perspective:900px}
+.flip-card{position:relative;width:100%;aspect-ratio:2/3;border-radius:14px;cursor:pointer;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.4,.1,.2,1);box-shadow:var(--shadow2)}
+.flip-card.flipped{transform:rotateY(180deg)}
+.flip-card .face{position:absolute;inset:0;border-radius:14px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid var(--border);overflow:hidden}
+.flip-card .face.front{background:var(--grad) center/cover no-repeat;color:#fff;transform:rotateY(180deg);padding:10px}
+.flip-card .face.front::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,transparent 30%,transparent 55%,rgba(0,0,0,.72) 100%)}
+.flip-card .face.front > *{position:relative;z-index:1;text-shadow:0 1px 3px rgba(0,0,0,.7)}
+.flip-card .face.back{background:var(--card2)}
+.flip-card .face.back::before{content:"✦";font-size:2.2rem;color:var(--brand);opacity:.5}
+.flip-card .t-num{font-size:1.9rem;font-weight:900;line-height:1}
+.flip-card .t-name{font-size:1.05rem;font-weight:800;margin-top:6px;text-align:center}
+.flip-card .t-en{font-size:.6rem;opacity:.85;text-align:center;margin-top:2px}
+.flip-card .t-ele{font-size:.62rem;background:rgba(255,255,255,.25);padding:2px 9px;border-radius:20px;margin-top:8px}
+.flip-card .t-sym{font-size:.7rem;opacity:.9;text-align:center;margin-top:7px;padding:0 8px}
+.flip-card:hover{transform:rotateY(0) translateY(-4px);box-shadow:var(--shadow)}
+.flip-card.flipped:hover{transform:rotateY(180deg) translateY(-4px)}
+.flip-card .t-link{font-size:.62rem;color:#fff;text-decoration:underline;margin-top:8px}
+
+/* ============ Forms ============ */
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-weight:600;margin-bottom:6px;font-size:.9rem}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+select option{background:var(--card)}
+.radio-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.radio-row label{display:flex;align-items:center;gap:6px;font-weight:500;cursor:pointer}
+input[type=radio],input[type=checkbox]{accent-color:var(--brand);width:17px;height:17px}
+.range-wrap{display:flex;align-items:center;gap:12px}
+input[type=range]{flex:1;accent-color:var(--brand)}
+
+/* ============ Footer ============ */
+.footer{background:var(--bg3);border-top:1px solid var(--border);margin-top:60px;padding:44px 0 20px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:28px;margin-bottom:30px}
+.footer h4{font-size:.95rem;margin-bottom:12px}
+.footer a{display:block;padding:4px 0;color:var(--text2);font-size:.88rem}
+.footer a:hover{color:var(--brand)}
+.footer .brand{color:var(--text);margin-bottom:10px}
+.social-icons{display:flex;gap:10px;margin-top:12px}
+.social-icons a{width:38px;height:38px;border-radius:10px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:.2s}
+.social-icons a:hover{background:var(--grad);color:#fff;transform:translateY(-3px)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:.82rem;color:var(--text3)}
+
+/* ============ Misc components ============ */
+.pagination{display:flex;gap:8px;justify-content:center;align-items:center;margin-top:24px}
+.pagination button{width:40px;height:40px;border-radius:10px;background:var(--bg3);color:var(--text2);font-weight:700;transition:.2s}
+.pagination button.on{background:var(--grad);color:#fff}
+.pagination button:hover:not(.on){color:var(--brand)}
+.loading{display:flex;align-items:center;justify-content:center;padding:40px;color:var(--text3)}
+.spinner{width:34px;height:34px;border:3px solid var(--border);border-top-color:var(--brand);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120%);background:var(--card);color:var(--text);border:1px solid var(--border);padding:13px 22px;border-radius:var(--r2);box-shadow:var(--shadow);z-index:2000;transition:transform .35s ease;font-weight:600}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.progress{height:8px;background:var(--bg3);border-radius:20px;overflow:hidden}
+.progress>span{display:block;height:100%;background:var(--grad);border-radius:20px;transition:width .6s ease}
+.meter{display:flex;align-items:center;gap:12px}
+.meter .bar{flex:1;height:10px;background:var(--bg3);border-radius:20px;overflow:hidden}
+.meter .bar>span{display:block;height:100%;border-radius:20px;background:var(--grad)}
+.lazy-img{opacity:0;transition:opacity .5s}
+.lazy-img.loaded{opacity:1}
+.pre-next{display:flex;justify-content:space-between;gap:14px;margin-top:30px}
+.pre-next a{flex:1;padding:14px 18px;border:1px solid var(--border);border-radius:var(--r);color:var(--text2);transition:.2s;display:block}
+.pre-next a:hover{border-color:var(--brand);color:var(--brand)}
+.pre-next .dir{font-size:.75rem;color:var(--text3)}
+.related{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:16px}
+.callout{padding:14px 18px;border-radius:var(--r2);border-left:4px solid;margin:14px 0;font-size:.92rem}
+.callout-info{background:var(--bg3);border-color:var(--info)}
+.callout-warn{background:var(--bg3);border-color:var(--warn)}
+.callout-ok{background:var(--bg3);border-color:var(--ok)}
+.prose{color:var(--text2)}
+.prose h3{margin:18px 0 8px;color:var(--text)}
+.prose p{margin-bottom:10px}
+.prose ul{padding-left:20px;margin-bottom:10px}
+table.tbl{width:100%;border-collapse:collapse;table-layout:fixed}
+.tbl th,.tbl td{padding:10px 12px;border-bottom:1px solid var(--border);font-size:.88rem;text-align:left;overflow-wrap:break-word}
+.tbl th{background:var(--bg3);font-weight:700;color:var(--text2)}
+.tbl tr:hover td{background:var(--bg3)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--r)}
+.scroll-x{overflow-x:auto}
+.dash-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.dash-stat{padding:18px;border-radius:var(--r);background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow2)}
+.dash-stat .k{font-size:.8rem;color:var(--text3)}
+.dash-stat .v{font-size:1.8rem;font-weight:900;color:var(--brand);margin:4px 0}
+.dash-stat .d{font-size:.8rem;color:var(--ok)}
+.zodiac-ring{--p:50;width:130px;height:130px;border-radius:50%;background:conic-gradient(var(--brand) calc(var(--p)*1%),var(--bg3) 0);display:flex;align-items:center;justify-content:center;position:relative}
+.zodiac-ring::before{content:"";position:absolute;inset:12px;border-radius:50%;background:var(--card)}
+.zodiac-ring b{position:relative;z-index:2;font-size:1.3rem}
+/* human design body */
+.hd-body{position:relative;max-width:340px;margin:0 auto}
+.hd-center{position:relative;width:300px;height:440px;margin:0 auto}
+.hd-chakra{position:absolute;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:800;border:3px solid;transition:.3s;cursor:pointer;z-index:2}
+.hd-chakra:hover{transform:scale(1.12)}
+.hd-chakra.def{background:var(--bg3);border-color:var(--text3);color:var(--text3)}
+.hd-chakra.defined{background:var(--grad);border-color:#fff;color:#fff;box-shadow:var(--shadow)}
+.hd-legend{display:flex;gap:16px;justify-content:center;margin-top:16px;font-size:.85rem;color:var(--text2)}
+.hd-legend i{display:inline-block;width:14px;height:14px;border-radius:50%;margin-right:6px;vertical-align:middle}
+
+/* ============ Responsive ============ */
+@media(max-width:1024px){.g-4{grid-template-columns:repeat(2,1fr)}.g-5{grid-template-columns:repeat(3,1fr)}.g-6{grid-template-columns:repeat(3,1fr)}.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:860px){
+  .nav-links,.nav-right .theme-toggle{display:none}
+  .hamburger{display:flex}
+  .g-3{grid-template-columns:repeat(2,1fr)}
+  .form-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .topbar .top-links{display:none}
+}
+@media(max-width:600px){
+  .g-2,.g-3,.g-4,.g-5,.g-6{grid-template-columns:1fr}
+  .section{padding:38px 0}
+  .hero{padding:50px 0 60px}
+  .hero .stats{gap:22px}
+  .timeline{grid-template-columns:64px 24px 1fr}
+  .hd-center{width:240px;height:360px}
+}
+@media print{.sidebar,.fab,.back-top,.hamburger,.context-menu{display:none!important}}
+</style>
+</head>
+<body>
+<!-- 星空背景 -->
+<div class="starfield" id="starfield"></div>
+
+<!-- ===== Top Bar ===== -->
+<div class="topbar">
+  <div class="container">
+    <div>✦ 今日星象：月亮進入天秤座 · 適宜溝通與合作</div>
+    <div class="top-links">
+      <div class="popover pv-bottom pv-top-left"><a href="#/zodiac">每日運勢</a><div class="pv-panel"><h4>每日運勢</h4><p>十二星座今日整體／愛情／事業運勢與幸運指數，依今日星象即時呈現。</p><span class="pv-tag">星座</span><span class="pv-tag">每日</span><a href="#/zodiac" class="pv-cta btn btn-outline btn-sm">查看 →</a></div></div>
+      <div class="popover pv-bottom"><a href="#/tarot">免費塔羅</a><div class="pv-panel"><h4>免費塔羅占卜</h4><p>22 張大阿爾克那＋56 張小阿爾克那，支援三牌陣、凱爾特十字與每日一牌互動抽牌。</p><span class="pv-tag">塔羅</span><span class="pv-tag">免費</span><a href="#/tarot" class="pv-cta btn btn-outline btn-sm">開始抽牌 →</a></div></div>
+      <div class="popover pv-bottom"><a href="#/humandesign">人類圖</a><div class="pv-panel"><h4>人類圖</h4><p>認識你的能量類型、策略與九大能量中心，輸入出生資料即可繪製專屬能量藍圖。</p><span class="pv-tag">人類圖</span><span class="pv-tag">能量</span><a href="#/humandesign" class="pv-cta btn btn-outline btn-sm">繪圖 →</a></div></div>
+      <div class="popover pv-bottom pv-top-right"><a href="#/favorite">我的收藏</a><div class="pv-panel"><h4>我的收藏</h4><p>集中管理你收藏的星座、塔羅與文章，快速回到關注的內容。</p><span class="pv-tag">收藏</span><span class="pv-tag">個人</span><a href="#/favorite" class="pv-cta btn btn-outline btn-sm">前往 →</a></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Sticky Header / Nav ===== -->
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <a href="#/home" class="brand"><span class="logo">✦</span><span>念十回 の 星靈宇宙</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="#/home" data-nav="home">首頁</a>
+        <div class="dropdown">
+          <span class="dd-btn">星座算命 ▾</span>
+          <div class="dd-menu">
+            <a href="#/zodiac">十二星座總覽</a>
+            <a href="#/zodiac/daily">每日運勢</a>
+            <a href="#/zodiac/match">星座配對</a>
+            <a href="#/zodiac/rising">上升星座</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <span class="dd-btn">塔羅占卜 ▾</span>
+          <div class="dd-menu">
+            <a href="#/tarot">78張塔羅牌意</a>
+            <a href="#/tarot/three">三牌陣占卜</a>
+            <a href="#/tarot/celtic">凱爾特十字</a>
+            <a href="#/tarot/daily">每日一牌</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <span class="dd-btn">人類圖 ▾</span>
+          <div class="dd-menu">
+            <a href="#/humandesign">人類圖總覽</a>
+            <a href="#/humandesign/types">四大類型</a>
+            <a href="#/humandesign/centers">能量中心</a>
+            <a href="#/humandesign/calculator">人類圖計算</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <span class="dd-btn">更多 ▾</span>
+          <div class="dd-menu">
+            <a href="#/blog" data-nav="blog">星學知識庫</a>
+            <a href="#/traditions" data-nav="traditions">命理體系</a>
+            <a href="#/tools" data-nav="tools">工具庫</a>
+            <a href="#/sitemap" data-nav="sitemap">站內導覽</a>
+            <a href="#/about">關於</a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" title="切換日夜主題">🌙</button>
+        <button class="hamburger" id="hamburger" title="選單">☰</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Breadcrumb -->
+<div class="container"><nav class="breadcrumb" id="breadcrumb" aria-label="麵包屑"></nav></div>
+
+<!-- ===== Sidebar (Mobile menu) ===== -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-head">
+    <span class="brand"><span class="logo">✦</span><span>念十回 の 星靈宇宙</span></span>
+    <button class="theme-toggle" id="sidebarClose" title="關閉">✕</button>
+  </div>
+  <div class="sidebar-nav" id="sidebarNav"></div>
+  <div class="sidebar-foot">念十回 の 星靈宇宙 © 2026</div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<main>
+  <!-- ===== 首頁 HOME ===== -->
+  <section class="view" id="view-home">
+    <div class="hero">
+      <div class="container">
+        <div class="sec-eyebrow">東方命理 × 西方占卜 × 人類圖</div>
+        <h1 class="hero-title">念十回 の 星靈宇宙</h1>
+        <p>以天地人三才為軸，融通東方命理、易經卦象與西方塔羅占星，為你觀照人生脈動、指引前行方向。這裡是每個人認識自己、安頓身心的星學之境。</p>
+        <div class="hero-actions">
+          <a href="#/traditions" class="btn btn-primary btn-lg">探索六大命理體系</a>
+          <a href="#/tarot/three" class="btn btn-outline btn-lg">免費塔羅占卜</a>
+          <a href="#/zodiac/daily" class="btn btn-ghost btn-lg">今日星座運勢</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="section">
+        <div class="sec-head">
+          <div class="sec-eyebrow">六大命理體系</div>
+          <h2 class="sec-title">東方命理 × 易經占卜 × 觀形相學</h2>
+          <p class="sec-sub">念十回 の 星靈宇宙融通東西兩大命理傳統。點擊任一體系，認識其原理並連結對應專業主題。</p>
+        </div>
+        <div class="grid g-3" id="tradPreview"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 星座 ===== -->
+  <section class="view hidden" id="view-zodiac"></section>
+  <!-- ===== 塔羅 ===== -->
+  <section class="view hidden" id="view-tarot"></section>
+  <!-- ===== 人類圖 ===== -->
+  <section class="view hidden" id="view-humandesign"></section>
+  <!-- ===== 部落格 ===== -->
+  <section class="view hidden" id="view-blog"></section>
+  <!-- ===== 工具庫 ===== -->
+  <section class="view hidden" id="view-tools"></section>
+  <!-- ===== 收藏 ===== -->
+  <section class="view hidden" id="view-favorite"></section>
+  <!-- ===== 站內導覽 ===== -->
+  <section class="view hidden" id="view-sitemap"></section>
+  <!-- ===== 命理體系 traditions ===== -->
+  <section class="view hidden" id="view-traditions"></section>
+  <!-- ===== 關於 ===== -->
+  <section class="view hidden" id="view-about"></section>
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand"><span class="logo">✦</span><span>念十回 の 星靈宇宙</span></div>
+        <p class="prose" style="font-size:.88rem;margin:10px 0">融合星座、塔羅與人類圖的免費占星平台。所有內容僅供參考與娛樂，不做醫療或財務建議。</p>
+        <div class="social-icons">
+          <a href="#" title="Facebook" onclick="demo()">f</a>
+          <a href="#" title="Instagram" onclick="demo()">◎</a>
+          <a href="#" title="YouTube" onclick="demo()">▶</a>
+          <a href="#" title="X" onclick="demo()">𝕏</a>
+        </div>
+      </div>
+      <div>
+        <h4>星座</h4>
+        <a href="#/zodiac">十二星座總覽</a>
+        <a href="#/zodiac/daily">每日運勢</a>
+        <a href="#/zodiac/match">星座配對</a>
+        <a href="#/zodiac/rising">上升星座</a>
+      </div>
+      <div>
+        <h4>塔羅</h4>
+        <a href="#/tarot">牌意總覽</a>
+        <a href="#/tarot/three">三牌陣</a>
+        <a href="#/tarot/celtic">凱爾特十字</a>
+        <a href="#/tarot/daily">每日一牌</a>
+      </div>
+      <div>
+        <h4>關於本站</h4>
+        <a href="#/about">關於我們</a>
+        <a href="#/blog">星學知識庫</a>
+        <a href="#/favorite">我的收藏</a>
+        <span class="contact-info" style="display:block;font-size:.85rem;color:var(--text2);margin-top:6px">客服：service@cosmic-oracle.example.com</span>
+      </div>
+    </div>
+    <div class="footer-dev" style="text-align:center;padding:14px 0;border-top:1px solid var(--border);margin-bottom:16px;font-size:.95rem;line-height:1.9">
+      規劃設計開發：<b>張書欣</b>　·　TEL：<a href="tel:0968222201">0968-222201</a>　·　Line：<a href="https://line.me/R/ti/p/331.today" target="_blank" rel="noopener">331.today</a>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 念十回 の 星靈宇宙 · 版權所有</span>
+      <span>⚖ 內容僅供參考娛樂 · <a href="#/about" style="display:inline">免責聲明</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== FAB / Back-to-top / Context menu / Toast ===== -->
+<button class="fab" id="fab" title="快速抽牌"><span>🃏</span><span class="fab-label">每日塔羅抽牌</span></button>
+<button class="back-top" id="backTop" title="回到頂部">↑</button>
+<div class="context-menu" id="contextMenu"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============ 星座資料庫 ============ */
+const ZODIAC = [
+  {key:"aries",cn:"牡羊座",en:"Aries",sym:"♈",start:"3/21",end:"4/19",el:"火",mode:"開創",planet:"火星",lucky:"紅色",num:9,date:"3/21-4/19",
+   desc:"熱情直接、行動力強，天生的開創者。勇於冒險，但有時衝動急躁。",
+   love:"熱烈主動，需要被追逐與挑戰。",career:"適合領導、創業、需要魄力的工作。",health:"注意頭部、血壓與壓力管理。",match:["獅子座","射手座","雙子座"],today:"充滿能量的一天，適合啟動新計畫。今日幸運色紅色，幸運數字9。"},
+  {key:"taurus",cn:"金牛座",en:"Taurus",sym:"♉",start:"4/20",end:"5/20",el:"土",mode:"固定",planet:"金星",lucky:"綠色",num:6,date:"4/20-5/20",
+   desc:"務實穩重、重視感官享受，擁有堅韌的毅力與忠誠。",
+   love:"慢熱但深情，重視安全感與實際付出。",career:"適合金融、藝術、需要耐心的專業。",health:"注意喉嚨、頸部與飲食。",match:["處女座","摩羯座","巨蟹座"],today:"穩步向前的一天，適合處理財務與長期規劃。"},
+  {key:"gemini",cn:"雙子座",en:"Gemini",sym:"♊",start:"5/21",end:"6/21",el:"風",mode:"變動",planet:"水星",lucky:"黃色",num:5,date:"5/21-6/21",
+   desc:"聰明好奇、口才伶俐，適應力強，善於溝通與變通。",
+   love:"風趣多變，需要心智上的刺激與自由。",career:"適合媒體、行銷、資訊與需要溝通的領域。",health:"注意神經系統與手部。",match:["天秤座","水瓶座","牡羊座"],today:"溝通順利，適合談判、學習與社交。"},
+  {key:"cancer",cn:"巨蟹座",en:"Cancer",sym:"♋",start:"6/22",end:"7/22",el:"水",mode:"開創",planet:"月亮",lucky:"銀色",num:2,date:"6/22-7/22",
+   desc:"感性體貼、念舊顧家，直覺敏銳，情感豐富而細膩。",
+   love:"深情呵護，重視家庭與歸屬感。",career:"適合照顧、餐飲、房地產與情感相關領域。",health:"注意腸胃與情緒。",match:["天蠍座","雙魚座","金牛座"],today:"情感豐富的一天，適合陪伴家人與重視內在感受。"},
+  {key:"leo",cn:"獅子座",en:"Leo",sym:"♌",start:"7/23",end:"8/22",el:"火",mode:"固定",planet:"太陽",lucky:"金色",num:1,date:"7/23-8/22",
+   desc:"自信大方、慷慨熱情，天生具領導魅力與舞台感。",
+   love:"熱情高調，渴望被崇拜與注目。",career:"適合表演、管理、公關與創意領導。",health:"注意心臟與脊椎。",match:["牡羊座","射手座","天秤座"],today:"光彩奪目的一天，適合展現自我與主動出擊。"},
+  {key:"virgo",cn:"處女座",en:"Virgo",sym:"♍",start:"8/23",end:"9/22",el:"土",mode:"變動",planet:"水星",lucky:"白色",num:7,date:"8/23-9/22",
+   desc:"細膩謹慎、追求完美，分析力強，務實而可靠。",
+   love:"含蓄體貼，以行動表達關心。",career:"適合醫療、分析、編輯與精細專業。",health:"注意消化系統與睡眠。",match:["金牛座","摩羯座","巨蟹座"],today:"適合整理、分析與完善細節，今日貴人運佳。"},
+  {key:"libra",cn:"天秤座",en:"Libra",sym:"♎",start:"9/23",end:"10/23",el:"風",mode:"開創",planet:"金星",lucky:"粉色",num:8,date:"9/23-10/23",
+   desc:"優雅公正、善於協調，重視平衡與美感，社交能力強。",
+   love:"浪漫迷人，追求和諧與對等關係。",career:"適合設計、法律、外交與藝術。",health:"注意腎臟與腰部。",match:["雙子座","水瓶座","獅子座"],today:"人際和諧的一天，適合合作、簽約與美的事物。"},
+  {key:"scorpio",cn:"天蠍座",en:"Scorpio",sym:"♏",start:"10/24",end:"11/22",el:"水",mode:"固定",planet:"冥王星/火星",lucky:"深紫",num:0,date:"10/24-11/22",
+   desc:"深沉執著、洞察力強，情感強烈，具神秘魅力與決斷力。",
+   love:"專一深情，佔有慾強，重視靈魂連結。",career:"適合研究、偵查、金融與權力相關。",health:"注意生殖系統與壓力。",match:["巨蟹座","雙魚座","處女座"],today:"洞察力敏銳的一天，適合深入分析與解決難題。"},
+  {key:"sagittarius",cn:"射手座",en:"Sagittarius",sym:"♐",start:"11/23",end:"12/21",el:"火",mode:"變動",planet:"木星",lucky:"紫色",num:3,date:"11/23-12/21",
+   desc:"樂觀自由、熱愛冒險，追求真理與廣闊視野。",
+   love:"瀟灑坦率，需要空間與共同成長。",career:"適合旅遊、教育、跨國與出版。",health:"注意肝臟與大腿。",match:["牡羊座","獅子座","水瓶座"],today:"開闊視野的一天，適合計畫旅行與學習新事物。"},
+  {key:"capricorn",cn:"摩羯座",en:"Capricorn",sym:"♑",start:"12/22",end:"1/19",el:"土",mode:"開創",planet:"土星",lucky:"棕色",num:4,date:"12/22-1/19",
+   desc:"務實自律、責任感強，目標明確，具堅忍不拔的耐力。",
+   love:"穩重專一，用時間證明真心。",career:"適合管理、金融、建築與長遠事業。",health:"注意骨骼、關節與膝蓋。",match:["金牛座","處女座","天蠍座"],today:"踏實上進的一天，適合規劃事業與落實目標。"},
+  {key:"aquarius",cn:"水瓶座",en:"Aquarius",sym:"♒",start:"1/20",end:"2/18",el:"風",mode:"固定",planet:"天王星/土星",lucky:"藍色",num:11,date:"1/20-2/18",
+   desc:"獨立創新、思想前衛，重視自由與人道精神。",
+   love:"理性瀟灑，需要精神共鳴與個人空間。",career:"適合科技、研發、社會與創意領域。",health:"注意循環系統與腳踝。",match:["雙子座","天秤座","射手座"],today:"靈感湧現的一天，適合創新思考與團隊交流。"},
+  {key:"pisces",cn:"雙魚座",en:"Pisces",sym:"♓",start:"2/19",end:"3/20",el:"水",mode:"變動",planet:"海王星/木星",lucky:"青色",num:12,date:"2/19-3/20",
+   desc:"溫柔夢幻、直覺極強，富有同理心與藝術天賦。",
+   love:"浪漫多情，付出不求回報，需要被理解。",career:"適合藝術、醫療、靈性與創意。",health:"注意腳部與免疫力。",match:["巨蟹座","天蠍座","摩羯座"],today:"直覺靈敏的一天，適合冥想、創作與傾聽內心。"}
+];
+
+/* ============ 塔羅牌資料庫（22大阿爾克那 + 56小阿爾克那節選） ============ */
+const TAROT_MAJOR = [
+  {n:0,cn:"愚者",en:"The Fool",num:"0",desc:"新的開始、冒險、純真",up:"嶄新旅程，勇敢跨出舒適圈，充滿無限可能。",down:"衝動冒險，缺乏規劃，需三思而行。"},
+  {n:1,cn:"魔術師",en:"The Magician",num:"I",desc:"創造力、意志、掌握資源",up:"心想事成，才華展現，萬事俱備。",down:"欺騙、能力被浪費、方向不明。"},
+  {n:2,cn:"女祭司",en:"The High Priestess",num:"II",desc:"直覺、潛意識、神秘",up:"傾聽內在，直覺指引，靜待時機。",down:"忽略直覺，隱藏的秘密浮現。"},
+  {n:3,cn:"皇后",en:"The Empress",num:"III",desc:"豐盛、母性、創造",up:"豐收與滋養，情感豐沛，創造力蓬勃。",down:"過度依賴，缺乏獨立，停滯。"},
+  {n:4,cn:"皇帝",en:"The Emperor",num:"IV",desc:"權威、秩序、穩定",up:"掌控局面，建立秩序，堅定領導。",down:"專制固執，控制慾過強。"},
+  {n:5,cn:"教皇",en:"The Hierophant",num:"V",desc:"傳統、教導、精神導師",up:"遵循傳統，尋求指引，學習成長。",down:"過於保守，教條束縛，反抗權威。"},
+  {n:6,cn:"戀人",en:"The Lovers",num:"VI",desc:"愛情、選擇、結合",up:"真愛降臨，和諧結合，重大抉擇。",down:"關係考驗，價值衝突，猶豫不決。"},
+  {n:7,cn:"戰車",en:"The Chariot",num:"VII",desc:"勝利、意志、駕馭",up:"克服困難，駕馭衝突，贏得勝利。",down:"方向失控，內在矛盾，停滯不前。"},
+  {n:8,cn:"力量",en:"Strength",num:"VIII",desc:"勇氣、溫柔、內在力量",up:"以柔克剛，內在堅韌，自信從容。",down:"信心不足，軟弱退縮，自我懷疑。"},
+  {n:9,cn:"隱者",en:"The Hermit",num:"IX",desc:"內省、智慧、獨處",up:"沉澱自省，追尋智慧，獨處充電。",down:"過度孤僻，封閉自我，拒絕幫助。"},
+  {n:10,cn:"命運之輪",en:"Wheel of Fortune",num:"X",desc:"命運、轉變、循環",up:"時來運轉，好運降臨，人生轉折。",down:"運勢起伏，抗拒改變，時機未到。"},
+  {n:11,cn:"正義",en:"Justice",num:"XI",desc:"公正、平衡、因果",up:"真相大白，公平裁決，因果報應。",down:"偏袒失衡，逃避責任，判決不公。"},
+  {n:12,cn:"倒吊人",en:"The Hanged Man",num:"XII",desc:"犧牲、換位思考、放下",up:"換個角度看，暫緩行動，深度體悟。",down:"無謂犧牲，停滯不前，鑽牛角尖。"},
+  {n:13,cn:"死神",en:"Death",num:"XIII",desc:"結束、蛻變、重生",up:"徹底結束舊階段，迎接新生蛻變。",down:"抗拒結束，懼怕改變，拖延。"},
+  {n:14,cn:"節制",en:"Temperance",num:"XIV",desc:"調和、節制、中庸",up:"融合平衡，耐心調和，趨向圓滿。",down:"失衡失序，操之過急，過猶不及。"},
+  {n:15,cn:"惡魔",en:"The Devil",num:"XV",desc:"束縛、誘惑、執著",up:"看清束縛，戒除癮頭，找回自由。",down:"陷入誘惑，被慾望綁架，受制於人。"},
+  {n:16,cn:"高塔",en:"The Tower",num:"XVI",desc:"劇變、崩解、覺醒",up:"突發劇變，打破舊結構，震撼覺醒。",down:"內在崩潰，小規模震盪，預警降臨。"},
+  {n:17,cn:"星星",en:"The Star",num:"XVII",desc:"希望、療癒、靈感",up:"希望重生，療癒傷痛，願望實現。",down:"希望渺茫，喪失信心，靈感枯竭。"},
+  {n:18,cn:"月亮",en:"The Moon",num:"XVIII",desc:"幻象、不安、直覺",up:"看清幻象，面對不安，直覺浮現。",down:"誤解澄清，恐懼消散，走出迷霧。"},
+  {n:19,cn:"太陽",en:"The Sun",num:"XIX",desc:"成功、喜悅、活力",up:"燦爛成功，滿滿正能量，圓滿快樂。",down:"暫時挫敗，快樂延遲，信心稍減。"},
+  {n:20,cn:"審判",en:"Judgement",num:"XX",desc:"重生、覺醒、召喚",up:"自我覺醒，獲得新生，回應召喚。",down:"自我批判，錯失機會，逃避內省。"},
+  {n:21,cn:"世界",en:"The World",num:"XXI",desc:"完成、圓滿、成就",up:"圓滿達成，整合完成，旅程終點。",down:"未竟之事，功虧一簣，停滯待續。"}
+];
+/* 大阿爾克那卡片圖檔對應（assets/cards/tarot_0N_<key>.webp） */
+const TAROT_IMG = ["fool","magician","priestess","empress","emperor","hierophant","lovers","chariot","strength","hermit","wheel","justice","hanged","death","temperance","devil","tower","star","moon","sun","judgement","world"];
+/* 塔羅牌補充欄位（元素／象徵意象／代表色）——整合自星盤閣塔羅 */
+const TAROT_EXTRA = {
+  0:{ele:"風",sym:"懸崖邊的旅人與白犬",color:"#d7c49a"},
+  1:{ele:"風",sym:"桌上四大元素法器",color:"#d99a2b"},
+  2:{ele:"水",sym:"帷幕後的月亮",color:"#5b7fb5"},
+  3:{ele:"土",sym:"麥田與五芒星盾",color:"#7a9a4b"},
+  4:{ele:"火",sym:"王座與公羊頭",color:"#5a6a7a"},
+  5:{ele:"土",sym:"雙柱與三重冠",color:"#6a3b6e"},
+  6:{ele:"風",sym:"天使下的伴侶",color:"#c98ab5"},
+  7:{ele:"水",sym:"黑白斯芬克斯戰車",color:"#8a4f7b"},
+  8:{ele:"火",sym:"女子馴服雄獅",color:"#e04b3a"},
+  9:{ele:"土",sym:"提燈老人與孤峰",color:"#8b9a4f"},
+  10:{ele:"火",sym:"旋轉之輪與神祇",color:"#d4b93a"},
+  11:{ele:"風",sym:"天平與寶劍",color:"#3f7f9a"},
+  12:{ele:"水",sym:"倒吊於生命樹之人",color:"#4f7f9f"},
+  13:{ele:"水",sym:"白馬上的死神",color:"#4a4a5a"},
+  14:{ele:"火",sym:"兩杯間倒水天使",color:"#5b7fb5"},
+  15:{ele:"土",sym:"被縛的男女",color:"#6a3b6e"},
+  16:{ele:"火",sym:"被雷擊的高塔",color:"#e04b3a"},
+  17:{ele:"風",sym:"倒水女子與八星",color:"#d4b93a"},
+  18:{ele:"水",sym:"月下的狼與狗",color:"#5b7fb5"},
+  19:{ele:"火",sym:"向日葵下的孩童",color:"#d99a2b"},
+  20:{ele:"火",sym:"天使號角下的眾人",color:"#c98ab5"},
+  21:{ele:"土",sym:"花環中的舞者",color:"#7a9a4b"}
+};
+/* 56張小阿爾克那（節選代表牌，共4組16宮廷牌+40數字牌簡表） */
+const TAROT_MINOR_SUITS = [
+  {suit:"權杖",el:"火",theme:"行動、熱情、事業",cards:["王牌：新開始","二：計畫","三：遠見","四：安頓","五：競爭","六：勝利","七：勇氣","八：快速","九：堅守","十：重擔","侍從：熱情","騎士：冒險","皇后：自信","國王：領袖"]},
+  {suit:"聖杯",el:"水",theme:"情感、關係、直覺",cards:["王牌：情感新開端","二：連結","三：歡慶","四：冷淡","五：失落","六：懷舊","七：幻象","八：前行","九：滿足","十：圓滿","侍從：感性","騎士：浪漫","皇后：慈愛","國王：沉穩"]},
+  {suit:"寶劍",el:"風",theme:"思維、真相、挑戰",cards:["王牌：突破","二：僵局","三：心痛","四：休息","五：衝突","六：平穩","七：策略","八：受限","九：焦慮","十：終結","侍從：好奇","騎士：衝刺","皇后：清醒","國王：理性"]},
+  {suit:"錢幣",el:"土",theme:"物質、金錢、工作",cards:["王牌：財富開端","二：權衡","三：合作","四：守成","五：匱乏","六：分享","七：等待","八：精進","九：富足","十：家業","侍從：學習","騎士：踏實","皇后：滋養","國王：成功"]}
+];
+
+/* ============ 人類圖資料庫 ============ */
+const HD_TYPES = [
+  {key:"manifestor",cn:"顯示者",icon:"⚡",pct:"8%",strat:"告知",theme:"發起者、影響者",desc:"約佔8%人口。天生具發起與影響力，行動前先『告知』可減少阻力。人生策略：告知。非自己主題：憤怒。",notself:"憤怒"},
+  {key:"generator",cn:"生產者",icon:"⚙",pct:"37%",strat:"回應",theme:"建設者、生命力",desc:"約佔37%人口，是世界的能量來源。透過『回應』而非發起，人生策略：等待回應。非自己主題：挫敗。",notself:"挫敗"},
+  {key:"mg",cn:"顯示生產者",icon:"⚡⚙",pct:"33%",strat:"回應+發起",theme:"多工執行者",desc:"生產者與顯示者的混合，能量快速多工。先回應再發起，人生策略：等待回應。非自己主題：不耐煩。",notself:"不耐煩"},
+  {key:"projector",cn:"投射者",icon:"◯",pct:"21%",strat:"等待邀請",theme:"引導者、管理者",desc:"約佔21%人口，天生引導與管理他人，但需等待被『邀請』。人生策略：等待邀請。非自己主題：苦澀。",notself:"苦澀"},
+  {key:"reflector",cn:"反映者",icon:"◉",pct:"1%",strat:"等待月亮週期",theme:"反映者、樣板",desc:"約佔1%人口，能反映環境狀態，極其罕見。人生策略：等待28天月亮週期再做決定。非自己主題：失望。",notself:"失望"}
+];
+const HD_CENTERS = [
+  {cn:"頭頂中心",en:"Head",x:50,y:6,pos:"靈感、壓力",defined:"靈感來源，思考壓力",undefined:"吸收外界壓力，有彈性"},
+  {cn:"心智中心",en:"Ajna",x:50,y:17,pos:"概念、思維",defined:"固定思維方式",undefined:"開放思維，可變通"},
+  {cn:"喉嚨中心",en:"Throat",x:50,y:30,pos:"溝通、行動",defined:"能表達與行動",undefined:"需等待表達時機"},
+  {cn:"G中心",en:"G Center",x:20,y:44,pos:"方向、愛、身分",defined:"穩定方向感",undefined:"方向隨環境而變"},
+  {cn:"心臟中心",en:"Heart",x:80,y:40,pos:"意志、自我",defined:"堅定意志與價值",undefined:"不需證明自己"},
+  {cn:"薦骨中心",en:"Sacral",x:50,y:62,pos:"生命能量、生產力",defined:"持續的能量來源",undefined:"能量不持續需充電"},
+  {cn:"脾中心",en:"Spleen",x:20,y:62,pos:"直覺、健康",defined:"敏銳直覺與生存本能",undefined:"直覺隨機，需靠時機"},
+  {cn:"情緒中心",en:"Emotional",x:80,y:62,pos:"情緒、感受",defined:"情緒波動，需時間清晰",undefined:"吸收他人情緒"},
+  {cn:"根部中心",en:"Root",x:50,y:82,pos:"壓力、動力",defined:"穩定壓力與動力",undefined:"釋放環境壓力"}
+];
+
+/* ============ 部落格文章 ============ */
+const BLOG = [
+  {t:"如何透過每日塔羅抽牌自我覺察",cat:"塔羅",date:"2026-09-28",ex:"每日抽牌是簡單又深刻的自我覺察工具…",body:"每日抽一張牌，觀察它與當日生活的呼應，不求解讀的絕對正確，而是藉牌卡開啟與自己的對話。"},
+  {t:"上升星座：你的『社交面具』與人生起點",cat:"星座",date:"2026-09-25",ex:"上升星座是出生時東方地平線的星座，代表你給人的第一印象…",body:"上升星座影響外在形象、氣質與人生初始方向，與太陽、月亮並列人生三大要角。"},
+  {t:"人類圖四大類型白話解說",cat:"人類圖",date:"2026-09-22",ex:"顯示者、生產者、投射者、反映者，你是哪一種？",body:"了解自己的能量類型與人生策略，能大幅減少內耗，讓生命順流。"},
+  {t:"塔羅牌陣怎麼選？三牌陣與凱爾特十字的差異",cat:"塔羅",date:"2026-09-18",ex:"不同問題適合不同牌陣…",body:"三牌陣適合快速看過去現在未來；凱爾特十字適合深入探究一個複雜處境。"},
+  {t:"12星座的本質：行星與元素的秘密",cat:"星座",date:"2026-09-15",ex:"每個星座都由元素與行星能量組成…",body:"火象熱情、土象務實、風象理性、水象感性，搭配守護行星構成星座的底層性格。"},
+  {t:"人類圖能量中心開放與定義的意義",cat:"人類圖",date:"2026-09-12",ex:"定義的中心是穩定能量，開放中心是學習與智慧來源…",body:"有定義的能量中心是你的穩定力量，開放的能量中心則是你吸收與成長的智慧所在。"},
+  {t:"正位與逆位牌的解讀要領",cat:"塔羅",date:"2026-09-08",ex:"逆位不一定是壞事…",body:"逆位常代表能量的內縮、延遲或過度，解讀時結合牌面與問題脈絡，不迷信吉凶。"},
+  {t:"月亮星座：你的內在情緒與安全感",cat:"星座",date:"2026-09-05",ex:"月亮星座反映你未經修飾的情感需求…",body:"月亮掌管內在情緒、直覺與安全感，了解它能更懂自己與親密關係的底層需求。"}
+];
+
+/* ================= 應用程式核心 ================= */
+/* ---- 全域狀態 ---- */
+const state = {
+  route:"home",
+  theme: localStorage.getItem("co_theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark":"light"),
+  favs: JSON.parse(localStorage.getItem("co_favs") || "[]"),
+  zSel: 0,
+  tarotMode:"major",
+  tarotSel:null,
+  tarotThree:[],  // 三牌陣結果
+  tarotCeltic:[], // 凱爾特結果
+  tarotDaily:null,
+  hdType:null,
+  visited: JSON.parse(localStorage.getItem("co_visited") || "[]"),
+  searchQ:""
+};
+
+/* ---- 工具函式 ---- */
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+function toast(msg){
+  const t = $("#toast"); t.textContent = msg; t.classList.add("show");
+  clearTimeout(t._tm); t._tm = setTimeout(()=>t.classList.remove("show"),2600);
+}
+function esc(s){ return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function demo(){ toast("此為示範功能，正式版將開放"); }
+function saveVisited(){ localStorage.setItem("co_visited", JSON.stringify(state.visited)); }
+function recordVisit(page){
+  const t = new Date().toLocaleDateString("zh-TW");
+  if(state.visited[0] && state.visited[0].t===t && state.visited[0].p===page) return;
+  state.visited.unshift({t,p:page,ts:Date.now()}); if(state.visited.length>50) state.visited.pop();
+  saveVisited();
+}
+function isFav(sig){ return state.favs.includes(sig); }
+function toggleFav(sig,label){
+  const i = state.favs.indexOf(sig);
+  if(i>=0){ state.favs.splice(i,1); toast(`已從收藏移除：${label}`); }
+  else { state.favs.push(sig); toast(`已加入收藏：${label}`); }
+  localStorage.setItem("co_favs", JSON.stringify(state.favs));
+  renderFavBtns();
+}
+function renderFavBtns(){
+  $$("[data-fav]").forEach(b=>{
+    const on = isFav(b.dataset.fav); b.textContent = on?"★":"☆"; b.classList.toggle("on",on);
+  });
+}
+function rnd(n){ return Math.floor(Math.random()*n); }
+function shuffle(arr){ const a=[...arr]; for(let i=a.length-1;i>0;i--){ const j=rnd(i+1); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+
+/* ---- 主題 ---- */
+function applyTheme(){
+  document.documentElement.dataset.theme = state.theme;
+  $("#themeToggle").textContent = state.theme==="dark"?"☀":"🌙";
+  localStorage.setItem("co_theme", state.theme);
+}
+$("#themeToggle").addEventListener("click", ()=>{ state.theme = state.theme==="dark"?"light":"dark"; applyTheme(); toast(`已切換為${state.theme==="dark"?"暗夜":"明亮"}主題`); });
+$("#sidebarClose").addEventListener("click", closeSidebar);
+
+/* ---- 星空背景 ---- */
+function buildStars(){
+  const f = $("#starfield"); f.innerHTML="";
+  const n = matchMedia("(max-width:600px)").matches?40:90;
+  for(let i=0;i<n;i++){ const s=document.createElement("span"); s.className="star";
+    const size=(Math.random()*2.4+0.6).toFixed(1);
+    s.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;width:${size}px;height:${size}px;animation-delay:${(Math.random()*4).toFixed(1)}s;animation-duration:${(Math.random()*3+3).toFixed(1)}s`;
+    f.appendChild(s); }
+}
+buildStars();
+
+/* ---- Sidebar ---- */
+function openSidebar(){ $("#sidebar").classList.add("open"); $("#sidebarOverlay").classList.add("show"); }
+function closeSidebar(){ $("#sidebar").classList.remove("open"); $("#sidebarOverlay").classList.remove("show"); }
+$("#hamburger").addEventListener("click", openSidebar);
+$("#sidebarOverlay").addEventListener("click", closeSidebar);
+/* 下拉選單：點擊切換（也支援 hover） */
+document.addEventListener("click", e=>{
+  const dd = e.target.closest(".dropdown");
+  $$(".dropdown").forEach(d=>{ if(d!==dd) d.classList.remove("open"); });
+  if(dd){ dd.classList.toggle("open"); }
+});
+document.querySelectorAll(".dd-menu a").forEach(a=>a.addEventListener("click", ()=>{
+  a.closest(".dropdown").classList.remove("open");
+}));
+/* Popover（彈出浮層）：data-popover 觸發，點擊切換；點外部關閉；支援鍵盤 Esc */
+document.addEventListener("click", e=>{
+  const pv = e.target.closest(".popover");
+  $$(".popover.open").forEach(p=>{ if(p!==pv) p.classList.remove("open"); });
+  if(pv) pv.classList.toggle("open");
+});
+document.addEventListener("click", e=>{
+  if(!e.target.closest(".popover")) $$(".popover.open").forEach(p=>p.classList.remove("open"));
+});
+document.addEventListener("keydown", e=>{ if(e.key==="Escape") $$(".popover.open").forEach(p=>p.classList.remove("open")); });
+$$(".pv-close").forEach(b=>b.addEventListener("click", ()=>b.closest(".popover").classList.remove("open")));
+function renderSidebar(){
+  const groups = [
+    {g:"星座算命",items:[["#/zodiac","十二星座總覽","♈"],["#/zodiac/daily","每日運勢","☀"],["#/zodiac/match","星座配對","♥"],["#/zodiac/rising","上升星座","▲"]]},
+    {g:"塔羅占卜",items:[["#/tarot","78張牌意","🃏"],["#/tarot/three","三牌陣","✤"],["#/tarot/celtic","凱爾特十字","✚"],["#/tarot/daily","每日一牌","☾"]]},
+    {g:"人類圖",items:[["#/humandesign","人類圖總覽","◉"],["#/humandesign/types","四大類型","⚡"],["#/humandesign/centers","能量中心","◌"],["#/humandesign/calculator","人類圖計算","▦"]]},
+    {g:"更多",items:[["#/traditions","命理體系","🔮"],["#/tools","工具庫","🧰"],["#/sitemap","站內導覽","🗺"],["#/blog","星學知識庫","📖"],["#/favorite","我的收藏","★"],["#/about","關於本站","ℹ"]]}
+  ];
+  $("#sidebarNav").innerHTML = groups.map(grp=>`
+    <div class="grp">${grp.g}</div>
+    ${grp.items.map(it=>`<a href="${it[0]}" class="${state.route.split('/')[1]===it[0].split('/')[1]?'active':''}" onclick="closeSidebar()">${it[2]} ${it[1]}</a>`).join("")}
+  `).join("");
+}
+
+/* ---- Back to top / FAB ---- */
+window.addEventListener("scroll", ()=>{
+  $("#backTop").classList.toggle("show", window.scrollY>500);
+});
+$("#backTop").addEventListener("click", ()=>window.scrollTo({top:0,behavior:"smooth"}));
+$("#fab").addEventListener("click", ()=>go("#/tarot/daily"));
+
+/* ---- Context menu（右鍵自訂選單） ---- */
+document.addEventListener("contextmenu", e=>{
+  const m = $("#contextMenu");
+  const links = [
+    ["📋 複製本站連結", ()=>{ navigator.clipboard?.writeText(location.href); toast("已複製本站連結"); }],
+    ["⭐ 收藏本頁", ()=>{ toggleFav("page:"+state.route, "本頁"); }],
+    ["🏠 回首頁", ()=>{ go("#/home"); }],
+    ["☀/🌙 切換主題", ()=>{ state.theme=state.theme==="dark"?"light":"dark"; applyTheme(); }],
+    ["⬆ 回到頂部", ()=>{ window.scrollTo({top:0,behavior:"smooth"}); }]
+  ];
+  m.innerHTML = links.map(l=>`<button data-ctx>${l[0]}</button>`).join("");
+  m.style.left=Math.min(e.clientX, innerWidth-220)+"px"; m.style.top=Math.min(e.clientY,innerHeight-links.length*44-10)+"px";
+  m.classList.add("show");
+  m.querySelectorAll("button").forEach((b,i)=>b.addEventListener("click",()=>{ m.classList.remove("show"); links[i][1](); }));
+  e.preventDefault();
+});
+document.addEventListener("click", e=>{ if(!e.target.closest(".context-menu")) $("#contextMenu").classList.remove("show"); });
+
+/* ================= 星座視圖 ================= */
+function renderZodiac(sub){
+  const v = $("#view-zodiac");
+  if(!sub || sub==="overview" || sub==="list" || sub==="all"){ renderZodiacList(v); return; }
+  if(sub==="daily"){ renderZodiacDaily(v); return; }
+  if(sub==="match"){ renderZodiacMatch(v); return; }
+  if(sub==="rising"){ renderZodiacRising(v); return; }
+  if(sub==="detail"){ renderZodiacDetail(v); return; }
+  renderZodiacList(v);
+}
+function renderZodiacList(v){
+  const t = new Date();
+  const todayTz = ZODIAC.find(z=>{ const [sm,sd]=z.start.split("/").map(Number); const [em,ed]=z.end.split("/").map(Number); const m=t.getMonth()+1,d=t.getDate(); if(sm>em) return m>=sm||m<=em; return m>=sm&&m<=em; });
+  v.innerHTML = `
+  <div class="container">
+    <div class="sec-head" style="padding-top:18px">
+      <div class="sec-eyebrow">星座算命</div>
+      <h1 class="sec-title">十二星座完整檔案</h1>
+      <p class="sec-sub">點擊任意星座卡片，查看完整性格、愛情、事業、健康與今日運勢。</p>
+    </div>
+    <div class="callout callout-info"><b>今日星座：${todayTz.cn}</b> — ${esc(todayTz.today)}</div>
+    <div class="grid g-4">
+      ${ZODIAC.map((z,i)=>`
+      <div class="cd card-hover" onclick="go('#/zodiac/detail?z=${i}')" data-card>
+        <div class="cd-top cd-img"><img src="assets/cards/zodiac_${z.key}.webp" alt="${z.cn}" loading="lazy"><span class="cd-sym">${z.sym}</span></div>
+        <div class="cd-body">
+          <h4>${z.cn} <span style="font-size:.8rem;color:var(--text3)">${z.en}</span></h4>
+          <p>${z.date} · ${z.el}象 · ${z.mode}星座</p>
+        </div>
+        <div class="cd-foot"><button class="btn btn-outline btn-sm" onclick="event.stopPropagation();toggleFav('z:${z.key}','${z.cn}')" data-fav="z:${z.key}">${isFav('z:'+z.key)?'★':'☆'}</button></div>
+      </div>`).join("")}
+    </div>
+    <div style="height:40px"></div>
+  </div>`;
+  renderFavBtns();
+}
+function renderZodiacDetail(v){
+  const q = new URLSearchParams(location.hash.split("?")[1]);
+  const i = Math.min(Math.max(parseInt(q.get("z")||0,10)||0,0),11);
+  const z = ZODIAC[i];
+  v.innerHTML = `
+  <div class="container">
+    <div style="padding-top:18px" class="card" data-card>
+      <div style="display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap">
+        <div style="width:120px;height:150px;border-radius:14px;overflow:hidden;position:relative;flex-shrink:0"><img src="assets/cards/zodiac_${z.key}.webp" alt="${z.cn}" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy"><span style="position:absolute;bottom:4px;right:8px;font-size:1.6rem;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6)">${z.sym}</span></div>
+        <div style="flex:1;min-width:240px">
+          <div class="sec-eyebrow">${z.en}</div>
+          <h1 class="sec-title" style="margin:4px 0">${z.cn} 完整檔案</h1>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
+            <span class="badge badge-b">${z.date}</span>
+            <span class="popover pv-bottom" style="display:inline-block"><span class="badge badge-info" style="cursor:help">${z.el}象 ▾</span><span class="pv-panel"><h4>${z.el}象元素</h4><p>${z.el==="火"?"熱情、行動、直覺，象徵能量與衝勁。":z.el==="土"?"務實、穩定、扎根，象徵物質與耐力。":z.el==="風"?"思維、溝通、連結，象徵理性與變通。":"情感、直覺、共感，象徵感受與流動。"}</p><span class="pv-tag">元素</span></span></span>
+            <span class="popover pv-bottom" style="display:inline-block"><span class="badge badge-a" style="cursor:help">${z.mode} ▾</span><span class="pv-panel"><h4>${z.mode}星座</h4><p>${z.mode==="開創"?"開創星座：主動、起頭、開創新局，是四季之始的能量。":z.mode==="固定"?"固定星座：穩定、堅持、維持不變，是季節中段的能量。":"變動星座：彈性、適應、轉化，是季節之交的能量。"}</p><span class="pv-tag">模式</span></span></span>
+            <span class="popover pv-bottom" style="display:inline-block"><span class="badge badge-ok" style="cursor:help">守護星：${z.planet} ▾</span><span class="pv-panel"><h4>守護星 ${z.planet}</h4><p>守護星影響 ${z.cn} 的氣質與運勢走向，也呼應你天生的行事風格與情感表達方式。</p><span class="pv-tag">行星</span></span></span>
+            <span class="popover pv-bottom" style="display:inline-block"><span class="badge" style="cursor:help;background:var(--bg3)">幸運色 ${z.lucky} ▾</span><span class="pv-panel"><h4>幸運色 ${z.lucky}</h4><p>${z.lucky}色能為 ${z.cn} 帶來安定與好運，適合日常穿搭、隨身小物或重要日子的幸運選擇。</p><span class="pv-tag">幸運</span></span></span>
+            <span class="popover pv-bottom" style="display:inline-block"><span class="badge" style="cursor:help;background:var(--bg3)">幸運數 ${z.num} ▾</span><span class="pv-panel"><h4>幸運數字 ${z.num}</h4><p>數字 ${z.num} 是 ${z.cn} 的幸運數字，可用於選號、日期選擇或個人決策的小提示。</p><span class="pv-tag">幸運</span></span></span>
+          </div>
+        </div>
+        <button class="btn btn-outline" onclick="toggleFav('z:${z.key}','${z.cn}')" data-fav="z:${z.key}">${isFav('z:'+z.key)?'★':'☆'} 收藏</button>
+      </div>
+    </div>
+    <div class="grid g-2" style="margin-top:20px">
+      <div class="card"><h3>今日運勢</h3><p class="prose" style="margin-top:8px">${esc(z.today)}</p>
+        <div class="meter" style="margin-top:14px"><span>整體運勢</span><div class="bar"><span style="width:${72+i*2}%"></span></div><b>${72+i*2}%</b></div>
+      </div>
+      <div class="card"><h3>幸運資訊</h3>
+        <div class="grid g-2" style="margin-top:10px">
+          <div class="dash-stat"><div class="k">幸運色</div><div class="v" style="font-size:1.3rem">${z.lucky}</div></div>
+          <div class="dash-stat"><div class="k">幸運數字</div><div class="v" style="font-size:1.3rem">${z.num}</div></div>
+        </div>
+      </div>
+      <div class="card"><h3>愛情運勢</h3><p class="prose" style="margin-top:8px">${esc(z.love)}</p></div>
+      <div class="card"><h3>事業運勢</h3><p class="prose" style="margin-top:8px">${esc(z.career)}</p></div>
+      <div class="card"><h3>健康提醒</h3><p class="prose" style="margin-top:8px">${esc(z.health)}</p></div>
+      <div class="card"><h3>最佳速配</h3>
+        <div class="tagcloud" style="margin-top:10px">${z.match.map(m=>`<a href="#/zodiac/match" onclick="pickMatch('${m}')">${m}</a>`).join("")}</div>
+        <button class="btn btn-primary btn-sm" style="margin-top:14px" onclick="go('#/zodiac/match')">查看完整配對</button>
+      </div>
+    </div>
+    <div class="pre-next">
+      <a href="#" onclick="event.preventDefault();zodiacStep(-1)"><span class="dir">← 上一個</span><br><b>${ZODIAC[(i+11)%12].cn}</b></a>
+      <a href="#" style="text-align:right" onclick="event.preventDefault();zodiacStep(1)"><span class="dir">下一個 →</span><br><b>${ZODIAC[(i+1)%12].cn}</b></a>
+    </div>
+    <div style="height:40px"></div>
+  </div>`;
+  renderFavBtns();
+}
+function zodiacStep(d){
+  const q = new URLSearchParams(location.hash.split("?")[1]);
+  const i = Math.min(Math.max(parseInt(q.get("z")||0,10)||0,0),11);
+  go(`#/zodiac/detail?z=${(i+d+12)%12}`);
+}
+
+function renderZodiacDaily(v){
+  const today = new Date();
+  v.innerHTML = `
+  <div class="container">
+    <div class="sec-head" style="padding-top:18px">
+      <div class="sec-eyebrow">星座算命</div>
+      <h1 class="sec-title">每日星座運勢</h1>
+      <p class="sec-sub">${today.getFullYear()}年${today.getMonth()+1}月${today.getDate()}日 · 更新時間依伺服器而定，僅供參考娛樂</p>
+    </div>
+    <div class="table-wrap" data-table>
+      <table class="tbl">
+        <colgroup><col style="width:16%"><col style="width:12%"><col style="width:12%"><col style="width:12%"><col style="width:14%"><col style="width:34%"></colgroup>
+        <thead><tr><th>星座</th><th>整體</th><th>愛情</th><th>事業</th><th>幸運</th><th>今日建議</th></tr></thead>
+        <tbody>
+          ${ZODIAC.map(z=>{
+            const s=(z.num*7+today.getDate()*3)%101;
+            return `<tr><td><b>${z.sym} ${z.cn}</b></td><td><div class="meter"><div class="bar"><span style="width:${s}%"></span></div>${s}</div></td><td>${z.match[0]}</td><td>${z.el}</td><td>${z.lucky} ${z.num}</td><td>${esc(z.today)}</td></tr>`;
+          }).join("")}
+        </tbody>
+      </table>
+    </div>
+    <div style="height:40px"></div>
+  </div>`;
+}
+function pickMatch(name){ const m=$("#matchSel"); if(m) m.value=name; go("#/zodiac/match"); }
+function renderZodiacMatch(v){
+  v.innerHTML = `
+  <div class="container">
+    <div class="sec-head" style="padding-top:18px">
+      <div class="sec-eyebrow">星座算命</div>
+      <h1 class="sec-title">星座配對分析</h1>
+      <p class="sec-sub">選擇兩個星座，查看你們的愛情、友情與事業契合度。</p>
+    </div>
+    <div class="card" style="margin-bottom:20px">
+      <div class="form-grid">
+        <div class="form-group"><label>我的星座</label><select id="matchSel">${ZODIAC.map(z=>`<option value="${z.cn}">${z.sym} ${z.cn}</option>`).join("")}</select></div>
+        <div class="form-group"><label>對方星座</label><select id="matchSel2">${ZODIAC.map(z=>`<option value="${z.cn}">${z.sym} ${z.cn}</option>`).join("")}</select></div>
+      </div>
+      <button class="btn btn-primary" onclick="doMatch()">開始配對分析</button>
+    </div>
+    <div id="matchResult"></div>
+    <div style="height:40px"></div>
+  </div>`;
+}
+function matchScore(a,b){
+  // 元素相性 + 模式相性 + 守護星
+  const elCompat = {"火火":85,"火土":55,"火風":80,"火水":62,"土土":78,"土風":52,"土水":90,"風風":82,"風水":70,"水水":88,"水土":90,"火火":85};
+  const aEl=a.el, bEl=b.el;
+  let s = elCompat[aEl+bEl] || 70;
+  if(a.mode===b.mode) s+=8; else s+=3;
+  // 守護行星互容
+  const good=["金星","木星","太陽","月亮"]; const tense=["火星","土星","冥王星"];
+  const g=(good.includes(a.planet)?2:0)+(good.includes(b.planet)?2:0);
+  const tns=(tense.includes(a.planet)&&tense.includes(b.planet))?-6:0;
+  s+=g+tns;
+  return Math.max(20,Math.min(99,s));
+}
+function doMatch(){
+  const aName=$("#matchSel").value, bName=$("#matchSel2").value;
+  const a=ZODIAC.find(z=>z.cn===aName), b=ZODIAC.find(z=>z.cn===bName);
+  const love=matchScore(a,b), friend=(love+10+rnd(8))%100, work=(love-5+rnd(10)+100)%100;
+  $("#matchResult").innerHTML = `
+  <div class="grid g-3">
+    <div class="card" style="text-align:center"><div style="font-size:3rem">${a.sym}</div><h3>${a.cn}</h3><span class="badge badge-info">${a.el}象</span></div>
+    <div class="card" style="text-align:center;display:flex;flex-direction:column;justify-content:center">
+      <div class="zodiac-ring" style="--p:${love};margin:0 auto"><b>${love}%</b></div>
+      <h3 style="margin-top:12px">契合度</h3>
+      <p class="prose" style="margin-top:6px">${love>=80?"天作之合！":love>=65?"相當契合，值得經營":love>=45?"有緣但需磨合":"彼此吸引力有限"}</p>
+    </div>
+    <div class="card" style="text-align:center"><div style="font-size:3rem">${b.sym}</div><h3>${b.cn}</h3><span class="badge badge-info">${b.el}象</span></div>
+  </div>
+  <div class="grid g-3" style="margin-top:16px">
+    <div class="dash-stat"><div class="k">愛情契合</div><div class="v">${love}%</div><div class="meter" style="margin-top:6px"><div class="bar"><span style="width:${love}%"></span></div></div></div>
+    <div class="dash-stat"><div class="k">友情契合</div><div class="v">${friend}%</div><div class="meter" style="margin-top:6px"><div class="bar"><span style="width:${friend}%"></span></div></div></div>
+    <div class="dash-stat"><div class="k">事業契合</div><div class="v">${work}%</div><div class="meter" style="margin-top:6px"><div class="bar"><span style="width:${work}%"></span></div></div></div>
+  </div>
+  <div class="callout callout-info" style="margin-top:16px">
+    <b>配對解讀：</b>${a.cn}（${a.el}象）與${b.cn}（${b.el}象）的組合。${love>=75?"這對組合能量相輔相成，非常適合長久經營。":love>=50?"你們各有特色，若能理解彼此差異，可建立穩固關係。":"你們需要更多耐心與包容，差異正是學習成長的契機。"}
+  </div>`;
+  toast(`${a.cn} × ${b.cn} 配對完成`);
+}
+function renderZodiacRising(v){
+  v.innerHTML = `
+  <div class="container">
+    <div class="sec-head" style="padding-top:18px">
+      <div class="sec-eyebrow">星座算命</div>
+      <h1 class="sec-title">上升星座計算器</h1>
+      <p class="sec-sub">上升星座是你出生那一刻東方地平線升起的星座，代表你的外在形象、氣質與人生起點。輸入出生資訊查詢。</p>
+    </div>
+    <div class="card" style="max-width:560px">
+      <div class="form-group"><label>出生日期</label><input type="date" id="riseDate" value="1990-01-01"></div>
+      <div class="form-grid">
+        <div class="form-group"><label>出生時辰</label><select id="riseHour">${Array.from({length:24},(_,i)=>`<option value="${i}">${String(i).padStart(2,"0")}:00</option>`).join("")}</select></div>
+        <div class="form-group"><label>出生分鐘</label><select id="riseMin">${Array.from({length:12},(_,i)=>`<option value="${i*5}">${String(i*5).padStart(2,"0")}</option>`).join("")}</select></div>
+      </div>
+      <button class="btn btn-primary" onclick="calcRising()">查詢上升星座</button>
+    </div>
+    <div id="riseResult" style="margin-top:20px"></div>
+    <div style="height:40px"></div>
+  </div>`;
+}
+function calcRising(){
+  const d=new Date($("#riseDate").value), hr=parseInt($("#riseHour").value), mn=parseInt($("#riseMin").value);
+  if(isNaN(d.getTime())){ toast("請選擇有效日期"); return; }
+  const dayOfYear = Math.floor((d - new Date(d.getFullYear(),0,0))/86400000);
+  const solarPos = (dayOfYear/365)*360; // 太陽黃經
+  const hourAngle = ((hr+mn/60)/24)*360; // 時角
+  const asc = (solarPos + hourAngle*1.04 + 90) % 360; // 近似上升黃經
+  const idx = Math.floor(asc/30)%12;
+  const z = ZODIAC[idx];
+  const sun = ZODIAC.find(z=>{ const [sm,sd]=z.start.split("/").map(Number); const [em,ed]=z.end.split("/").map(Number); const m=d.getMonth()+1,dd=d.getDate(); if(sm>em) return m>=sm||m<=em; return m>=sm&&m<=em; });
+  $("#riseResult").innerHTML = `
+  <div class="card" data-card>
+    <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+      <div style="font-size:4rem">${z.sym}</div>
+      <div style="flex:1;min-width:220px">
+        <div class="sec-eyebrow">你的上升星座</div>
+        <h2>${z.cn}（${z.en}）</h2>
+        <p class="prose" style="margin-top:6px">上升${z.cn}的人，給人的第一印象是${z.el==="火"?"熱情自信、行動外放":z.el==="土"?"沉穩務實、可靠內斂":z.el==="風"?"理性健談、機智敏捷":"感性溫和、直覺敏銳"}。</p>
+      </div>
+      <div><span class="badge badge-b">太陽：${sun.cn}</span></div>
+    </div>
+    <div class="callout callout-ok" style="margin-top:14px">
+      <b>解讀：</b>太陽星座（${sun.cn}）是內在核心，上升星座（${z.cn}）是外在呈現。${sun.key===z.key?"你的太陽與上升同座，內外一致，能量相當統一。":"你的太陽與上升分屬不同元素，外在展現與內在感受略有落差，這正是你的人格豐富之處。"}
+    </div>
+  </div>`;
+  toast(`上升星座計算完成：${z.cn}`);
+}
+
+/* ================= 塔羅視圖 ================= */
+function renderTarot(sub){
+  const v = $("#view-tarot");
+  if(sub==="three"){ renderTarotThree(v); return; }
+  if(sub==="celtic"){ renderTarotCeltic(v); return; }
+  if(sub==="daily"){ renderTarotDaily(v); return; }
+  if(sub==="detail"){ renderTarotDetail(v); return; }
+  renderTarotOverview(v);
+}
+function renderTarotOverview(v){
+  v.innerHTML = `
+  <div class="container">
+    <div class="sec-head" style="padding-top:18px">
+      <div class="sec-eyebrow">塔羅占卜</div>
+      <h1 class="sec-title">78張塔羅牌意總覽</h1>
+      <p class="sec-sub">22張大阿爾克那 + 56張小阿爾克那。點擊牌卡查看正逆位詳解。</p>
+    </div>
+    <div class="tabs" id="tarotTabs">
+      <button class="tab on" data-tab="major" onclick="setTarotMode('major')">大阿爾克那（22）</button>
+      <button class="tab" data-tab="minor" onclick="setTarotMode('minor')">小阿爾克那（56）</button>
+    </div>
+    <div id="tarotGrid" class="grid g-6"></div>
+    <div style="height:40px"></div>
+  </div>`;
+  const initMode = (new URLSearchParams(location.hash.split("?")[1])).get("m") || "major";
+  setTarotMode(initMode);
+}
+function setTarotMode(mode){
+  state.tarotMode=mode;
+  $$("#tarotTabs .tab").forEach(t=>t.classList.toggle("on", t.dataset.tab===mode));
+  const grid = $("#tarotGrid"); if(!grid) return;
+  if(mode==="major"){
+    grid.className="grid g-6";
+    grid.innerHTML = TAROT_MAJOR.map(c=>{
+      const ex = TAROT_EXTRA[c.n] || {ele:"",sym:"",color:"#6a3de8"};
+      const img = "assets/cards/tarot_" + String(c.n).padStart(2,"0") + "_" + (TAROT_IMG[c.n]||"x") + ".webp";
+      return `
+      <div class="flip-wrap">
+        <div class="flip-card" data-flip="t${c.n}" onclick="flipTarot(this)" title="點擊翻牌">
+          <span class="face front" style="background-image:url('${img}')">
+            <span class="t-num">${c.num==="0"?"0":c.num}</span>
+            <span class="t-name">${c.cn}</span>
+            <span class="t-en">${c.en}</span>
+            ${ex.ele?`<span class="t-ele">元素 ${ex.ele}</span>`:""}
+            <a class="t-link" href="#/tarot/detail?c=${c.n}&m=major" onclick="event.stopPropagation()">查看詳解 →</a>
+          </span>
+          <span class="face back"></span>
+        </div>
+      </div>`;
+    }).join("") + `<div style="grid-column:1/-1;text-align:center;color:var(--text3);font-size:.85rem">點擊牌卡翻面，查看元素、象徵意象與代表色；點「查看詳解」看正逆位完整解讀</div>`;
+  }else{
+    grid.className="grid g-5";
+    const suitKeys=["wands","cups","swords","pentacles"];
+    const rankKeys=["ace","2","3","4","5","6","7","8","9","10","page","knight","queen","king"];
+    const rankCn=["王牌","2","3","4","5","6","7","8","9","10","侍從","騎士","女王","國王"];
+    grid.innerHTML = TAROT_MINOR_SUITS.map((s,si)=> s.cards.map((cn,ri)=>{
+        const img = "assets/cards/"+suitKeys[si]+"_"+rankKeys[ri]+".webp";
+        const cnPart = cn.split("：")[0];
+        const meaning = cn.split("：")[1] || "";
+        return `<div class="flip-wrap">
+          <div class="flip-card" data-flip="m${si}_${ri}" onclick="flipTarot(this)" title="點擊翻牌">
+            <span class="face front" style="background-image:url('${img}')">
+              <span class="t-name">${s.suit} ${cnPart}</span>
+              <span class="t-ele">${s.el}象 · ${meaning}</span>
+            </span>
+            <span class="face back"></span>
+          </div>
+        </div>`;
+      }).join("")).join("") + `<div style="grid-column:1/-1;text-align:center;color:var(--text3);font-size:.85rem">點擊牌卡翻面查看牌意；全彩插畫圖面，共56張小阿爾克那</div>`;
+  }
+}
+/* 翻牌卡互動（整合自星盤閣） */
+function flipTarot(el){
+  if(el.classList.contains("flipped")) el.classList.remove("flipped");
+  else el.classList.add("flipped");
+}
+function renderTarotDetail(v){
+  const q=new URLSearchParams(location.hash.split("?")[1]);
+  const m=q.get("m")||"major";
+  let c;
+  if(m==="major"){ const i=parseInt(q.get("c")||0); c=TAROT_MAJOR[i]; }
+  else{ c=TAROT_MAJOR[parseInt(q.get("c")||0)]; }
+  if(!c){ renderTarotOverview(v); return; }
+  v.innerHTML = `
+  <div class="container">
+    <div class="sec-head" style="padding-top:18px">
+      <div class="sec-eyebrow">塔羅占卜</div>
+      <h1 class="sec-title">${c.cn} ${c.en}</h1>
+      <p class="sec-sub">${c.desc}</p>
+    </div>
+    <div class="card" data-card>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start">
+        <div class="tarot-card reveal" style="width:150px;height:225px;font-size:4rem;background:${(TAROT_EXTRA[c.n]||{}).color||"var(--grad)"};color:#fff">${c.num==="0"?"0":c.num}</div>
+        <div style="flex:1;min-width:260px">
+          ${(TAROT_EXTRA[c.n]&&TAROT_EXTRA[c.n].ele)?`<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px"><span class="badge badge-info">元素 ${TAROT_EXTRA[c.n].ele}</span><span class="badge badge-a">象徵：${esc(TAROT_EXTRA[c.n].sym)}</span></div>`:""}
+          <h3>正位含義</h3>
+          <p class="prose" style="margin-top:6px">${esc(c.up)}</p>
+          <h3 style="margin-top:16px">逆位含義</h3>
+          <p class="prose" style="margin-top:6px">${esc(c.down)}</p>
+          <div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap">
+            <button class="btn btn-primary btn-sm" onclick="go('#/tarot/three')">用此牌占卜</button>
+            <button class="btn btn-outline btn-sm" onclick="toggleFav('t:${m}:${c.n}','${c.cn}')" data-fav="t:${m}:${c.n}">${isFav('t:'+m+':'+c.n)?'★':'☆'} 收藏</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pre-next">
+      <a href="#" onclick="event.preventDefault();tarotStep(-1)"><span class="dir">← 上一張</span><br><b>${TAROT_MAJOR[(parseInt(c.n)-1+22)%22].cn}</b></a>
+      <a href="#" style="text-align:right" onclick="event.preventDefault();tarotStep(1)"><span class="dir">下一張 →</span><br><b>${TAROT_MAJOR[(parseInt(c.n)+1)%22].cn}</b></a>
+    </div>
+    <div style="height:40px"></div>
+  </div>`;
+  renderFavBtns();
+}
+function tarotStep(d){ const i=parseInt(new URLSearchParams(location.hash.split("?")[1]).get("c")||0); go(`#/tarot/detail?c=${(i+d+22)%22}&m=major`); }
+
+function renderTarotThree(v){
+  v.innerHTML = `
+  <div class="container">
+    <div class="sec-head" style="padding-top:18px">
+      <div class="sec-eyebrow">塔羅占卜</div>
+      <h1 class="sec-title">三牌陣占卜</h1>
+      <p class="sec-sub">過去 · 現在 · 未來。在心中默念你的問題，然後洗牌抽牌。</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="form-group" style="max-width:480px;margin:0 auto">
+        <label>你的問題（可留白）</label>
+        <input type="text" id="q3" placeholder="例如：我的感情運勢如何？">
+      </div>
+      <button class="btn btn-primary btn-lg" onclick="doThree()" id="threeBtn">✦ 洗牌並抽三張牌 ✦</button>
+      <div class="callout callout-info" style="margin-top:16px;text-align:left">三張牌依序代表<b>過去</b>（事件根源）、<b>現在</b>（當前處境）、<b>未來</b>（發展趨勢）。</div>
+    </div>
+    <div id="threeResult"></div>
+    <div style="height:40px"></div>
+  </div>`;
+}
+function doThree(){
+  const btn=$("#threeBtn"); btn.disabled=true; btn.textContent="洗牌中…";
+  setTimeout(()=>{
+    const drawn = shuffle(TAROT_MAJOR).slice(0,3).map(c=>({...c, rev:rnd(2)===0}));
+    state.tarotThree=drawn;
+    const labels=["過去","現在","未來"];
+    const positions=["根源與起因","當前處境","發展趨勢"];
+    $("#threeResult").innerHTML = `
+    <div class="grid g-3" style="margin-top:24px">
+      ${drawn.map((c,i)=>`
+      <div class="card" style="text-align:center" data-card>
+        <div class="tarot-card back" id="three-card-${i}" style="width:120px;height:180px;margin:0 auto;font-size:2.6rem"></div>
+        <div style="margin-top:12px"><span class="badge badge-b">${labels[i]}</span> <span class="badge badge-info">${positions[i]}</span></div>
+        <h3 style="margin-top:10px" id="three-name-${i}">？</h3>
+        <p class="prose" style="margin-top:6px;color:var(--text3)" id="three-desc-${i}"></p>
+      </div>`).join("")}
+    </div>
+    <div class="card" style="margin-top:18px" id="threeReading">
+      <h3>完整解讀</h3>
+      <div id="threeReadingText" class="prose" style="margin-top:8px">牌已翻開，請逐一點擊牌面查看…</div>
+    </div>`;
+    drawn.forEach((c,i)=>{ $("#three-card-"+i).addEventListener("click", ()=>revealThree(i)); });
+    btn.disabled=false; btn.textContent="✦ 重新洗牌抽牌 ✦";
+  }, 900);
+}
+function revealThree(i){
+  const c=state.tarotThree[i];
+  const el=$("#three-card-"+i);
+  el.classList.remove("back"); el.classList.add("reveal");
+  el.style.background="var(--grad2)"; el.style.color="#3a2a00"; el.textContent=c.num;
+  $("#three-name-"+i).textContent = `${c.cn}（${c.rev?"逆位":"正位"}）`;
+  $("#three-desc-"+i).textContent = c.rev?c.down:c.up;
+  $("#threeReadingText").innerHTML = `【過去｜${state.tarotThree[0].cn}】${state.tarotThree[0].rev?state.tarotThree[0].down:state.tarotThree[0].up}<br><br>
+    【現在｜${state.tarotThree[1].cn}】${state.tarotThree[1].rev?state.tarotThree[1].down:state.tarotThree[1].up}<br><br>
+    【未來｜${state.tarotThree[2].cn}】${state.tarotThree[2].rev?state.tarotThree[2].down:state.tarotThree[2].up}`;
+}
+function renderTarotCeltic(v){
+  v.innerHTML = `
+  <div class="container">
+    <div class="sec-head" style="padding-top:18px">
+      <div class="sec-eyebrow">塔羅占卜</div>
+      <h1 class="sec-title">凱爾特十字牌陣</h1>
+      <p class="sec-sub">十大位置深入剖析一個複雜處境：現況、阻礙、潛意識、過去、意識、未來、自身、環境、希望與恐懼、結果。</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <button class="btn btn-primary btn-lg" onclick="doCeltic()" id="celticBtn">✦ 展開凱爾特十字 ✦</button>
+    </div>
+    <div id="celticResult"></div>
+    <div style="height:40px"></div>
+  </div>`;
+}
+function doCeltic(){
+  const btn=$("#celticBtn"); btn.disabled=true; btn.textContent="展開牌陣中…";
+  setTimeout(()=>{
+    const positions=["現況","阻礙","潛意識基礎","過去","意識目標","未來","自身態度","外在環境","希望與恐懼","最終結果"];
+    const drawn=shuffle(TAROT_MAJOR).slice(0,10).map(c=>({...c,rev:rnd(2)===0}));
+    state.tarotCeltic=drawn;
+    $("#celticResult").innerHTML = `
+    <div class="grid g-2" style="margin-top:24px">
+      ${drawn.map((c,i)=>`
+      <div class="card" style="display:flex;gap:14px;align-items:center" data-card>
+        <div class="tarot-card back" data-cc="${i}" style="width:76px;height:114px;font-size:1.6rem;flex-shrink:0"></div>
+        <div style="flex:1">
+          <span class="badge badge-b">${i+1}. ${positions[i]}</span>
+          <h3 style="margin-top:8px" data-ccn="${i}">？</h3>
+          <p class="prose" style="font-size:.85rem;color:var(--text3);margin-top:4px" data-ccd="${i}"></p>
+        </div>
+      </div>`).join("")}
+    </div>
+    <div class="callout callout-ok" style="margin-top:18px"><b>閱讀指引：</b>依序點擊各張牌卡翻開，從「現況」到「最終結果」逐一解讀，體會牌陣的層層推進。</div>`;
+    drawn.forEach((c,i)=>{
+      const card=document.querySelector(`[data-cc="${i}"]`);
+      card.addEventListener("click",()=>{
+        card.classList.remove("back"); card.classList.add("reveal");
+        card.style.background="var(--grad2)"; card.style.color="#3a2a00"; card.textContent=c.num;
+        document.querySelector(`[data-ccn="${i}"]`).textContent=`${c.cn}（${c.rev?"逆位":"正位"}）`;
+        document.querySelector(`[data-ccd="${i}"]`).textContent=c.rev?c.down:c.up;
+      });
+    });
+    btn.disabled=false; btn.textContent="✦ 重新展開 ✦";
+  },900);
+}
+function renderTarotDaily(v){
+  const today=new Date().toDateString();
+  let d = state.tarotDaily && state.tarotDaily.day===today ? state.tarotDaily : (()=>{ const c=TAROT_MAJOR[(new Date().getDate()+new Date().getMonth())%22]; const rv={day:today,card:c,rev:rnd(2)===0}; state.tarotDaily=rv; return rv; })();
+  v.innerHTML = `
+  <div class="container">
+    <div class="sec-head" style="padding-top:18px">
+      <div class="sec-eyebrow">塔羅占卜</div>
+      <h1 class="sec-title">每日一牌</h1>
+      <p class="sec-sub">每天一張牌，做為今日的能量指引。可隨時重新抽牌。</p>
+    </div>
+    <div class="card" style="max-width:560px;margin:0 auto;text-align:center">
+      <div class="tarot-card back" id="dailyCard" style="width:170px;height:255px;margin:0 auto;font-size:3.2rem"></div>
+      <div style="margin-top:16px">
+        <button class="btn btn-primary" onclick="drawDaily()">抽一張今日牌</button>
+      </div>
+      <div id="dailyReading" class="prose" style="margin-top:16px"></div>
+      <button class="btn btn-ghost btn-sm" style="margin-top:10px" onclick="drawDaily()">重新抽牌</button>
+    </div>
+    <div style="height:40px"></div>
+  </div>`;
+  if(d.card){
+    setTimeout(()=>{
+      const el=$("#dailyCard"); el.classList.remove("back"); el.classList.add("reveal"); el.style.background="var(--grad2)"; el.style.color="#3a2a00"; el.textContent=d.card.num;
+      $("#dailyReading").innerHTML=`<b>${d.card.cn}（${d.card.en}）${d.rev?"逆位":"正位"}</b><br>${d.rev?d.card.down:d.card.up}`;
+    },500);
+  }
+}
+function drawDaily(){
+  const c=TAROT_MAJOR[rnd(22)], rev=rnd(2)===0;
+  state.tarotDaily={day:new Date().toDateString(),card:c,rev};
+  const el=$("#dailyCard"); el.classList.remove("back"); el.classList.add("reveal");
+  el.style.background="var(--grad2)"; el.style.color="#3a2a00"; el.textContent=c.num;
+  $("#dailyReading").innerHTML=`<b>${c.cn}（${c.en}）${rev?"逆位":"正位"}</b><br>${rev?c.down:c.up}`;
+  toast(`今日牌：${c.cn} ${rev?"逆位":"正位"}`);
+}
+
+/* ================= 人類圖視圖 ================= */
+function renderHumanDesign(sub){
+  const v = $("#view-humandesign");
+  if(sub==="types"){ renderHDTypes(v); return; }
+  if(sub==="centers"){ renderHDCenters(v); return; }
+  if(sub==="calculator"){ renderHDCalculator(v); return; }
+  if(sub==="detail"){ renderHDTypeDetail(v); return; }
+  renderHDOverview(v);
+}
+function renderHDOverview(v){
+  v.innerHTML = `
+  <div class="container">
+    <div class="sec-head" style="padding-top:18px">
+      <div class="sec-eyebrow">人類圖 Human Design</div>
+      <h1 class="sec-title">人類圖總覽</h1>
+      <p class="sec-sub">人類圖是一套結合占星、易經、卡巴拉與脈輪的系統，繪製你的「能量藍圖」，揭示你與生俱來的能量類型、策略與天賦。</p>
+    </div>
+    <div class="grid g-3">
+      <div class="card card-hover" onclick="go('#/humandesign/types')" style="cursor:pointer">
+        <div style="font-size:2.2rem">⚡</div><h3>四大類型</h3>
+        <p class="prose" style="margin-top:6px">顯示者、生產者、投射者、反映者 — 你的能量運作方式與人生策略。</p>
+      </div>
+      <div class="card card-hover" onclick="go('#/humandesign/centers')" style="cursor:pointer">
+        <div style="font-size:2.2rem">◌</div><h3>九大能量中心</h3>
+        <p class="prose" style="margin-top:6px">定義與開放中心的意義，理解你的穩定力量與學習智慧。</p>
+      </div>
+      <div class="card card-hover" onclick="go('#/humandesign/calculator')" style="cursor:pointer">
+        <div style="font-size:2.2rem">▦</div><h3>人類圖計算</h3>
+        <p class="prose" style="margin-top:6px">輸入出生資訊，快速判斷你的能量類型與策略。</p>
+      </div>
+    </div>
+    <div class="callout callout-info" style="margin-top:22px">
+      <b>快速入門：</b>人類圖的第一步是認識自己的「類型」與「策略」。<b>生產者</b>要等待回應、<b>顯示者</b>要告知、<b>投射者</b>要等待邀請、<b>反映者</b>要等待月亮週期。當你活出正確策略，能量便會自然順流。
+    </div>
+    <div style="height:40px"></div>
+  </div>`;
+}
+function renderHDTypes(v){
+  v.innerHTML = `
+  <div class="container">
+    <div class="sec-head" style="padding-top:18px">
+      <div class="sec-eyebrow">人類圖 Human Design</div>
+      <h1 class="sec-title">人類圖四大類型</h1>
+      <p class="sec-sub">點擊任一類型，查看詳細說明、人生策略與非自己主題。</p>
+    </div>
+    <div class="grid g-3">
+      ${HD_TYPES.map((t,i)=>`
+      <div class="card card-hover" style="text-align:center;cursor:pointer" onclick="go('#/humandesign/detail?t=${i}')" data-card>
+        <div style="font-size:2.6rem">${t.icon}</div>
+        <h3 style="margin-top:8px">${t.cn}</h3>
+        <span class="badge badge-b">佔比 ${t.pct}</span>
+        <p class="prose" style="font-size:.85rem;margin-top:10px">${t.theme} · 策略：${t.strat}</p>
+        <button class="btn btn-outline btn-sm" style="margin-top:12px">查看詳解</button>
+      </div>`).join("")}
+    </div>
+    <div style="height:40px"></div>
+  </div>`;
+}
+function renderHDTypeDetail(v){
+  const i=parseInt(new URLSearchParams(location.hash.split("?")[1]).get("t")||0);
+  const t=HD_TYPES[i];
+  v.innerHTML = `
+  <div class="container">
+    <div class="sec-head" style="padding-top:18px">
+      <div class="sec-eyebrow">人類圖 Human Design</div>
+      <h1 class="sec-title">${t.icon} ${t.cn}</h1>
+      <p class="sec-sub">${t.theme} · 約佔${t.pct}人口</p>
+    </div>
+    <div class="card" data-card>
+      <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start">
+        <div style="font-size:4rem">${t.icon}</div>
+        <div style="flex:1;min-width:240px">
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px">
+            <span class="badge badge-b">人生策略：${t.strat}</span><span class="badge badge-warn">非自己主題：${t.notself}</span>
+          </div>
+          <p class="prose">${esc(t.desc)}</p>
+          <div class="callout callout-ok" style="margin-top:14px">
+            <b>活出策略：</b>${t.key==="manifestor"?"行動前主動告知他人，可大幅減少阻力與誤解。":t.key==="generator"?"等待回應，從身體的『嗯嗯』與『嗯哼』聲音中感受正確回應。":t.key==="mg"?"先回應、確認後再發起，善用你的快速能量。":t.key==="projector"?"不主動推銷，等待真誠的邀請到來，再分享你的智慧。":"重大決定至少等待28天月亮週期，觀察環境與自己的變化。"}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pre-next">
+      <a href="#" onclick="event.preventDefault();hdStep(-1)"><span class="dir">← 上一類型</span><br><b>${HD_TYPES[(i+4)%5].cn}</b></a>
+      <a href="#" style="text-align:right" onclick="event.preventDefault();hdStep(1)"><span class="dir">下一類型 →</span><br><b>${HD_TYPES[(i+1)%5].cn}</b></a>
+    </div>
+    <div style="height:40px"></div>
+  </div>`;
+}
+function hdStep(d){ const i=parseInt(new URLSearchParams(location.hash.split("?")[1]).get("t")||0); go(`#/humandesign/detail?t=${(i+d+5)%5}`); }
+
+function renderHDCenters(v){
+  v.innerHTML = `
+  <div class="container">
+    <div class="sec-head" style="padding-top:18px">
+      <div class="sec-eyebrow">人類圖 Human Design</div>
+      <h1 class="sec-title">九大能量中心</h1>
+      <p class="sec-sub">點擊圖中的能量中心，查看其功能與「定義／開放」的意義。</p>
+    </div>
+    <div class="card" style="max-width:640px;margin:0 auto">
+      <div class="hd-body">
+        <div class="hd-center" id="hdCenter"></div>
+        <div class="hd-legend"><span><i style="background:var(--brand)"></i>有定義（穩定能量）</span><span><i style="background:var(--text3)"></i>開放（學習智慧）</span></div>
+      </div>
+    </div>
+    <div id="hdCenterDetail" style="max-width:640px;margin:18px auto 0"></div>
+    <div style="height:40px"></div>
+  </div>`;
+  const c=$("#hdCenter");
+  // 隨機一些中心為「有定義」
+  const defined = new Set(); const n=3+rnd(4); while(defined.size<n) defined.add(rnd(9));
+  HD_CENTERS.forEach((h,i)=>{
+    const d=document.createElement("div");
+    d.className="hd-chakra "+(defined.has(i)?"defined":"def");
+    d.style.left=(h.x-5)+"%"; d.style.top=(h.y-5)+"%"; d.textContent=h.cn[0];
+    d.title=h.cn;
+    d.addEventListener("click",()=>{
+      showHDCenter(h, defined.has(i));
+    });
+    c.appendChild(d);
+  });
+}
+function showHDCenter(h, isDef){
+  $("#hdCenterDetail").innerHTML = `
+  <div class="card" data-card>
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+      <h3>${h.cn} <span class="badge badge-info">${h.en}</span></h3>
+      <span class="badge ${isDef?"badge-ok":"badge-warn"}">${isDef?"有定義":"開放中心"}</span>
+    </div>
+    <p class="prose" style="margin-top:10px">功能：${h.pos}</p>
+    <p class="prose" style="margin-top:6px"><b>${isDef?"有定義（穩定能量）":"開放（學習智慧）"}：</b>${isDef?h.defined:h.undefined}</p>
+  </div>`;
+  toast(`已查看 ${h.cn} 能量中心`);
+}
+
+/* =====================================================================
+   【專業版人類圖產生器】— 參考 humandesignasia.org/get-your-chart 樣式
+   輸入姓名/日期/時間/城市 → 繪製三角形人體圖（九中心 + 紅黑閘門 + 通道）
+   ＋ Design(紅)/Personality(黑) 閘門欄 ＋ 右側資訊卡 ＋ 下載圖表/重新計算
+   ※ 教育性簡化版：依出生資料穩定產生閘門分布，完整人類圖需精確星曆。
+   ===================================================================== */
+const HD_GATE_NAMES = {
+  1:"自我表達",2:"方向",3:"秩序",4:"解答",5:"固定節奏",6:"情緒界線",7:"互動",8:"合作",
+  9:"專注",10:"自我行為",11:"想法",12:"謹慎",13:"傾聽者",14:"力量",15:"極端",16:"技能",
+  17:"意見",18:"修正",19:"想要",20:"當下",21:"獵人",22:"開放",23:"同化",24:"合理化",
+  25:"天真",26:"自我",27:"滋養",28:"遊戲者",29:"投入",30:"慾望",31:"領導",32:"延續",
+  33:"隱私",34:"力量",35:"改變",36:"危機",37:"友誼",38:"鬥士",39:"挑釁",40:"孤獨",
+  41:"收縮",42:"成長",43:"洞見",44:"覺察",45:"聚集",46:"成功",47:"實現",48:"深度",
+  49:"原則",50:"價值",51:"震撼",52:"靜止",53:"開始",54:"野心",55:"精神",56:"刺激",
+  57:"直覺",58:"活力",59:"親密",60:"接受",61:"神秘",62:"細節",63:"懷疑",64:"混亂"
+};
+/* 閘門 → 中心 對應（簡化映射，讓閘門能落在對應中心附近） */
+const HD_GATE_CENTER = {
+  64:"頭頂",61:"頭頂",63:"心智",11:"心智",17:"心智",24:"心智",43:"心智",47:"心智",
+  16:"喉嚨",20:"喉嚨",31:"喉嚨",33:"喉嚨",45:"喉嚨",56:"喉嚨",62:"喉嚨",
+  1:"G中心",2:"G中心",7:"G中心",10:"G中心",13:"G中心",15:"G中心",25:"G中心",46:"G中心",
+  21:"心臟",26:"心臟",40:"心臟",
+  5:"薦骨",9:"薦骨",14:"薦骨",27:"薦骨",29:"薦骨",34:"薦骨",42:"薦骨",59:"薦骨",
+  28:"脾",32:"脾",44:"脾",48:"脾",57:"脾",
+  6:"情緒",22:"情緒",30:"情緒",36:"情緒",37:"情緒",49:"情緒",55:"情緒",
+  3:"根部",4:"根部",8:"根部",12:"根部",18:"根部",19:"根部",23:"根部",35:"根部",38:"根部",39:"根部",41:"根部",50:"根部",51:"根部",52:"根部",53:"根部",54:"根部",58:"根部",60:"根部"
+};
+const HD_CHANNELS = [[64,61],[61,24],[63,11],[17,16],[43,20],[43,31],[24,2],[11,10],[7,31],[13,7],[1,16],[10,57],[57,34],[34,27],[27,42],[42,29],[29,46],[46,25],[25,51],[51,26],[26,21],[25,15],[2,14],[3,50],[50,51],[9,16],[5,14],[59,42],[58,54],[54,53],[53,52],[55,39],[38,39],[41,30],[30,36],[37,22],[49,22],[48,32],[32,28],[40,37],[23,43],[4,63],[19,49],[18,58],[20,57],[44,26],[6,59],[35,36],[12,22],[33,13],[8,1],[36,6]];
+
+/* ---- 渲染輸入表單 ---- */
+function renderHDCalculator(v){
+  v.innerHTML = `
+  <div class="container">
+    <div class="sec-head" style="padding-top:18px">
+      <div class="sec-eyebrow">人類圖 Human Design</div>
+      <h1 class="sec-title">免費生成人類圖</h1>
+      <p class="sec-sub">輸入出生資訊，依出生時刻天體位置繪製你的<b>人類圖能量藍圖</b>——三角形身體圖、九大能量中心、閘門通道與人生設計資訊。</p>
+    </div>
+    <div class="card" style="max-width:620px;margin:0 auto">
+      <div class="form-group"><label>姓名 / 暱稱</label><input type="text" id="hdName" value="我的人類圖" placeholder="輸入名字，將顯示在圖表上"></div>
+      <div class="form-group"><label>出生日期</label><input type="date" id="hdDate" value="1990-06-15"></div>
+      <div class="form-grid" style="grid-template-columns:1fr 1fr 1fr">
+        <div class="form-group"><label>時</label><select id="hdHour">${Array.from({length:24},(_,i)=>`<option value="${i}" ${i===12?"selected":""}>${String(i).padStart(2,"0")}</option>`).join("")}</select></div>
+        <div class="form-group"><label>分</label><select id="hdMin">${Array.from({length:60},(_,i)=>`<option value="${i}" ${i===0?"selected":""}>${String(i).padStart(2,"0")}</option>`).join("")}</select></div>
+        <div class="form-group"><label>出生城市</label><select id="hdCity"><option value="0" selected>台北</option><option value="1">台中</option><option value="2">高雄</option><option value="3">香港</option><option value="4">北京</option><option value="5">上海</option><option value="6">其他</option></select></div>
+      </div>
+      <div class="callout callout-info" style="font-size:.8rem;margin-top:6px">若不確定時間，建議輸入中午 12:00。時間與地點會影響閘門細部定位。</div>
+      <button class="btn btn-primary btn-lg" onclick="calcHD()" style="width:100%;margin-top:12px">✦ 繪製我的人類圖</button>
+      <div class="callout callout-warn" style="margin-top:12px;font-size:.82rem">此為<b>教育性簡化計算</b>，依出生資料穩定產生閘門與能量中心分布，並非完整星曆人類圖。完整解讀建議洽詢認證分析師。</div>
+    </div>
+    <div id="hdResult" style="max-width:1080px;margin:24px auto 0"></div>
+    <div style="height:40px"></div>
+  </div>`;
+}
+
+/* ---- 計算並渲染完整人類圖 ---- */
+function calcHD(){
+  const name = $("#hdName").value.trim() || "我的人類圖";
+  const d = new Date($("#hdDate").value);
+  if(isNaN(d.getTime())){ toast("請選擇有效日期"); return; }
+  const hr = parseInt($("#hdHour").value), mn = parseInt($("#hdMin").value);
+  const city = $("#hdCity").value;
+  const dayOfYear = Math.floor((d-new Date(d.getFullYear(),0,0))/86400000);
+  const seed = (d.getFullYear()%200)*1000 + dayOfYear*3 + hr*7 + mn + city*11;
+
+  /* 類型（依時辰，維持既有邏輯） */
+  let typeIdx;
+  if(d.getDate()===29 && d.getMonth()===1) typeIdx=4;
+  else if(hr>=5 && hr<11) typeIdx=1;
+  else if(hr>=11 && hr<15) typeIdx=0;
+  else if(hr>=15 && hr<20) typeIdx=3;
+  else if(hr>=20 || hr<3) typeIdx=2;
+  else typeIdx=1;
+  const t = HD_TYPES[typeIdx];
+
+  /* 人生角色（1/3, 1/4, 2/4, 2/5, 3/5, 3/6, 4/6, 4/1, 5/1, 5/2, 6/2, 6/3） */
+  const roles = ["1/3","1/4","2/4","2/5","3/5","3/6","4/6","4/1","5/1","5/2","6/2","6/3"];
+  const role = roles[seed % roles.length];
+  const defs = ["一分人","二分人","三分人","四分人"];
+  const def = defs[(Math.floor(seed/7)+1) % 4];
+  const authority = ["情緒型權威","直覺（脾）權威","意志力權威","薦骨權威","自我（G）權威","月亮權威"];
+  const auth = t.key==="reflector" ? "月亮權威" : (t.key==="manifestor" || t.key==="mg" ? "意志力權威" : authority[(Math.floor(seed/13))%6]);
+
+  /* 閘門：Design(紅/潛意識) 13個、Personality(黑/意識) 13個 — 穩定生成 */
+  const allGates = Object.keys(HD_GATE_NAMES).map(Number);
+  function pickGates(seedBase, count){
+    const arr = allGates.slice(); let s = seed + seedBase;
+    for(let i=arr.length-1;i>0;i--){ s=(s*9301+49297)%233280; const j=s%(i+1); const tmp=arr[i];arr[i]=arr[j];arr[j]=tmp; }
+    return arr.slice(0,count);
+  }
+  const designGates = pickGates(1,13);
+  const persGates = pickGates(2,13);
+  const allDefinedGates = designGates.concat(persGates);
+
+  /* 定義中心：由閘門對應中心推導（具閘門的中心即「有定義」，鄰接閘門同中心成通道） */
+  const definedCenters = new Set();
+  allDefinedGates.forEach(g=>{
+    const c = HD_GATE_CENTER[g]; if(c) definedCenters.add(c);
+  });
+  const chakraBody = HD_CENTERS.map((c,i)=>({...c, defined:definedCenters.has(c.cn)}));
+  const defCount = chakraBody.filter(c=>c.defined).length;
+  const defList = chakraBody.filter(c=>c.defined).map(c=>c.cn).join("、");
+
+  /* 通道（兩端閘門皆實際被選中才算完整通道） */
+  const activeChannels = HD_CHANNELS.filter(([a,b])=>{
+    return (allDefinedGates.includes(a) && allDefinedGates.includes(b));
+  });
+
+  /* 輪迴交叉（依類型+閘門） */
+  const inc = `右角度交叉之${["僕人","人面獅身","目標","渦流","集中","空想","隱士","緊張"][(Math.floor(seed/3))%8]}${"一二三四"[seed%4]} (${persGates[0]}/${persGates[1]} | ${designGates[0]}/${designGates[1]})`;
+
+  /* 太陽星座（顯示於資訊） */
+  const sun = ZODIAC[Math.floor((dayOfYear/365)*12)%12];
+
+  state.hdChart = { name, t, role, def, auth, designGates, persGates, chakraBody, activeChannels, inc, sun, defList, defCount, seed };
+
+  $("#hdResult").innerHTML = `
+  <div class="card" data-card style="overflow:visible">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;border-bottom:1px solid var(--border);padding-bottom:14px">
+      <div>
+        <div class="sec-eyebrow">我的人類圖</div>
+        <h2 style="margin:4px 0 0">${esc(name)}</h2>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="downloadHDChart()">⬇ 下載我的圖表</button>
+        <button class="btn btn-outline" onclick="renderHDCalculator($('#view-humandesign'));$('#hdResult').innerHTML=''">⟲ 重新計算</button>
+      </div>
+    </div>
+    <div style="display:flex;gap:22px;flex-wrap:wrap;margin-top:18px">
+      <!-- 左：人類圖本體 -->
+      <div style="flex:1;min-width:330px">
+        ${drawHDChartPro()}
+        <div class="hd-legend" style="justify-content:center;margin-top:10px">
+          <span><i style="background:var(--brand)"></i>有定義</span><span><i style="background:var(--text3)"></i>開放</span>
+          <span style="margin-left:14px"><i style="background:#c0392b"></i>Design 潛意識</span>
+          <span><i style="background:#2c3e50"></i>Personality 意識</span>
+        </div>
+      </div>
+      <!-- 右：資訊卡 -->
+      <div style="flex:1;min-width:280px;max-width:420px">
+        <table class="hd-info-table" style="width:100%;border-collapse:collapse">
+          <tr><td>類型</td><td><b>${t.cn}</b>（${t.pct}）</td></tr>
+          <tr><td>人生角色</td><td><b>${role}</b></td></tr>
+          <tr><td>定義</td><td><b>${def}</b></td></tr>
+          <tr><td>內在權威</td><td><b>${auth}</b></td></tr>
+          <tr><td>策略</td><td><b>${t.strat}</b></td></tr>
+          <tr><td>非自己主題</td><td><b>${t.notself}</b></td></tr>
+          <tr><td>太陽星座</td><td>${sun.cn}</td></tr>
+          <tr><td>輪迴交叉</td><td style="font-size:.78rem;line-height:1.4">${esc(inc)}</td></tr>
+        </table>
+        <div class="callout callout-info" style="margin-top:12px;font-size:.82rem">
+          <b>${t.cn} ${t.icon}：</b>${t.theme}。人生策略：${t.strat}。${t.desc}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid g-2" style="margin-top:20px">
+    <div class="card">
+      <h3 style="margin-bottom:10px">${esc(name)} 的能量解讀</h3>
+      <div class="prose" style="font-size:.9rem">
+        <p><b>類型：</b>${t.cn}。${t.theme}。</p>
+        <p><b>定義中心（${defCount} 個）：</b>${defList || "無（反映者特徵）"}。</p>
+        <p><b>開放中心：</b>${chakraBody.filter(c=>!c.defined).map(c=>c.cn).join("、") || "無"}。</p>
+        <p><b>活躍通道（${activeChannels.length} 條）：</b>${activeChannels.length? activeChannels.map(([a,b])=>`${a}-${b}`).join("、") : "本圖無完整通道，屬反映者／開放型圖表。"}</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom:10px">閘門主題（天賦）</h3>
+      <div class="prose" style="font-size:.9rem">
+        <p><b style="color:#c0392b">Design（紅・潛意識）</b>：${designGates.map(g=>`${g}·${HD_GATE_NAMES[g]}`).join("、")}</p>
+        <p style="margin-top:8px"><b style="color:#2c3e50">Personality（黑・意識）</b>：${persGates.map(g=>`${g}·${HD_GATE_NAMES[g]}`).join("、")}</p>
+      </div>
+      <div class="callout callout-warn" style="margin-top:12px;font-size:.8rem">此圖為<b>教育性簡化版</b>，同一天同一時辰結果一致。完整人類圖需精確出生時間、地點與星曆，建議洽詢認證分析師。</div>
+    </div>
+  </div>`;
+  toast(`人類圖繪製完成：${t.cn} ${role}`);
+}
+
+/* ---- 繪製專業版三角形人類圖本體（九中心 + 紅黑閘門 + 通道） ---- */
+function drawHDChartPro(){
+  const c = state.hdChart; if(!c) return "";
+  const W=420,H=560;
+  /* 三角形外框三個頂點與九中心座標（置於三角形內） */
+  const tri = {A:[210,40],B:[30,520],C:[390,520]};
+  const pos = {
+    "頭頂中心":[210,105],"心智中心":[210,170],"喉嚨中心":[210,245],
+    "G中心":[130,320],"心臟中心":[290,320],"薦骨中心":[210,390],
+    "脾中心":[110,455],"情緒中心":[310,455],"根部中心":[210,495]
+  };
+  /* 三角形外框（圓弧），底部中心挖空放閘門數字 */
+  const triPath = `M210,58 L47,492 Q32,516 60,516 L360,516 Q388,516 373,492 Z`;
+  /* 通道線：紅Design黑Personality */
+  let lines="";
+  const GATE_COLOR = g => c.designGates.indexOf(g)>=0 ? "#c0392b" : "#2c3e50";
+  c.activeChannels.forEach(([a,b])=>{
+    const ca=HD_GATE_CENTER[a], cb=HD_GATE_CENTER[b];
+    if(pos[ca]&&pos[cb]){
+      const p1=pos[ca],p2=pos[cb];
+      lines+=`<line x1="${p1[0]}" y1="${p1[1]}" x2="${p2[0]}" y2="${p2[1]}" stroke="#a25dff" stroke-width="4" stroke-opacity="0.45" stroke-linecap="round"/>`;
+    }
+  });
+  /* 中心圓 */
+  const centersSvg = c.chakraBody.map(cc=>{
+    const p=pos[cc.cn]; if(!p) return "";
+    const def=cc.defined;
+    return `<g class="hd-svg-c" style="cursor:pointer" onclick="toast('${cc.cn}：${def?"有定義，穩定能量來源 - "+cc.defined:"開放中心，學習智慧 - "+cc.undefined}')">
+      <circle cx="${p[0]}" cy="${p[1]}" r="30" fill="${def?"url(#hdg2)":"#ffffff"}" stroke="${def?"#fff":"#d9cff0"}" stroke-width="2.5"/>
+      <text x="${p[0]}" y="${p[1]+4}" text-anchor="middle" font-size="14" font-weight="bold" fill="${def?"#fff":"#8a7fb5"}">${cc.cn[0]}</text>
+    </g>`;
+  }).join("");
+  /* 閘門數字：紅(Design)放左、黑(Personality)放右，各自附於對應中心旁 */
+  let gatesSvg="";
+  c.chakraBody.forEach(cc=>{
+    const p=pos[cc.cn]; if(!p) return;
+    const ds = c.designGates.filter(g=>HD_GATE_CENTER[g]===cc.cn);
+    const ps = c.persGates.filter(g=>HD_GATE_CENTER[g]===cc.cn);
+    const offX = p[0]<200 ? -48 : 48;
+    ds.forEach((g,idx)=>{
+      const x = p[0]<200 ? p[0]-40 : p[0]-40;
+      gatesSvg+=`<g><circle cx="${p[0]<200?x-18:x-18}" cy="${p[1]-26+idx*18}" r="9" fill="#c0392b"/><text x="${p[0]<200?x-18:x-18}" y="${p[1]-22+idx*18}" text-anchor="middle" font-size="9" fill="#fff" font-weight="bold">${g}</text></g>`;
+    });
+    ps.forEach((g,idx)=>{
+      const x = p[0]>=200 ? p[0]+18 : p[0]+18;
+      gatesSvg+=`<g><circle cx="${p[0]>=200?x+18:x+18}" cy="${p[1]-26+idx*18}" r="9" fill="#2c3e50"/><text x="${p[0]>=200?x+18:x+18}" y="${p[1]-22+idx*18}" text-anchor="middle" font-size="9" fill="#fff" font-weight="bold">${g}</text></g>`;
+    });
+  });
+  return `
+  <svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:400px;margin:0 auto;display:block" role="img" aria-label="${esc(c.name)}的人類圖身體圖">
+    <path d="${triPath}" fill="none" stroke="var(--border)" stroke-width="2" stroke-linejoin="round"/>
+    <text x="80" y="70" text-anchor="middle" font-size="12" fill="#c0392b" font-weight="bold">Design</text>
+    <text x="340" y="70" text-anchor="middle" font-size="12" fill="#2c3e50" font-weight="bold">Personality</text>
+    ${lines}
+    ${centersSvg}
+    ${gatesSvg}
+    <defs><linearGradient id="hdg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6a3de8"/><stop offset="1" stop-color="#a25dff"/></linearGradient></defs>
+    <text x="${W/2}" y="${H-8}" text-anchor="middle" font-size="11" fill="#8a7fb5">${esc(c.name)} · ${c.t.cn} ${c.role}</text>
+  </svg>`;
+}
+
+/* ---- 下載人類圖表（SVG → PNG） ---- */
+function downloadHDChart(){
+  const c = state.hdChart; if(!c){ toast("請先繪製人類圖"); return; }
+  const svg = drawHDChartPro();
+  const blob = new Blob([`<svg xmlns="http://www.w3.org/2000/svg" width="840" height="1120" viewBox="0 0 420 560"><rect width="100%" height="100%" fill="#ffffff"/>${svg}</svg>`], {type:"image/svg+xml"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = `人類圖_${c.name.replace(/[\/\\:*?"<>|]/g,"_")}.svg`;
+  document.body.appendChild(a); a.click();
+  setTimeout(()=>{ document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
+  toast("人類圖表已下載（SVG 格式）");
+}
+
+
+
+function go(hash){ location.hash = hash; }
+window.addEventListener("hashchange", router);
+
+function router(){
+  let h = location.hash.replace(/^#\/?/, ""); // 去掉 #/ 前綴
+  h = h || "home";
+  // 標準化
+  const parts = h.split("/");
+  const seg = (parts[0]||"home").split("?")[0];
+  state.route = h;
+  recordVisit(seg);
+  renderSidebar();
+  renderNavActive();
+  renderBreadcrumb();
+
+  // 顯示對應視圖
+  const map = {
+    home:"view-home", zodiac:"view-zodiac", tarot:"view-tarot",
+    humandesign:"view-humandesign", blog:"view-blog", favorite:"view-favorite", about:"view-about",
+    tools:"view-tools", sitemap:"view-sitemap", traditions:"view-traditions"
+  };
+  $$(".view").forEach(v=>v.classList.add("hidden"));
+  const target = map[seg] || "view-home";
+  $("#"+target).classList.remove("hidden");
+
+  // 渲染內容
+  if(seg==="zodiac") renderZodiac(parts[1]);
+  else if(seg==="tarot") renderTarot(parts[1]);
+  else if(seg==="humandesign") renderHumanDesign(parts[1]);
+  else if(seg==="blog") renderBlog();
+  else if(seg==="tools") renderTools(parts[1]);
+  else if(seg==="sitemap") renderSitemap();
+  else if(seg==="traditions") renderTraditions(parts[1]);
+  else if(seg==="favorite") renderFavorite();
+  else if(seg==="about") renderAbout();
+  else renderHomeExtra();
+  window.scrollTo({top:0});
+  lazyLoadAll();
+}
+function renderNavActive(){
+  const seg = state.route.split("/")[0].split("?")[0];
+  $$("#navLinks a[data-nav]").forEach(a=>a.classList.toggle("active", a.dataset.nav===seg));
+}
+function renderBreadcrumb(){
+  const seg = state.route.split("/")[0].split("?")[0];
+  const names = {home:["首頁","#/home"],zodiac:["星座算命","#/zodiac"],tarot:["塔羅占卜","#/tarot"],humandesign:["人類圖","#/humandesign"],blog:["星學知識庫","#/blog"],favorite:["我的收藏","#/favorite"],about:["關於本站","#/about"],tools:["工具庫","#/tools"],sitemap:["站內導覽","#/sitemap"],traditions:["命理體系","#/traditions"]};
+  let html = `<a href="#/home">首頁</a>`;
+  if(seg!=="home") html += `<span class="sep">/</span><a href="${names[seg][1]}">${names[seg][0]}</a>`;
+  // 子路徑
+  const sub = (state.route.split("/")[1]||"").split("?")[0];
+  const subNames = {daily:"每日運勢",match:"星座配對",rising:"上升星座",three:"三牌陣",celtic:"凱爾特十字",types:"四大類型",centers:"能量中心",calculator:"人類圖計算"};
+  if(sub && subNames[sub]) html += `<span class="sep">/</span><span class="cur">${subNames[sub]}</span>`;
+  $("#breadcrumb").innerHTML = html;
+}
+function renderHomeExtra(){
+  // 首頁動態區：六大體系預覽 + 今日運勢速覽 + 最新文章
+  const tp=$("#tradPreview");
+  if(tp){ tp.innerHTML = TRADITIONS.map(t=>`
+    <div class="card card-hover" onclick="go('#/traditions/${t.id}')" style="cursor:pointer">
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px"><span style="font-size:2rem">${t.ic}</span><span class="badge badge-info">${t.cat}</span></div>
+      <h3>${t.key}. ${t.name}</h3>
+      <p class="prose" style="margin:8px 0 14px">${t.desc}</p>
+      <span class="badge badge-a">${t.tagline}</span>
+      <div style="margin-top:12px"><span class="btn btn-primary btn-sm">查看體系 →</span></div>
+    </div>`).join(""); }
+  const today = new Date();
+  const tz = ZODIAC.find(z=>{ const [sm,sd]=z.start.split("/").map(Number); const [em,ed]=z.end.split("/").map(Number); const m=today.getMonth()+1,d=today.getDate(); if(sm>em) return m>=sm||m<=em; return m>=sm&&m<=em; });
+  const hero = $("#view-home");
+  let sec = hero.querySelector("#homeExtra");
+  if(!sec){ sec=document.createElement("div"); sec.id="homeExtra"; hero.appendChild(sec); }
+  sec.innerHTML = `
+  <div class="container">
+    <div class="section">
+      <div class="sec-head">
+        <div class="sec-eyebrow">今日星象速覽</div>
+        <h2 class="sec-title">現在是什麼星象？</h2>
+      </div>
+      <div class="grid g-3">
+        <div class="card card-hover" style="text-align:center">
+          <div style="font-size:3rem">${tz.sym}</div>
+          <h3>今日星座：${tz.cn}</h3>
+          <p class="prose" style="margin-top:8px">${esc(tz.today)}</p>
+        </div>
+        <div class="card card-hover" style="text-align:center">
+          <div style="font-size:3rem">☾</div>
+          <h3>月亮相位</h3>
+          <p class="prose" style="margin-top:8px">月亮進入${["天秤座","天蠍座","射手座","摩羯座"][today.getDate()%4]}，情感與直覺特別敏銳，適合傾聽內在。</p>
+        </div>
+        <div class="card card-hover" style="text-align:center">
+          <div style="font-size:3rem">🃏</div>
+          <h3>本日塔羅</h3>
+          <p class="prose" style="margin-top:8px"><b>${TAROT_MAJOR[today.getDate()%22].cn}（${TAROT_MAJOR[today.getDate()%22].en}）</b> — ${TAROT_MAJOR[today.getDate()%22].desc}。</p>
+        </div>
+      </div>
+    </div>
+    <div class="section" style="padding-top:0">
+      <div class="sec-head">
+        <div class="sec-eyebrow">星學知識庫</div>
+        <h2 class="sec-title">最新文章</h2>
+      </div>
+      ${BLOG.slice(0,3).map((b,i)=>`
+      <div class="card card-hover" style="margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap">
+        <div><span class="badge badge-b">${b.cat}</span><h3 style="margin:6px 0 2px">${b.t}</h3><span style="font-size:.82rem;color:var(--text3)">${b.date}</span></div>
+        <button class="btn btn-outline btn-sm" onclick="go('#/blog')">閱讀全文</button>
+      </div>`).join("")}
+    </div>
+  </div>`;
+}
+
+/* ================= 部落格 ================= */
+function renderBlog(){
+  const v=$("#view-blog");
+  const q=state.searchQ.toLowerCase();
+  const list = BLOG.filter(b=>!q || (b.t+b.cat+b.body).toLowerCase().includes(q));
+  v.innerHTML = `
+  <div class="container">
+    <div class="sec-head" style="padding-top:18px">
+      <div class="sec-eyebrow">星學知識庫</div>
+      <h1 class="sec-title">星學知識庫</h1>
+      <p class="sec-sub">星座、塔羅、人類圖的深入文章，助你更懂自己。</p>
+    </div>
+    <div class="card" style="margin-bottom:20px">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+        <input type="search" id="blogSearch" placeholder="搜尋文章…" value="${esc(state.searchQ)}" style="flex:1;min-width:200px">
+        <button class="btn btn-primary" onclick="doBlogSearch()">搜尋</button>
+      </div>
+      <div class="tagcloud" style="justify-content:flex-start;margin-top:12px">
+        ${["全部","星座","塔羅","人類圖"].map(c=>`<a href="#" class="${(!state.searchQ&&c==="全部")||state.searchQ===c?"":""}" onclick="event.preventDefault();blogFilter('${c}')">${c}</a>`).join("")}
+      </div>
+    </div>
+    <div class="grid g-3">
+      ${list.length? list.map((b,i)=>`
+      <div class="card card-hover" style="display:flex;flex-direction:column" data-card>
+        <div><span class="badge badge-b">${b.cat}</span><span style="font-size:.8rem;color:var(--text3);margin-left:8px">${b.date}</span></div>
+        <h3 style="margin:10px 0 6px">${b.t}</h3>
+        <p class="prose" style="flex:1;font-size:.88rem">${esc(b.ex)}</p>
+        <button class="btn btn-outline btn-sm" style="margin-top:12px" onclick="openArticle(${i})">閱讀全文</button>
+      </div>`).join("") : `<div class="card" style="grid-column:1/-1;text-align:center;color:var(--text3)">沒有符合「${esc(state.searchQ)}」的文章</div>`}
+    </div>
+    <div style="height:40px"></div>
+  </div>`;
+}
+function doBlogSearch(){ state.searchQ=$("#blogSearch").value.trim(); renderBlog(); }
+function blogFilter(c){ state.searchQ = c==="全部"?"":c; renderBlog(); }
+function openArticle(i){
+  const b=BLOG[i];
+  const v=$("#view-blog");
+  v.innerHTML = `
+  <div class="container">
+    <div class="sec-head" style="padding-top:18px">
+      <div class="sec-eyebrow">${b.cat} · ${b.date}</div>
+      <h1 class="sec-title">${b.t}</h1>
+    </div>
+    <div class="card prose">
+      <p>${esc(b.body)}</p>
+      <p>本文為${b.cat}主題的知識分享，供參考與娛樂。完整的個人化解讀，建議諮詢專業占星師／塔羅師／人類圖分析師。</p>
+      <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
+        <button class="btn btn-outline btn-sm" onclick="go('#/blog')">← 返回文章列表</button>
+        <button class="btn btn-ghost btn-sm" onclick="toggleFav('b:${i}','${b.t}')" data-fav="b:${i}">${isFav('b:'+i)?'★':'☆'} 收藏</button>
+      </div>
+    </div>
+    <div class="related">
+      ${BLOG.filter((x,xi)=>xi!==i).slice(0,3).map(x=>`
+      <div class="card card-hover" style="cursor:pointer;padding:14px" onclick="openArticle(${BLOG.indexOf(x)})">
+        <span class="badge badge-b">${x.cat}</span><h4 style="margin-top:8px">${x.t}</h4>
+      </div>`).join("")}
+    </div>
+    <div style="height:40px"></div>
+  </div>`;
+  renderFavBtns();
+}
+
+/* ================= 工具庫（30個工具） ================= */
+const TOOLS = [
+  // — 星座運勢類 —
+  {id:"lucky",cat:"星座",ic:"🍀",name:"今日幸運色＆數字",desc:"依今日與你的星座，算出專屬幸運色、幸運數字與幸運方位。",fun:(d)=>{ const z=ZODIAC[(d.getDate()+d.getMonth()*3)%12]; return `今日你的幸運色是<b>${z.lucky}</b>，幸運數字是<b>${z.num}</b>。建議穿戴${z.lucky}色系衣物，重要決策可安排在數字${z.num}的時刻。`; }},
+  {id:"loveidx",cat:"星座",ic:"💞",name:"愛情運勢指數",desc:"依出生月份與今日計算愛情能量指數，並給出相處建議。",fun:(d)=>{ const i=(d.getMonth()+d.getDate())%12; const z=ZODIAC[i]; const s=(i*7+d.getDate()*3)%101; return `今日愛情能量指數 <b>${s}%</b>。${s>=75?`${z.cn}的你，主動出擊吧，今日緣分能量強。`:s>=50?`${z.cn}的你，細水長流，用心傾聽對方。`:`${z.cn}的你，先照顧好自己的心情，感情自然順。`}`; }},
+  {id:"mood",cat:"星座",ic:"🌤",name:"心情天氣預報",desc:"把你的心情狀態對應成今日天氣，附上調適建議。",fun:(d)=>{ const list=[["晴空萬里","積極開朗，適合社交與表達"],["多雲轉晴","先沉澱再出發，午後轉好"],["微雨","適合獨處閱讀，滋養內在"],["雷陣雨","情緒起伏，先深呼吸冷靜"],["彩虹","柳暗花明，好運正靠近"],["滿天星","靈感豐沛，適合創作冥想"]]; const it=list[(d.getDate()+d.getMonth())%list.length]; return `你今日的心情天氣：<b>${it[0]}</b>。${it[1]}。`; }},
+  {id:"aura",cat:"星座",ic:"🌈",name:"今日氣場光環",desc:"依出生資訊與日期，顯示今日氣場顏色與能量狀態。",fun:(d)=>{ const cols=[["金色","高能量、受矚目","適合上台、談判"],["藍色","冷靜理性","適合計畫、分析"],["綠色","平和滋養","適合陪伴、療癒"],["紫色","直覺敏銳","適合冥想、探索"],["粉色","溫柔有愛","適合約會、修補關係"],["橙色","熱情創造","適合創作、行動"]]; const c=cols[(d.getDay()+d.getMonth())%cols.length]; return `今日你的氣場光環是<b>${c[0]}</b>（${c[1]}）。${c[2]}。`; }},
+  {id:"careerweek",cat:"星座",ic:"💼",name:"本週事業建議",desc:"依本週日數與你的星座，給出事業上的一週指引。",fun:(d)=>{ const z=ZODIAC[(d.getDate()+d.getDay())%12]; const tips=["主動提案，爭取主導權","加強溝通，團結夥伴","專注細節，完善專案","勇敢拒絕，保護時間","跨界學習，打開視野","整理資料，穩定節奏","等待時機，不強出頭"]; return `本週事業建議（${z.cn}）：<b>${tips[d.getDay()%7]}</b>。${z.career}`; }},
+  {id:"wealth",cat:"星座",ic:"💰",name:"財運小測",desc:"依出生月份與日期，測今日財運指數與理財提醒。",fun:(d)=>{ const s=(d.getMonth()*5+d.getDate()*3)%101; const tips=s>70?"偏財運佳，可留意小機會":s>40?"穩健理財，避免衝動消費":"保守為主，先控管支出"; return `今日財運指數 <b>${s}%</b>。${tips}。`; }},
+
+  // — 數字命理類 —
+  {id:"lifepath",cat:"命理",ic:"🔢",name:"生命靈數計算",desc:"輸入出生年月日，計算生命靈數與性格特質。",form:"date",fun:(d)=>{ const y=d.getFullYear(),m=d.getMonth()+1,dd=d.getDate(); let n=y+m+dd+""; while(String(n).length>1){ n=[...String(n)].reduce((a,b)=>a+ +b,0); } const traits={1:"開創領導型，獨立自信，天生王者",2:"合作協調型，溫柔體貼，善解人意",3:"表達創造型，活潑樂觀，才華洋溢",4:"務實穩定型，腳踏實地，可靠負責",5:"自由探索型，熱愛冒險，多才多藝",6:"關懷付出型，溫暖負責，家庭至上",7:"智慧內省型，理性敏銳，追求真理",8:"權威成就型，果斷務實，事業有成",9:"理想奉獻型，大愛無私，具使命感"}; return `你的生命靈數是 <b>${n}</b>。<br>${traits[n]||""}。`; }},
+  {id:"lucknum",cat:"命理",ic:"🎲",name:"幸運數字產生器",desc:"依出生年月日，產生一組專屬幸運數字與開運號碼。",form:"date",fun:(d)=>{ const y=d.getFullYear(),m=d.getMonth()+1,dd=d.getDate(); const base=(y+m+dd); const a=base%10,b=(base*3)%10,c=(base*7+3)%10; const sum=(a+b+c)%10||9; return `你的專屬幸運數字組合：<b>${a} ${b} ${c}</b>，總幸運數 <b>${sum}</b>。<br>可用於選擇號碼、日期或作為提醒。`; }},
+  {id:"yearnum",cat:"命理",ic:"📅",name:"個人流年數字",desc:"依出生月日與今年，計算今年的個人流年數字與主題。",form:"date",fun:(d)=>{ const m=d.getMonth()+1,dd=d.getDate(); const n=String(m+dd+new Date().getFullYear()).split("").reduce((a,b)=>a+ +b,0); let nn=n; while(String(nn).length>1) nn=String(nn).split("").reduce((a,b)=>a+ +b,0); const themes={1:"新的開始，勇敢踏出第一步",2:"合作與耐心，學習等待",3:"表達與創造，展現自我",4:"打基礎、穩固的一年",5:"改變與自由，擁抱變化",6:"家庭與責任，重視關係",7:"內省與學習，提升自己",8:"成果與財富，把握機會",9:"完成與放下，迎接新循環"}; return `今年你的個人流年是 <b>${nn}</b>。<br>主題：${themes[nn]||""}。`; }},
+
+  // — 塔羅類 —
+  {id:"birthcard",cat:"塔羅",ic:"🎴",name:"塔羅出生牌",desc:"依出生年月日，計算你的兩張塔羅出生牌與生命主題。",form:"date",fun:(d)=>{ const n=(d.getMonth()+1)+d.getDate(); let v=n; while(v>21) v=[...String(v)].reduce((a,b)=>a+ +b,0); const c=TAROT_MAJOR[v]; return `你的塔羅出生牌是 <b>${c.cn}（${c.en}）</b>。<br>${c.desc}。<br>${c.up}`; }},
+  {id:"yesno",cat:"塔羅",ic:"⚖",name:"塔羅是非占卜",desc:"默念一個『是／否』問題，抽牌給出直覺指引。",fun:(d)=>{ const c=TAROT_MAJOR[(d.getDate()+d.getMonth()*3)%22]; const answers=["是，能量支持你前進","偏是，但需再觀察","中性，視你的行動而定","偏否，建議再等待","否，現在不是時機","順其自然，答案自會浮現"]; return `你抽到 <b>${c.cn}</b>（${c.desc}）。<br>占卜結果：<b>${answers[(d.getDate()+d.getHours())%answers.length]}</b>。`; }},
+  {id:"oracle",cat:"塔羅",ic:"🕯",name:"今日塔羅指引卡",desc:"每日一張塔羅卡，做為今日行動的指引與提醒。",fun:(d)=>{ const c=TAROT_MAJOR[(d.getDate()+d.getDay())%22]; return `今日指引卡：<b>${c.cn}（${c.en}）</b>。<br>${c.up}<br><br>將這張牌的含義放在心上，作為今日的提醒。`; }},
+  {id:"element",cat:"塔羅",ic:"🔥",name:"塔羅四元素分析",desc:"依出生月日，分析你的火水土風四元素傾向。",form:"date",fun:(d)=>{ const base=(d.getMonth()+1)*d.getDate(); const fire=base%40+30, earth=(base*3)%40+20, air=(base*5)%40+20, water=(base*7)%35+25; const max=Math.max(fire,earth,air,water); const best=[[fire,"火元素","行動力與熱情"],[earth,"土元素","務實與穩定"],[air,"風元素","思考與溝通"],[water,"水元素","情感與直覺"]].find(x=>x[0]===max); return `<b>火</b>${fire}% ｜ <b>土</b>${earth}% ｜ <b>風</b>${air}% ｜ <b>水</b>${water}%<br>你的主導元素是 <b>${best[1]}（${best[0]}%）</b>，${best[2]}。`; }},
+
+  // — 人類圖類 —
+  {id:"hdtypequiz",cat:"人類圖",ic:"⚡",name:"人類圖類型速測",desc:"五題快速測驗，推測你的能量類型與人生策略。",quiz:true},
+  {id:"centerhealth",cat:"人類圖",ic:"❤",name:"能量中心健康提示",desc:"依出生時辰，給出對應能量中心與身體部位的保養建議。",form:"time",fun:(hr)=>{ const c=HD_CENTERS[(hr*3)%9]; return `你對應的重點能量中心是 <b>${c.cn}</b>（${c.pos}）。<br>${c.defined}。<br>養生建議：留意該區域的能量狀態，適時補充與休息。`; }},
+  {id:"strategytip",cat:"人類圖",ic:"🧭",name:"人生策略小卡",desc:"隨機抽一張人生策略提醒卡，給你今日的方向。",fun:(d)=>{ const t=HD_TYPES[(d.getDate()+d.getMonth())%5]; const tips=["先『告知』再行動，減少阻力","等待回應，感受身體的訊號","等待被邀請，天賦自然綻放","觀察 28 天月亮週期再決定","回應而非發起，讓能量順流"]; return `你今日的策略提醒（${t.cn}）：<b>${tips[(d.getDate()+d.getDay())%tips.length]}</b>。<br>人生策略：${t.strat}。`; }},
+  {id:"bodycompass",cat:"人類圖",ic:"🧬",name:"能量藍圖羅盤",desc:"依出生資訊，顯示你的能量中心分布速覽。",form:"date",fun:(d)=>{ const seed=d.getDate()*7+d.getMonth()*3; const n=3+seed%4; return `你的能量藍圖有 <b>${n}</b> 個定義中心（穩定能量）。<br>建議：專注在你穩定中心的優勢，對於開放中心則保持覺察，不被他人的能量過度牽動。`; }},
+
+  // — 綜合運勢類 —
+  {id:"zodiacanimal",cat:"綜合",ic:"🐲",name:"生肖年份查詢",desc:"輸入出生年份，查詢你的生肖與五行屬性。",form:"date",fun:(d)=>{ const y=d.getFullYear(); const animals=["鼠","牛","虎","兔","龍","蛇","馬","羊","猴","雞","狗","豬"]; const a=animals[(y-4)%12]; const elems=["金","木","水","火","土"]; const e=elems[Math.floor((y%10)/2)]; return `你是 <b>${a}年</b>（生肖：${a}），五行屬 <b>${e}</b>。<br>${a}年出生的人通常${e==="金"?"果斷剛毅":e==="木"?"積極成長":e==="水"?"靈活變通":e==="火"?"熱情外放":"穩重務實"}。`; }},
+  {id:"fivemiss",cat:"綜合",ic:"☯",name:"五行平衡檢測",desc:"依出生日期，簡單檢測你的五行傾向與補充建議。",form:"date",fun:(d)=>{ const base=d.getDate()*3+d.getMonth()*5+d.getFullYear()%10; const metals=["金","木","水","火","土"]; const vals=metals.map((m,i)=>(base*7+i*13)%31+20); const min=Math.min(...vals); const weak=metals[vals.indexOf(min)]; return `你的五行分布：<b>金${vals[0]}</b> 木${vals[1]} 水${vals[2]} 火${vals[3]} 土${vals[4]}。<br>偏弱的元素是 <b>${weak}</b>，可從${weak==="金"?"白色與金屬飾品":weak==="木"?"綠色與植物":weak==="水"?"黑色與水景":weak==="火"?"紅色與熱情":"黃色與大地"}元素補強。`; }},
+  {id:"namefortune",cat:"綜合",ic:"📛",name:"姓名吉凶筆畫",desc:"輸入名字筆畫數，測姓名吉凶與補運方向。",form:"name",fun:(name)=>{ const strokes=[...name].reduce((a,ch)=>a+ (ch.charCodeAt(0)%20+1),0); const luck=strokes%9+1; const g=[["大吉","名字能量充沛，貴人運佳"],["吉","整體平順，穩步向前"],["中吉","小有波折，貴在堅持"],["小吉","需多用心經營人際"],["平","平穩度日，求實不求快"],["凶","多留意口舌是非"]][luck%6]; return `你的名字筆畫數約 <b>${strokes}</b>，吉凶指數 <b>${luck}</b>。<br>${g[0]}：${g[1]}。`; }},
+  {id:"careerfit",cat:"綜合",ic:"🧭",name:"職業方向建議",desc:"依出生月份，建議適合的職業方向與發展領域。",form:"date",fun:(d)=>{ const z=ZODIAC[d.getMonth()%12]; const fields={火:"領導、創業、表演、運動",土:"金融、工程、藝術、餐飲",風:"科技、媒體、行銷、教育",水:"照顧、心理、藝術、療癒"}; return `你的星座 ${z.cn}（${z.el}象）。<br>適合的職業方向：<b>${fields[z.el]}</b>。<br>${z.career}`; }},
+  {id:"lovesign",cat:"綜合",ic:"💘",name:"速配星座一覽",desc:"依你的星座，列出最速配與最需要注意的星座。",form:"date",fun:(d)=>{ const z=ZODIAC[d.getMonth()%12]; return `你是 <b>${z.cn}</b>。<br>最佳速配：<b>${z.match.join("、")}</b>。<br>${z.love}`; }},
+
+  // — 生活應用類 —
+  {id:"lunch",cat:"生活",ic:"🍽",name:"今日幸運餐點",desc:"依今日心情與日期，推薦一道開運料理。",fun:(d)=>{ const foods=["暖色系的番茄湯（招財）","綠色的蔬菜沙拉（開運）","帶辣味的料理（驅散陰霾）","一碗清甜湯品（平和心緒）","富含蛋白質的餐點（補充能量）","繽紛的水果拼盤（帶來好運）"]; return `今日開運料理：<b>${foods[(d.getDate()+d.getHours())%foods.length]}</b>。<br>用一頓好飯，開啟一天的順利。`; }},
+  {id:"pet",cat:"生活",ic:"🐾",name:"幸運色穿搭指南",desc:"依今日氣場，建議你今天最適合的穿搭色系。",fun:(d)=>{ const cols=[["金色系","黃色、大地金，增加自信魅力"],["藍色系","藍、靛，帶來冷靜與專注"],["綠色系","綠、薄荷，療癒身心"],["紫色系","紫、藕色，強化直覺"],["粉色系","粉、玫瑰，增進人緣"],["中性色","白、灰，百搭穩定"]]; const c=cols[(d.getDate()+d.getDay())%cols.length]; return `今日幸運穿搭：<b>${c[0]}</b>。<br>${c[1]}。`; }},
+  {id:"meeting",cat:"生活",ic:"🤝",name:"會面時機占卜",desc:"依當前時辰，判斷現在適不適合談判、簽約或重要會面。",fun:(d)=>{ const h=d.getHours(); const good = (h>=7&&h<11)||(h>=13&&h<15)||(h>=17&&h<19); return good?`<b>適合！</b>當前時辰能量佳（${h}點），適合談判、簽約與重要會面。<br>把握這段溝通黃金時段。`:`<b>可再等等。</b>當前時辰（${h}點）能量較緩，建議避開高張力的對談，選擇更佳時機。`; }},
+  {id:"study",cat:"生活",ic:"📚",name:"學習運勢提醒",desc:"依今日日期，評估今日的學習效率與最佳學習時段。",fun:(d)=>{ const s=(d.getDate()*3)%100; const bestHour=(d.getDate()%8)+9; return `今日學習效率 <b>${s}%</b>。<br>最佳學習時段約在 <b>${bestHour}:00</b> 左右，${s>60?"記憶與專注力佳，適合攻讀重點":"可先預習，晚間再複習效果更好"}。`; }},
+  {id:"travel",cat:"生活",ic:"✈",name:"旅遊運勢速查",desc:"依出生月份，建議適合你的旅行方向與運勢。",fun:(d)=>{ const z=ZODIAC[d.getMonth()%12]; const dirs=["東","南","西","北","東南","西南","東北","西北"]; const dir=dirs[(d.getMonth()+d.getDate())%dirs.length]; return `你是 ${z.cn}，適合你的旅遊幸運方位是 <b>${dir}</b> 方。<br>${z.el==="火"?"適合熱情活力的地方":z.el==="土"?"適合寧靜山水":z.el==="風"?"適合都市人文":z.el==="水"?"適合近水療癒之地":""}。`; }},
+  {id:"morning",cat:"生活",ic:"🌅",name:"早安運勢卡",desc:"一張開運卡，為你的一天定下好能量基調。",fun:(d)=>{ const msgs=["今天會遇到貴人，記得微笑打招呼","適合開啟新計畫，行動就是答案","把焦點放在感恩，好運自然聚集","留意身邊的小驚喜，幸運在細節裡","今日適合整理與收納，淨空帶來清新","傾聽你的直覺，它會引導你方向"]; return `早安！今日開運卡：<b>${msgs[(d.getDate()+d.getDay())%msgs.length]}</b>。`; }},
+
+  // — 心理／成長類 —
+  {id:"colorpsy",cat:"成長",ic:"🎨",name:"顏色心理測驗",desc:"選一個最吸引你的顏色，測當下心理狀態。",fun:null,form:"color",colors:["紅","橙","黃","綠","藍","紫"]},
+  {id:"moodtrack",cat:"成長",ic:"🌱",name:"能量自我檢測",desc:"依出生資訊與日期，檢測今日身心能量與充電建議。",fun:(d)=>{ const s=(d.getDate()*5+d.getMonth()*3)%100; const tip=s>70?"能量充沛，可挑戰大事":s>45?"平穩狀態，適合按部就班":"需要充電，早點休息善待自己"; return `今日整體能量指數 <b>${s}%</b>。<br>${tip}。<br>充電小建議：${s>70?"多曬太陽保持動能":"泡杯熱茶，給自己十分鐘寧靜"}。`; }},
+  {id:"affirm",cat:"成長",ic:"✨",name:"正向肯定句產生器",desc:"依今日日期，產生一句專屬正向肯定句。",fun:(d)=>{ const afs=["我值得擁有美好的一切","我充滿力量，能夠面對挑戰","今天的一切都在朝好的方向發展","我允許自己放鬆與休息","我相信自己的直覺與選擇","我感恩此刻擁有的所有","我溫柔待己，也溫柔待人","我的能量正吸引豐盛到來"]; return `今日專屬肯定句：<b>「${afs[(d.getDate()+d.getMonth())%afs.length]}」</b><br>請在今天重複默念三次，讓它成為你的能量錨點。`; }}
+];
+
+function renderTools(sub){
+  const v=$("#view-tools");
+  if(sub && TOOLS.find(t=>t.id===sub)){ renderToolDetail(v, TOOLS.find(t=>t.id===sub)); return; }
+  // 工具庫首頁
+  const cats=[...new Set(TOOLS.map(t=>t.cat))];
+  v.innerHTML = `
+  <div class="container">
+    <div class="sec-head" style="padding-top:18px">
+      <div class="sec-eyebrow">工具庫</div>
+      <h1 class="sec-title">30 個免費開運工具</h1>
+      <p class="sec-sub">星座、命理、塔羅、人類圖、生活與成長，六大類共 30 個小工具。點擊任一工具，即可使用並查看詳細說明。</p>
+    </div>
+    <div class="tabs" id="toolCats">
+      <button class="tab on" data-cat="全部" onclick="filterTools('全部')">全部（${TOOLS.length}）</button>
+      ${cats.map(c=>`<button class="tab" data-cat="${c}" onclick="filterTools('${c}')">${c}</button>`).join("")}
+    </div>
+    <div id="toolGrid" class="grid g-4"></div>
+    <div style="height:40px"></div>
+  </div>`;
+  filterTools("全部");
+}
+function filterTools(cat){
+  $$("#toolCats .tab").forEach(t=>t.classList.toggle("on", t.dataset.cat===cat));
+  const list = cat==="全部"? TOOLS : TOOLS.filter(t=>t.cat===cat);
+  $("#toolGrid").innerHTML = list.map((t,i)=>`
+    <div class="cd card-hover" onclick="go('#/tools/${t.id}')" data-card>
+      <div class="cd-top" style="font-size:1.5rem">${t.ic}</div>
+      <div class="cd-body">
+        <span class="badge badge-b">${t.cat}</span>
+        <h4 style="margin-top:8px">${t.name}</h4>
+        <p style="margin-top:6px">${t.desc}</p>
+      </div>
+      <div class="cd-foot" style="display:flex;align-items:center;justify-content:space-between">
+        <span style="color:var(--brand);font-weight:600">開啟工具 →</span>
+        <span class="popover pv-top-right" onclick="event.stopPropagation()">
+          <button class="pv-btn" style="padding:3px 9px;font-size:.72rem">ⓘ 說明</button>
+          <span class="pv-panel">
+            <button class="pv-close" onclick="event.stopPropagation()">✕</button>
+            <h4>${t.name}</h4>
+            <p>${t.desc}</p>
+            <span class="pv-tag">${t.cat}</span>
+            <span class="pv-tag">免費</span>
+            <br><a href="#/tools/${t.id}" class="pv-cta btn btn-outline btn-sm" onclick="event.stopPropagation()">立即使用 →</a>
+          </span>
+        </span>
+      </div>
+    </div>`).join("");
+}
+function renderToolDetail(v, t){
+  v.innerHTML = `
+  <div class="container">
+    <div class="sec-head" style="padding-top:18px">
+      <div class="sec-eyebrow">工具庫 · ${t.cat}</div>
+      <h1 class="sec-title">${t.ic} ${t.name}</h1>
+      <p class="sec-sub">${t.desc}</p>
+    </div>
+    <div class="card" style="max-width:620px;margin:0 auto">
+      <div id="toolBody"></div>
+    </div>
+    <div class="card prose" style="max-width:620px;margin:18px auto 0">
+      <h3>使用說明</h3>
+      <p>${t.desc}</p>
+      <p><b>貼心提醒：</b>此工具為趣味與參考性質的簡化占卜，結果隨輸入或當日日期變動，僅供娛樂與自我覺察，不做重大決定依據。</p>
+      <button class="btn btn-ghost btn-sm" onclick="go('#/tools')">← 返回工具庫</button>
+    </div>
+    <div style="height:40px"></div>
+  </div>`;
+  const body=$("#toolBody");
+  if(t.form==="date"){
+    body.innerHTML = `
+      <div class="form-group"><label>選擇出生日期</label><input type="date" id="toolDate" value="1995-06-15"></div>
+      <button class="btn btn-primary" onclick="runToolDate('${t.id}')">開始分析</button>
+      <div id="toolOut" style="margin-top:16px"></div>`;
+  }else if(t.form==="time"){
+    body.innerHTML = `
+      <div class="form-group"><label>選擇出生時辰</label><select id="toolHour">${Array.from({length:24},(_,i)=>`<option value="${i}">${String(i).padStart(2,"0")}:00</option>`).join("")}</select></div>
+      <button class="btn btn-primary" onclick="runToolHour('${t.id}')">開始分析</button>
+      <div id="toolOut" style="margin-top:16px"></div>`;
+  }else if(t.form==="name"){
+    body.innerHTML = `
+      <div class="form-group"><label>輸入你的名字</label><input type="text" id="toolName" placeholder="例如：張書欣"></div>
+      <button class="btn btn-primary" onclick="runToolName('${t.id}')">開始分析</button>
+      <div id="toolOut" style="margin-top:16px"></div>`;
+  }else if(t.form==="color"){
+    body.innerHTML = `
+      <div class="form-group"><label>選一個最吸引你的顏色</label>
+        <div class="radio-row">${t.colors.map(c=>`<label><input type="radio" name="toolColor" value="${c}"> ${c}</label>`).join("")}</div>
+      </div>
+      <button class="btn btn-primary" onclick="runToolColor()">開始測驗</button>
+      <div id="toolOut" style="margin-top:16px"></div>`;
+  }else if(t.quiz){
+    body.innerHTML = `
+      <div id="toolQuiz"></div>`;
+    renderHDQuiz();
+  }else{
+    body.innerHTML = `<button class="btn btn-primary btn-lg" onclick="runToolToday('${t.id}')">✦ 開始 ✦</button><div id="toolOut" style="margin-top:16px"></div>`;
+  }
+}
+function runToolToday(id){
+  const t=TOOLS.find(x=>x.id===id);
+  $("#toolOut").innerHTML = `<div class="callout callout-ok">${t.fun(new Date())}</div>`;
+}
+function runToolDate(id){
+  const d=$("#toolDate").value; if(!d){ toast("請選擇日期"); return; }
+  const t=TOOLS.find(x=>x.id===id);
+  $("#toolOut").innerHTML = `<div class="callout callout-ok">${t.fun(new Date(d))}</div>`;
+}
+function runToolHour(id){
+  const hr=parseInt($("#toolHour").value);
+  const t=TOOLS.find(x=>x.id===id);
+  $("#toolOut").innerHTML = `<div class="callout callout-ok">${t.fun(hr)}</div>`;
+}
+function runToolName(id){
+  const name=$("#toolName").value.trim();
+  if(!name){ toast("請輸入名字"); return; }
+  const t=TOOLS.find(x=>x.id===id);
+  $("#toolOut").innerHTML = `<div class="callout callout-ok">${t.fun(name)}</div>`;
+}
+function runToolColor(){
+  const c=document.querySelector('input[name="toolColor"]:checked');
+  if(!c){ toast("請選擇一個顏色"); return; }
+  const map={紅:"熱情與行動力旺盛，渴望掌控與表現",橙:"活力與創造力，渴望被看見與肯定",黃:"樂觀與思考，渴望學習與自由",綠:"平和與療癒，渴望穩定與成長",藍:"理性與冷靜，渴望秩序與深度",紫:"直覺與靈性，渴望探索與神祕"};
+  $("#toolOut").innerHTML = `<div class="callout callout-ok">你選擇 <b>${c.value}</b>。<br>${map[c.value]}。<br>這反映了你當下內在的渴望與能量狀態。</div>`;
+}
+function renderHDQuiz(){
+  const q=[
+    ["你的能量通常是？",["持續穩定，像發電廠","快速爆發，來得快去得快","敏銳觀察，善於引導","隨環境波動，彈性大"]],
+    ["面對新機會，你傾向？",["直接開始做","先回應看看感不感興趣","等別人邀請再參與","觀察一陣子再決定"]],
+    ["別人眼中的你？",["行動派領袖","勤勞的執行者","聰明的軍師","神秘的觀察者"]],
+    ["做決定時你？",["很快就定案","憑身體感受回應","需要被肯定才安心","需要很長時間醞釀"]]
+  ];
+  $("#toolQuiz").innerHTML = q.map((item,i)=>`
+    <div class="form-group">
+      <label>Q${i+1}. ${item[0]}</label>
+      <div class="radio-row">${item[1].map((o,oi)=>`<label><input type="radio" name="hq${i}" value="${oi}"> ${o}</label>`).join("")}</div>
+    </div>`).join("") + `<button class="btn btn-primary" onclick="hdQuizResult()">查看我的類型</button><div id="hdQuizOut" style="margin-top:16px"></div>`;
+}
+function hdQuizResult(){
+  const answers=[0,1,2,3].map((q,i)=>{ const r=document.querySelector(`input[name="hq${i}"]:checked`); return r?+r.value:-1; });
+  if(answers.some(a=>a<0)){ toast("請回答全部問題"); return; }
+  // 計分：生產者0 / 顯示者1 / 投射者2 / 反映者3
+  const score=answers.reduce((a,b)=>a+b,0);
+  const map=[
+    {t:HD_TYPES[1],s:"你偏向<b>生產者</b>能量 — 建議『等待回應』，從身體感受中找到方向。"},
+    {t:HD_TYPES[0],s:"你偏向<b>顯示者</b>能量 — 建議『先行告知』，減少行動阻力。"},
+    {t:HD_TYPES[3],s:"你偏向<b>投射者</b>能量 — 建議『等待邀請』，讓天賦被看見。"},
+    {t:HD_TYPES[4],s:"你偏向<b>反映者</b>能量 — 建議『等待月亮週期』，從容觀察再決定。"}
+  ];
+  const idx=score<=3?0:score<=6?1:score<=9?2:3;
+  const r=map[idx];
+  $("#hdQuizOut").innerHTML = `<div class="callout callout-ok">${r.s}<br>人生策略：${r.t.strat}。非自己主題：${r.t.notself}。</div>`;
+}
+
+/* ================= 收藏 ================= */
+function renderFavorite(){
+  const v=$("#view-favorite");
+  const f=state.favs;
+  v.innerHTML = `
+  <div class="container">
+    <div class="sec-head" style="padding-top:18px">
+      <div class="sec-eyebrow">我的收藏</div>
+      <h1 class="sec-title">我的收藏</h1>
+      <p class="sec-sub">你收藏的星座、塔羅牌與文章，儲存在本機瀏覽器。</p>
+    </div>
+    ${f.length?`
+    <div class="dash-grid">
+      ${f.map(sig=>favCard(sig)).join("")}
+    </div>
+    <div style="margin-top:20px"><button class="btn btn-err" onclick="clearFavs()">清空全部收藏</button></div>`:
+    `<div class="card" style="text-align:center;padding:50px"><div style="font-size:3rem">☆</div><h3 style="margin:10px 0">尚未收藏任何項目</h3><p class="prose">瀏覽星座、塔羅或文章時，點擊 ☆ 收藏按鈕即可加入此處。</p><button class="btn btn-primary" style="margin-top:14px" onclick="go('#/zodiac')">開始探索</button></div>`}
+    <div style="height:40px"></div>
+  </div>`;
+}
+function favCard(sig){
+  if(sig.startsWith("z:")){
+    const z=ZODIAC.find(x=>"z:"+x.key===sig); if(!z) return "";
+    return `<div class="cd" style="cursor:pointer" onclick="go('#/zodiac/detail?z=${ZODIAC.indexOf(z)}')"><div class="cd-top">${z.sym}</div><div class="cd-body"><h4>${z.cn}</h4><p>${z.date}</p></div><div class="cd-foot"><button class="btn btn-outline btn-sm" onclick="event.stopPropagation();toggleFav('z:${z.key}','${z.cn}')">☆ 移除</button></div></div>`;
+  }
+  if(sig.startsWith("t:")){
+    const idx=parseInt(sig.split(":")[2]); const c=TAROT_MAJOR[idx]; if(!c) return "";
+    return `<div class="cd" style="cursor:pointer" onclick="go('#/tarot/detail?c=${c.n}&m=major')"><div class="cd-top">${c.num}</div><div class="cd-body"><h4>${c.cn}（${c.en}）</h4><p>${c.desc}</p></div><div class="cd-foot"><button class="btn btn-outline btn-sm" onclick="event.stopPropagation();toggleFav('t:major:${c.n}','${c.cn}')">☆ 移除</button></div></div>`;
+  }
+  if(sig.startsWith("hd:")){
+    const t=HD_TYPES.find(x=>"hd:"+x.key===sig); if(!t) return "";
+    return `<div class="cd" style="cursor:pointer" onclick="go('#/humandesign/detail?t=${HD_TYPES.indexOf(t)}')"><div class="cd-top" style="font-size:1.6rem">${t.icon}</div><div class="cd-body"><h4>${t.cn}</h4><p>${t.theme} · ${t.pct}</p></div><div class="cd-foot"><button class="btn btn-outline btn-sm" onclick="event.stopPropagation();toggleFav('hd:${t.key}','${t.cn}')">☆ 移除</button></div></div>`;
+  }
+  if(sig.startsWith("b:")){
+    const i=parseInt(sig.split(":")[1]); const b=BLOG[i]; if(!b) return "";
+    return `<div class="cd" style="cursor:pointer" onclick="openArticle(${i})"><div class="cd-top" style="font-size:1.4rem">📖</div><div class="cd-body"><h4>${b.t}</h4><p>${b.cat} · ${b.date}</p></div><div class="cd-foot"><button class="btn btn-outline btn-sm" onclick="event.stopPropagation();toggleFav('b:${i}','${b.t}')">☆ 移除</button></div></div>`;
+  }
+  if(sig.startsWith("page:")) return `<div class="cd"><div class="cd-top" style="font-size:1.4rem">★</div><div class="cd-body"><h4>收藏頁面</h4><p>#/${sig.split(":")[1]}</p></div><div class="cd-foot"><button class="btn btn-outline btn-sm" onclick="event.stopPropagation();toggleFav('${sig}','本頁')">☆ 移除</button></div></div>`;
+  return "";
+}
+function clearFavs(){ state.favs=[]; localStorage.setItem("co_favs","[]"); toast("已清空收藏"); renderFavorite(); renderFavBtns(); }
+
+/* ================= 命理體系 TRADITIONS ================= */
+const TRADITIONS = [
+  {id:"birth",key:"一",ic:"☯",cat:"排盤論命",name:"以「出生時間」為核心",tagline:"八字・紫微・子平",
+   desc:"以出生的年月日時為根基，排出命盤，論五行生剋與格局，是華人命理最主流的一脈。",
+   items:[
+     {n:"八字（四柱命理）",d:"以出生年月日時排出年、月、日、時四柱干支，論五行生剋、十神、大運流年。目前最主流。",link:"#/traditions/birth"},
+     {n:"紫微斗數",d:"以農曆出生資訊排出命盤十二宮，論星曜組合與宮位，著重「命盤格局」。",link:"#/traditions/birth"},
+     {n:"子平命理",d:"屬八字體系，強調日主強弱與用神。",link:"#/traditions/birth"}
+   ], link:"#/zodiac",
+   art:{t:"為什麼八字被稱為「東方命理之首」？",body:"八字，又稱四柱命理，是華人世界流傳最廣、使用最普遍的一門排盤論命之學。它以一個人的出生年月日時為起點，分別換算成年、月、日、時四柱，每柱由「天干＋地支」兩個字組成，共八個字，故稱八字。這八個字背後隱藏的五行生剋、十神關係與大運流年，被視為一個人先天稟賦與後天運勢的縮影。\n\n八字的核心在於「五行平衡」。四柱中的天干地支各有所屬五行（金木水火土），透過比對五行的強弱多寡，命理師能判斷一個人命局中何者為「喜神」、何者為「忌神」。例如命局火旺而水弱之人，性格多半熱情主動，但也容易急躁；若能調候得宜、五行流通，則往往事業順遂、身心安康。這套系統再配上「十神」（正官、七殺、正印、偏印、正財、偏財、食神、傷官、比肩、劫財），用來描繪一個人與父母、兄弟、伴侶、子女及事業的關係樣貌。\n\n紫微斗數則走不同的路。它以農曆出生資訊排出十二宮位，論星曜組合與宮位互動，著重「命盤格局」的整體氣象。子平命理雖屬八字體系，卻特別強調日主強弱與用神取捨，是八字學中最精細的分支。\n\n無論選擇何者，都要理解命理絕非宿命。它更像一面鏡子，讓我們看見自己的天賦與盲點，進而在大運流年中把握機緣、順勢而為。把命理當作認識自己的一種工具，而非人生的枷鎖，才能真正受益。"}},
+  {id:"yijing",key:"二",ic:"☰",cat:"易經占卜",name:"以「易經卦象」為核心",tagline:"六爻・梅花・奇門",
+   desc:"以易經卦象起卦斷事，是問事決策與趨吉避凶的古老智慧。",
+   items:[
+     {n:"易經六爻",d:"用金錢卦或蓍草起卦，以卦爻辭斷吉凶。",link:"#/traditions/yijing"},
+     {n:"梅花易數",d:"以時間、數字、外應起卦，靈活快速。",link:"#/traditions/yijing"},
+     {n:"奇門遁甲",d:"三式之一，重方位、時空擇吉，也用於決策。",link:"#/traditions/yijing"}
+   ], link:"#/traditions/yijing",
+   art:{t:"易經占卜：從六爻、梅花到奇門的決策智慧",body:"易經是中華文化最古老的典籍之一，被尊為「群經之首」。它不只是一本占卜書，更是一部講述變化規律的哲學經典。易經占卜以「卦象」為核心，透過一定的起卦方法，將當下所問之事轉化為卦象，再以卦辭、爻辭與變卦來解讀吉凶休咎。\n\n最傳統的起卦法是「蓍草起卦」，過程繁複莊重，講究心誠則靈；後人為求方便，多以「金錢卦」取代——擲三枚銅錢六次，由正反面得爻，由下而上排出本卦，再依動爻推出變卦。這種以卦爻辭斷吉凶的方法，就是「易經六爻」。它的精妙在於「動爻」，象徵事情正在變化的關鍵，解卦時尤須留意。\n\n「梅花易數」則由宋代邵雍所創，強調「外應」與「靈活」。它以當下的時間、數字，甚至眼前偶然發生的事物（外應）起卦，不需銅錢蓍草，隨手拈來即可成卦，講求心念專注與觸機。\n\n「奇門遁甲」被譽為「三式之絕學」，與太乙神數、大六壬並列。它融合陰陽五行、九宮八卦與時空方位，主要用於選擇有利的時間與方位，古時多用於軍事決策，今日則常見於開市、出行、擇日的應用。\n\n占卜的意義不在於迷信結果，而在於藉由卦象提供的「鏡像」，讓人跳脫既有的思考框架，從不同角度審視處境。當我們把易經當作一面照見當下的鏡子，它便成為最貼近生活的決策夥伴。"}},
+  {id:"face",key:"三",ic:"👤",cat:"觀形相學",name:"以「手面相」為核心",tagline:"面相・手相・體相",
+   desc:"透過五官、掌紋與身形觀察性格與運勢，屬觀形之術。",
+   items:[
+     {n:"面相",d:"看五官、氣色、骨相論富貴壽夭。",link:"#/traditions/face"},
+     {n:"手相",d:"看掌紋（生命線、事業線、感情線）、掌型、手丘。",link:"#/traditions/face"},
+     {n:"體相",d:"看身形、痣相、走姿等。",link:"#/traditions/face"}
+   ], link:"#/traditions/face",
+   art:{t:"面相、手相與體相：觀形知人的人生讀法",body:"中國相學主張「相由心生」，認為一個人的性格、際遇與健康，會透過容貌、掌紋與身形顯露出來。觀形之術主要分為面相、手相與體相三大支脈，彼此互補，共同構成一套觀察人的學問。\n\n面相以「五官」為觀察重點。眉主兄弟與思慮，眼主心性與才智，鼻主財帛與自我，口主言辭與食祿，耳主聽聞與福壽。除了五官，相師還會看「氣色」——臉色紅潤有光者常精神飽滿、運勢順遂；暗沉無光則多顯疲憊或運滯。再配合「骨相」與「痣相」，判斷一個人的富貴壽夭。\n\n手相則以「掌紋」為核心，其中最常被討論的是三大主線：生命線看體力與健康根基，事業線看職涯發展與社會成就，感情線看情感模式與人際互動。除了紋路，掌型（金、木、水、火、土五型）與手丘的豐滿程度，也透露一個人的性格傾向與天賦領域。\n\n體相則將目光放大到整個身體，看身形的高矮胖瘦、走路的姿態、說話的聲音與神情。例如步伐沉穩者多心思周密，目光游移者易多疑善變。\n\n相學的智慧在於提醒我們「知己」的重要性。先天之相固然可觀，但後天的修養、心性與作為，更能改變一個人的氣質與命運。與其執著於命定之相，不如把相學當作認識自己與他人的一扇窗。"}},
+  {id:"symbol",key:"四",ic:"✍",cat:"文字符號",name:"以「文字符號」為核心",tagline:"姓名學・測字",
+   desc:"由文字與姓名的筆畫、五行拆解命理，東方獨特的象意之學。",
+   items:[
+     {n:"姓名學",d:"依筆畫五行論姓名吉凶。",link:"#/tools/namefortune"},
+     {n:"測字",d:"就所寫之字拆解斷事。",link:"#/tools/namefortune"}
+   ], link:"#/tools/namefortune",
+   art:{t:"姓名學與測字：藏在文字裡的玄機",body:"漢字是世界上少數兼具形、音、義的文字系統，也因此衍生出以文字符號論命的神祕學問，其中最典型的就是姓名學與測字。\n\n姓名學認為，一個人的名字承載著父母的期許與家族的氣脈，對一生的運勢有潛移默化的影響。最常見的方法是「筆畫數理」：將姓名各字的筆畫依特定規則換算成數字，再對應到「三才五格」（天格、人格、地格、外格、總格）與五行，判斷名字在性格、事業、健康、社交等層面的吉凶。例如人格數理為吉者，多半能自立自強、貴人相助；地格與總格合宜，則家庭與晚年較安穩。此外，字的五行（金木水火土）若與命主八字相合，更能起補益之效。\n\n測字則是更靈活的占斷之術。就所寫之字拆解字形、字義與筆畫，結合當下情境來斷事。例如問「考試能否上榜」，若所寫之字含「人」「力」「才」等吉字，或字形端正有力，多被視為吉兆；若字缺角、結構失衡，則提醒需要補強準備。測字極重「觸機」，同樣一個字，在不同的時間、提問與提字者心境下，解讀可能大不相同。\n\n姓名與文字雖能反映一部分訊息，但它們更多是提醒與參照，而非鐵口直斷。一個好名字是加分項，真正決定命運的，仍是人的努力、選擇與心性。把姓名學與測字當作認識自我、趨吉避凶的輔助工具，才是最健康的心態。"}},
+  {id:"fengshui",key:"五",ic:"🏔",cat:"風水堪輿",name:"風水堪輿（環境）",tagline:"陽宅・陰宅・玄空",
+   desc:"觀居住與祖先環境以調和氣場，分巒頭與理氣兩大脈。",
+   items:[
+     {n:"陽宅 / 陰宅風水",d:"看居住或祖先墳地環境，分巒頭與理氣。",link:"#/traditions/fengshui"},
+     {n:"玄空飛星、八宅",d:"風水的主要流派。",link:"#/traditions/fengshui"}
+   ], link:"#/traditions/fengshui",
+   art:{t:"風水堪輿：調和環境與氣場的生活智慧",body:"風水，又稱堪輿，是中國人選擇與調和居住環境的古老學問，核心在於「藏風聚氣」。古人相信，人與環境會互相影響，居住環境的好壞，關係著一家人的健康、事業與和睦，因此衍生出一套完整的觀察與佈局之道。\n\n風水分為「陽宅」與「陰宅」兩大類。陽宅指活人居住與活動的場所，如住宅、辦公室、店鋪；陰宅則指祖先的墳地。兩者都講究「巒頭」與「理氣」：巒頭是看山形水勢、週遭環境的形貌，講究山環水抱、明堂開闊；理氣則以羅盤測量方位、理氣運轉，判斷坐向與時間的吉凶組合。\n\n在流派上，最常見的是「八宅」與「玄空飛星」。八宅以宅主的命卦將住宅分為東四宅、西四宅，再配八個方位定吉凶，方法較簡單易懂；玄空飛星則以九宮飛星依時間推移，判斷各方位當年的旺氣與煞氣，更為精密，常用於現代住宅的佈局調整。\n\n現代人看待風水，不必拘泥於迷信。很多風水原則其實與科學通風、採光、動線流暢相通：例如開門見灶被視為不吉，實則反映「進門即見爐火易生意外」的生活常理；廁所不宜居中，則是衛生與氣味的考量。與其盲目追求名師指點，不如把風水視為「環境設計的智慧」，讓家成為讓人放鬆、安定與充滿正向能量的地方。"}},
+  {id:"folk",key:"六",ic:"🕯",cat:"民俗信仰",name:"其他民俗類",tagline:"塔羅・占星・求籤",
+   desc:"西方體系與民間信仰儀式，近年華人圈亦常見。",
+   items:[
+     {n:"塔羅牌、占星、水晶靈數",d:"西方體系，近年在華人圈常見。",link:"#/tarot"},
+     {n:"擲筊、求籤、通靈",d:"偏向民間信仰儀式。",link:"#/tarot"}
+   ], link:"#/tarot",
+   art:{t:"塔羅、占星與民間信仰：跨越東西的問事之道",body:"除了傳統的東方命理，近年華人圈也風行來自西方的占卜體系，包括塔羅牌、占星術與水晶靈數，它們與民間信仰中的擲筊、求籤、通靈等儀式，共同構成了現代人尋求指引的多元管道。\n\n塔羅牌以一套具有象徵意義的圖像來反映內心的處境，透過抽牌與牌陣，引導我們看見問題的關鍵與可能的走向。它並不預言無法改變的宿命，而是像一面鏡子，照見我們當下的情緒、選擇與盲點。\n\n占星術則以出生時的天體位置繪製星盤，分析一個人的性格、天賦與人生階段。星座運勢是其中最普及的形式，更深入的占星則會綜合太陽、月亮與上升星座，描繪更立體的個人圖像。水晶靈數則結合數字與水晶的能量，主張每個數字與晶石都帶有特定的振動頻率，可作為靜心與自我暗示的輔助。\n\n至於擲筊、求籤與通靈，則偏向民間信仰的儀式。擲筊以兩片筊杯的陰陽正反來請示神明的意旨；求籤則在神前抽取籤詩，藉由籤文獲得指引；通靈則透過靈媒或乩童與無形力量溝通。這些儀式承載著深厚的文化與心理安慰功能，讓人在徬徨時得到一個「被傾聽」與「被祝福」的安頓感。\n\n無論東西方，這些問事之道的共通點，都是在幫助我們面對不確定性、安頓內在。把它們當作自我探索與心靈寄託的工具，保持理性與開放的心態，才能在神祕中獲得真正的生活智慧。"}}
+];
+function renderTraditions(sub){
+  const v=$("#view-traditions");
+  if(sub && TRADITIONS.find(t=>t.id===sub)){ renderTraditionDetail(v, TRADITIONS.find(t=>t.id===sub)); return; }
+  v.innerHTML = `
+  <div class="container">
+    <div class="sec-head" style="padding-top:18px">
+      <div class="sec-eyebrow">命理體系</div>
+      <h1 class="sec-title">六大命理體系總覽</h1>
+      <p class="sec-sub">念十回 の 星靈宇宙融通東方命理、易經占卜與西方塔羅。點擊任一體系，查看原理說明並連結對應專業主題。</p>
+    </div>
+    ${TRADITIONS.map((t,i)=>`
+    <div class="card" style="margin-bottom:16px" data-card>
+      <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+        <div style="font-size:2.4rem">${t.ic}</div>
+        <div style="flex:1;min-width:220px">
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+            <span class="badge badge-b">${t.key}. ${t.name}</span><span class="badge badge-info">${t.cat}</span><span class="badge badge-a">${t.tagline}</span>
+          </div>
+          <p class="prose" style="margin-top:8px">${t.desc}</p>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="go('${t.link}')">前往主題 →</button>
+      </div>
+      <div class="accordion" style="margin-top:12px">
+        <div class="acc-item open">
+          <div class="acc-head" onclick="this.parentElement.classList.toggle('open');this.parentElement.querySelector('.acc-body').style.maxHeight=this.parentElement.classList.contains('open')?this.parentElement.querySelector('.acc-body').scrollHeight+'px':'0'">
+            <span>查看體系詳解（${t.items.length} 項）</span><span class="acc-ico">▼</span>
+          </div>
+          <div class="acc-body" style="max-height:400px"><div class="acc-body-in">
+            ${t.items.map(it=>`<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed var(--border)">
+              <div><b>${it.n}</b><div style="font-size:.85rem;color:var(--text3)">${it.d}</div></div>
+              <a href="${it.link}" class="btn btn-outline btn-sm" style="white-space:nowrap">前往</a>
+            </div>`).join("")}
+          </div></div>
+        </div>
+      </div>
+    </div>`).join("")}
+    <div style="height:40px"></div>
+  </div>`;
+}
+function renderTraditionDetail(v,t){
+  v.innerHTML = `
+  <div class="container">
+    <div class="sec-head" style="padding-top:18px">
+      <div class="sec-eyebrow">命理體系 · ${t.cat}</div>
+      <h1 class="sec-title">${t.ic} ${t.key}. ${t.name}</h1>
+      <p class="sec-sub">${t.desc}（${t.tagline}）</p>
+    </div>
+    <div class="card prose" style="margin-bottom:16px">
+      <h3>體系說明</h3>
+      <p>${t.desc}本體系是華人（或西方）命理中極具代表性的一支，適合用來認識自己的天賦、時機與選擇。</p>
+      <h3>所含專業主題</h3>
+      <ul>${t.items.map(it=>`<li><b>${it.n}</b>：${it.d}</li>`).join("")}</ul>
+      <div class="callout callout-info" style="margin-top:12px"><b>建議：</b>可從下方的「相關主題」前往本平台的對應工具，實際體驗。</div>
+    </div>
+    ${t.art?`
+    <article class="card prose" style="margin-bottom:16px;border-left:4px solid var(--brand)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span class="badge badge-b">專業文章</span><span class="badge badge-a">${t.cat}</span></div>
+      <h2 style="font-size:1.5rem;margin-bottom:8px">${t.art.t}</h2>
+      ${t.art.body.split("\n").map(p=>`<p style="margin:0 0 12px;line-height:1.9">${esc(p)}</p>`).join("")}
+    </article>`:""}
+    <div class="grid g-3">
+      ${t.items.map((it,i)=>`
+      <a href="${it.link}" class="cd card-hover" style="text-decoration:none;padding:0" data-card>
+        <div class="cd-top" style="font-size:1.3rem">${it.n[0]}</div>
+        <div class="cd-body"><h4>${it.n}</h4><p>${it.d}</p></div>
+        <div class="cd-foot" style="color:var(--brand);font-weight:600">前往 →</div>
+      </a>`).join("")}
+    </div>
+    <div class="pre-next">
+      <a href="#" onclick="event.preventDefault();traditionStep(-1,'${t.id}')"><span class="dir">← 上一體系</span><br><b>${prevTradition(t.id).name}</b></a>
+      <a href="#" style="text-align:right" onclick="event.preventDefault();traditionStep(1,'${t.id}')"><span class="dir">下一體系 →</span><br><b>${nextTradition(t.id).name}</b></a>
+    </div>
+    <div style="height:40px"></div>
+  </div>`;
+}
+function prevTradition(id){ const i=TRADITIONS.findIndex(t=>t.id===id); return TRADITIONS[(i+5)%6]; }
+function nextTradition(id){ const i=TRADITIONS.findIndex(t=>t.id===id); return TRADITIONS[(i+1)%6]; }
+function traditionStep(d,id){ const i=TRADITIONS.findIndex(t=>t.id===id); go(`#/traditions/${TRADITIONS[(i+d+6)%6].id}`); }
+
+/* ================= 站內導覽 ================= */
+function renderSitemap(){
+  const v=$("#view-sitemap");
+  const groups=[
+    {g:"星座算命",items:[["#/zodiac","十二星座總覽","查看 12 星座完整檔案、性格、愛情、事業、健康"],["#/zodiac/daily","每日運勢","每日星座運勢總覽表"],["#/zodiac/match","星座配對","愛情、友情、事業契合度分析"],["#/zodiac/rising","上升星座","依出生日期＋時辰計算上升星座"]]},
+    {g:"塔羅占卜",items:[["#/tarot","78張牌意","大阿爾克那翻牌卡＋小阿爾克那總覽"],["#/tarot/three","三牌陣","過去・現在・未來互動占卜"],["#/tarot/celtic","凱爾特十字","十位置深入剖析"],["#/tarot/daily","每日一牌","每日能量指引"]]},
+    {g:"人類圖",items:[["#/humandesign","人類圖總覽","認識能量藍圖"],["#/humandesign/types","四大類型","顯示者／生產者／投射者／反映者"],["#/humandesign/centers","能量中心","九大能量中心互動圖"],["#/humandesign/calculator","人類圖計算","繪製專屬身體圖"]]},
+    {g:"工具庫（30）",items:TOOLS.map(t=>["#/tools/"+t.id,t.ic+" "+t.name,t.desc])},
+    {g:"更多",items:[["#/blog","星學知識庫","星座、塔羅、人類圖知識文章"],["#/favorite","我的收藏","收藏的星座、塔羅牌與文章"],["#/sitemap","站內導覽","本站完整地圖"],["#/about","關於本站","願景、聲明與聯絡"]]}
+  ];
+  v.innerHTML = `
+  <div class="container">
+    <div class="sec-head" style="padding-top:18px">
+      <div class="sec-eyebrow">站內導覽</div>
+      <h1 class="sec-title">站內導覽</h1>
+      <p class="sec-sub">念十回 の 星靈宇宙完整地圖。點擊任一項目直接前往，快速找到你要的功能。</p>
+    </div>
+    ${groups.map(grp=>`
+    <div class="card" style="margin-bottom:18px">
+      <h3 style="margin-bottom:12px">${grp.g} <span class="badge badge-b" style="margin-left:8px">${grp.items.length}</span></h3>
+      <div class="related" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr))">
+        ${grp.items.map(it=>`
+        <a href="${it[0]}" class="cd card-hover" style="padding:0;text-decoration:none" data-card>
+          <div class="cd-body" style="padding:14px 16px">
+            <h4 style="color:var(--text)">${it[1]}</h4>
+            <p style="font-size:.8rem;color:var(--text3);margin-top:4px">${esc(it[2])}</p>
+          </div>
+          <div class="cd-foot" style="color:var(--brand);font-weight:600">前往 →</div>
+        </a>`).join("")}
+      </div>
+    </div>`).join("")}
+    <div style="height:40px"></div>
+  </div>`;
+}
+
+/* ================= 關於 ================= */
+function renderAbout(){
+  const v=$("#view-about");
+  v.innerHTML = `
+  <div class="container">
+    <div class="sec-head" style="padding-top:18px">
+      <div class="sec-eyebrow">關於本站</div>
+      <h1 class="sec-title">關於念十回 の 星靈宇宙</h1>
+    </div>
+    <div class="card prose">
+      <h3>願景</h3>
+      <p>念十回 の 星靈宇宙是一個整合<b>星座算命、塔羅盤與人類圖</b>三大體系的免費平台，希望用直覺而實用的方式，陪伴每個人更了解自己與世界。</p>
+      <h3>內容聲明</h3>
+      <p>本站所有內容（星座運勢、塔羅解讀、人類圖分析）<b>僅供參考與娛樂</b>，不構成醫療、法律或財務建議。重大人生決定請以專業判斷與自身感受為準。</p>
+      <h3>隱私</h3>
+      <p>你的收藏與瀏覽記錄僅儲存在你自己的瀏覽器（localStorage），不會上傳至伺服器。</p>
+      <h3>聯絡我們</h3>
+      <p>服務信箱：service@cosmic-oracle.example.com<br>問題回饋與合作邀約歡迎來信。</p>
+      <h3>技術</h3>
+      <p>單一 HTML 檔案 · 原生 JavaScript · 響應式設計 · 日夜主題 · 100+ 元件與功能整合。</p>
+    </div>
+    <div class="callout callout-ok" style="margin-top:18px"><b>免責聲明：</b>占星與神祕學內容帶有主觀詮釋，請保持理性，並以你自己的判斷為主。本站不承擔因使用本站內容所生之任何責任。</div>
+    <div style="height:40px"></div>
+  </div>`;
+}
+
+/* ================= 進階功能 ================= */
+/* 全站搜尋（快捷鍵 S） */
+function globalSearch(){
+  const kw=prompt("全站搜尋：輸入關鍵字（星座／塔羅／人類圖／文章）");
+  if(!kw) return;
+  const q=kw.trim().toLowerCase();
+  let results=[];
+  ZODIAC.forEach(z=>{ if((z.cn+z.en+z.desc+z.love).toLowerCase().includes(q)) results.push({t:`${z.sym} ${z.cn}`,p:`#/zodiac/detail?z=${ZODIAC.indexOf(z)}`,c:"星座"}); });
+  TAROT_MAJOR.forEach(c=>{ if((c.cn+c.en+c.desc).toLowerCase().includes(q)) results.push({t:`${c.cn}（${c.en}）`,p:`#/tarot/detail?c=${c.n}&m=major`,c:"塔羅"}); });
+  BLOG.forEach((b,i)=>{ if((b.t+b.body+b.cat).toLowerCase().includes(q)) results.push({t:b.t,p:`#/blog`,c:"文章"}); });
+  if(!results.length){ toast(`找不到與「${kw}」相關的結果`); return; }
+  const lines=results.slice(0,8).map((r,i)=>`${i+1}. [${r.c}] ${r.t}`).join("\n");
+  const pick=prompt(`找到 ${results.length} 筆結果，輸入編號前往：\n\n${lines}`);
+  const n=parseInt(pick)-1;
+  if(!isNaN(n) && results[n]){ go(results[n].p); }
+}
+
+/* 鍵盤快捷鍵：/ 搜尋、R 隨機、Esc 關閉選單 */
+document.addEventListener("keydown", e=>{
+  if(e.key==="/"){ e.preventDefault(); globalSearch(); }
+  else if(e.key.toLowerCase()==="r"){ randomNavigate(); }
+  else if(e.key==="Escape"){ closeSidebar(); $("#contextMenu").classList.remove("show"); }
+});
+function randomNavigate(){
+  const routes=["#/zodiac","#/zodiac/daily","#/zodiac/match","#/zodiac/rising","#/tarot","#/tarot/three","#/tarot/celtic","#/tarot/daily","#/humandesign","#/humandesign/types","#/humandesign/centers","#/blog"];
+  const r=routes[rnd(routes.length)];
+  go(r); toast(`隨機前往：${r}`);
+}
+
+/* 防複製保護（受限） */
+document.addEventListener("copy", e=>{ if(e.target.closest("input,textarea,select")) return; e.preventDefault(); toast("內容版權所有，請勿複製"); });
+
+/* 導覽動畫 */
+function easeIn(){
+  document.querySelectorAll("[data-reveal]").forEach(el=>{
+    const r=new IntersectionObserver((entries,obs)=>{
+      entries.forEach(en=>{ if(en.isIntersecting){ en.target.style.opacity=1; en.target.style.transform="none"; obs.unobserve(en.target);} });
+    },{threshold:.1});
+    r.observe(el);
+  });
+}
+
+/* Lazy load（圖片） */
+function lazyLoadAll(){
+  $$("img[data-src]").forEach(img=>{
+    if(!img.dataset.done){ img.dataset.done=1;
+      const io=new IntersectionObserver((es,o)=>{ es.forEach(en=>{ if(en.isIntersecting){ img.src=img.dataset.src; img.classList.add("loaded"); o.unobserve(img);} }); },{rootMargin:"100px"});
+      io.observe(img);
+    }
+  });
+}
+
+/* ================= 初始化 ================= */
+function init(){
+  applyTheme();
+  renderSidebar();
+  renderNavActive();
+  renderBreadcrumb();
+  if(!location.hash) location.hash="#/home";
+  router();
+  easeIn();
+}
+window.addEventListener("DOMContentLoaded", init);
+</script>
+
+</body>
