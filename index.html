@@ -379,10 +379,18 @@ input[type=range]{flex:1;accent-color:var(--brand)}
 .card-sky:hover .sky-img img{transform:scale(1.06)}
 .sky-body{padding:14px 14px 16px}
 .sky-body .prose{font-size:.9rem}
-.card-post{overflow:hidden}
+.card-post{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px;padding:12px 16px;cursor:pointer}
+.card-post:hover{transform:translateY(-2px)}
 .post-thumb{width:120px;height:80px;border-radius:var(--r);overflow:hidden;flex-shrink:0}
 .post-thumb img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
-@media(max-width:600px){.post-thumb{width:88px;height:64px}.sky-img{height:110px}}
+.post-info{flex:1;min-width:200px}
+.post-info h3{margin:6px 0 2px;font-size:1.05rem}
+.post-info time{font-size:.82rem;color:var(--text3)}
+.sky-body h3{font-size:1.05rem;margin-bottom:6px}
+.sky-body .prose{font-size:.88rem;line-height:1.5}
+.trad-body h3{font-size:1.2rem;font-weight:800;margin:10px 0 6px}
+.trad-body .prose{margin:0 0 14px}
+@media(max-width:600px){.post-thumb{width:88px;height:64px}.sky-img{height:110px}.card-post{padding:10px 12px}}
 
 @media(max-width:600px){.trad-thumb{width:120px;height:84px}.trad-img{height:140px}}
 
@@ -1851,21 +1859,37 @@ function renderBreadcrumb(){
   if(sub && subNames[sub]) html += `<span class="sep">/</span><span class="cur">${subNames[sub]}</span>`;
   $("#breadcrumb").innerHTML = html;
 }
+/* 首頁快取：六大體系只渲染一次，星象+文章每日更新 */
+let _tradBuilt = false;
 function renderHomeExtra(){
-  // 首頁動態區：六大體系預覽 + 今日運勢速覽 + 最新文章
-  const tp=$("#tradPreview");
-  if(tp){ tp.innerHTML = TRADITIONS.map(t=>`
-    <div class="card card-hover card-trad trad-yellow" onclick="go('#/traditions/${t.id}')" style="cursor:pointer">
-      <div class="trad-img"><img src="${t.img}" alt="${t.cat}" loading="lazy"></div>
-      <div class="trad-body">
-        <div class="trad-tags"><span class="badge badge-info">${t.cat}</span><span class="badge badge-a">${t.tagline}</span></div>
-        <h3 style="font-size:1.2rem;font-weight:800">${t.key}. ${t.name}</h3>
-        <p class="prose" style="margin:8px 0 14px">${t.desc}</p>
-        <div><span class="btn btn-primary btn-sm">查看體系 →</span></div>
-      </div>
-    </div>`).join(""); }
-  const today = new Date();
-  const tz = ZODIAC.find(z=>{ const [sm,sd]=z.start.split("/").map(Number); const [em,ed]=z.end.split("/").map(Number); const m=today.getMonth()+1,d=today.getDate(); if(sm>em) return m>=sm||m<=em; return m>=sm&&m<=em; });
+  // 六大體系卡片：只建一次 DOM，之後不再重繪
+  if(!_tradBuilt){
+    const tp = $("#tradPreview");
+    if(tp){ tp.innerHTML = TRADITIONS.map(t=>`
+      <div class="card card-hover card-trad trad-yellow" onclick="go('#/traditions/${t.id}')" style="cursor:pointer">
+        <div class="trad-img"><img src="${t.img}" alt="${t.cat}" loading="lazy"></div>
+        <div class="trad-body">
+          <div class="trad-tags"><span class="badge badge-info">${t.cat}</span><span class="badge badge-a">${t.tagline}</span></div>
+          <h3>${t.key}. ${t.name}</h3>
+          <p class="prose">${t.desc}</p>
+          <span class="btn btn-primary btn-sm">查看體系 →</span>
+        </div>
+      </div>`).join(""); _tradBuilt = true; }
+  }
+  // 今日星象：依日期即時計算
+  const now = new Date(), m = now.getMonth()+1, d = now.getDate();
+  const tz = ZODIAC.find(z=>{ const [sm,sd]=z.start.split("/").map(Number), [em,ed]=z.end.split("/").map(Number); return sm>em ? (m>=sm||m<=em) : (m>=sm&&m<=em); }) || ZODIAC[0];
+  const moonSigns = ["天秤座","天蠍座","射手座","摩羯座","水瓶座","雙魚座","牡羊座","金牛座","雙子座","巨蟹座","獅子座","處女座"];
+  const moon = moonSigns[Math.floor((m*30+d)/28) % 12];
+  const tarot = TAROT_MAJOR[(d-1) % 22];
+  // 最新文章：取前 3 篇
+  const blogImgs = ["blog_tarot_blue","blog_ascendant_blue","blog_humandesign_blue"];
+  const posts = BLOG.slice(0,3).map((b,i)=>`
+    <div class="card card-hover card-post" onclick="go('#/blog')" style="cursor:pointer">
+      <div class="post-thumb"><img src="assets/home/${blogImgs[i]}.webp" alt="${b.cat}" loading="lazy"></div>
+      <div class="post-info"><span class="badge badge-b">${b.cat}</span><h3>${b.t}</h3><time>${b.date}</time></div>
+      <span class="btn btn-outline btn-sm">閱讀 →</span>
+    </div>`).join("");
   const hero = $("#view-home");
   let sec = hero.querySelector("#homeExtra");
   if(!sec){ sec=document.createElement("div"); sec.id="homeExtra"; hero.appendChild(sec); }
@@ -1877,20 +1901,17 @@ function renderHomeExtra(){
         <h2 class="sec-title">現在是什麼星象？</h2>
       </div>
       <div class="grid g-3">
-        <div class="card card-hover card-sky" style="text-align:center">
+        <div class="card card-sky">
           <div class="sky-img"><img src="assets/home/today_zodiac_blue.webp" alt="今日星座" loading="lazy"></div>
-          <div class="sky-body"><h3>今日星座：${tz.cn}</h3>
-          <p class="prose" style="margin-top:8px">${esc(tz.today)}</p>
+          <div class="sky-body"><h3>${tz.sym} ${tz.cn}</h3><p class="prose">${esc(tz.today)}</p></div>
         </div>
-        <div class="card card-hover card-sky" style="text-align:center">
+        <div class="card card-sky">
           <div class="sky-img"><img src="assets/home/moon_phase_blue.webp" alt="月亮相位" loading="lazy"></div>
-          <div class="sky-body"><h3>月亮相位</h3>
-          <p class="prose" style="margin-top:8px">月亮進入${["天秤座","天蠍座","射手座","摩羯座"][today.getDate()%4]}，情感與直覺特別敏銳，適合傾聽內在。</p>
+          <div class="sky-body"><h3>月亮進入${moon}</h3><p class="prose">情感與直覺敏銳，適合傾聽內在、陪伴家人。</p></div>
         </div>
-        <div class="card card-hover card-sky" style="text-align:center">
+        <div class="card card-sky">
           <div class="sky-img"><img src="assets/home/tarot_today_blue.webp" alt="本日塔羅" loading="lazy"></div>
-          <div class="sky-body"><h3>本日塔羅</h3>
-          <p class="prose" style="margin-top:8px"><b>${TAROT_MAJOR[today.getDate()%22].cn}（${TAROT_MAJOR[today.getDate()%22].en}）</b> — ${TAROT_MAJOR[today.getDate()%22].desc}。</p>
+          <div class="sky-body"><h3>${tarot.cn}</h3><p class="prose"><b>${tarot.en}</b> — ${tarot.up}</p></div>
         </div>
       </div>
     </div>
@@ -1899,12 +1920,7 @@ function renderHomeExtra(){
         <div class="sec-eyebrow">星學知識庫</div>
         <h2 class="sec-title">最新文章</h2>
       </div>
-      ${BLOG.slice(0,3).map((b,i)=>`
-      <div class="card card-hover card-post" style="margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap">
-        <div class="post-thumb"><img src="assets/home/${["blog_tarot_blue","blog_ascendant_blue","blog_humandesign_blue"][i]}.webp" alt="${b.cat}" loading="lazy"></div>
-        <div style="flex:1;min-width:200px"><span class="badge badge-b">${b.cat}</span><h3 style="margin:6px 0 2px">${b.t}</h3><span style="font-size:.82rem;color:var(--text3)">${b.date}</span></div>
-        <button class="btn btn-outline btn-sm" onclick="go('#/blog')">閱讀全文</button>
-      </div>`).join("")}
+      ${posts}
     </div>
   </div>`;
 }
