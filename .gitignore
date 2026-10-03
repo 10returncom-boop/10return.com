@@ -1,0 +1,10 @@
+# 備份與自檢產物（不上傳）
+_backup/
+_shots/
+
+# 系統 / 暫存
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.tmp
+*~
