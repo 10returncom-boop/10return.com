@@ -3,38 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#1a1030">
+<meta name="theme-color" content="#0a0a14">
 <meta name="description" content="史上最強整合【星座算命＋塔羅盤＋人類圖】旗艦平台：12星座運勢、每日/週/月運、星座配對、78張塔羅牌意、三牌陣、凱爾特十字、每日一牌、人類圖四大類型、能量中心、閘門通道。免費線上算命運勢。">
 <meta name="keywords" content="星座,星座運勢,塔羅,塔羅牌,塔羅占卜,人類圖,Human Design,每日運勢,星座配對,上升星座,塔羅牌陣,能量中心">
 <meta name="author" content="念十回 の 星靈宇宙">
 <link rel="canonical" href="https://cosmic-oracle.example.com/">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3CradialGradient id='bg' cx='0.5' cy='0.4' r='0.75'%3E%3Cstop offset='0' stop-color='%232b1a55'/%3E%3Cstop offset='1' stop-color='%23100a24'/%3E%3C/radialGradient%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ffd86b'/%3E%3Cstop offset='1' stop-color='%23ff9d5c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='31' fill='url(%23bg)'/%3E%3Cellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%23a25dff' stroke-width='1.6' opacity='0.7' transform='rotate(-24 32 32)'/%3E%3Cpath d='M32 12l3 6.1 6.7 1-4.8 4.7 1.1 6.7L32 27l-6 3.5 1.1-6.7-4.8-4.7 6.7-1z' fill='url(%23g)'/%3E%3Ccircle cx='20' cy='18' r='1.6' fill='%23ffd86b'/%3E%3Ccircle cx='46' cy='22' r='1.2' fill='%23b388ff'/%3E%3Ccircle cx='14' cy='40' r='1.1' fill='%23ff9d5c'/%3E%3Ccircle cx='49' cy='46' r='1.4' fill='%23ffd86b'/%3E%3Ccircle cx='27' cy='48' r='1' fill='%23b388ff'/%3E%3Ccircle cx='32' cy='50' r='2.2' fill='%23a25dff'/%3E%3C/svg%3E">
-<title>念十回 の 星靈宇宙 — 星座算命×塔羅盤×人類圖 最強旗艦平台</title>
+<title>念十回 の 星靈宇宙 V3 — 星座算命×塔羅盤×人類圖 旗艦平台</title>
 <style>
 /* ============ 設計系統 Design Tokens ============ */
 :root{
-  --bg:#eceaf5; --bg2:#f7f5fc; --bg3:#dcd8ee;
-  --text:#111111; --text2:#333333; --text3:#555555;
-  --card:#ffffff; --card2:#f6f3fd; --border:#d8d2ee;
-  --brand:#4a2a8a; --brand2:#6b48c0; --accent:#e8c66a; --accent2:#e8935c;
-  --ok:#2ecc71; --warn:#f39c12; --err:#e74c3c; --info:#3a6ea5;
-  --shadow:0 8px 30px rgba(50,25,110,.14); --shadow2:0 4px 16px rgba(50,25,110,.10);
-  --r:14px; --r2:10px;
+  --bg:#eef1f5; --bg2:#f8fafc; --bg3:#dde3ea;
+  --text:#17202a; --text2:#3d4754; --text3:#7b8794;
+  --card:#ffffff; --card2:#f2f5f8; --border:#d0d7df;
+  --brand:#2f4f6f; --brand2:#4a6a8c; --accent:#1e3a5c; --accent2:#5b7c9e;
+  --ok:#2e7d5b; --warn:#a8740f; --err:#b03a3a; --info:#3d6b8a;
+  --shadow:0 8px 30px rgba(40,60,90,.14); --shadow2:0 4px 16px rgba(40,60,90,.09);
+  --r:10px; --r2:8px;
   --maxw:1200px;
-  --grad:linear-gradient(135deg,#2c1757,#4a2a8a 55%,#6b48c0);
-  --grad2:linear-gradient(135deg,#e8c66a,#e8935c);
+  --grad:linear-gradient(135deg,#dbe3ec,#aebccd 45%,#5a7694);
+  --grad2:linear-gradient(135deg,#2f4f6f,#4a6a8c);
 }
 [data-theme="dark"]{
-  --bg:#0b0719; --bg2:#110b26; --bg3:#1a1238;
-  --text:#e6e0fb; --text2:#a99cd8; --text3:#7d73ac;
-  --card:#140d2e; --card2:#1a1238; --border:#2a1f52;
-  --brand:#8a63e8; --brand2:#b89bff; --accent:#e8c66a; --accent2:#e8935c;
-  --shadow:0 8px 30px rgba(0,0,0,.5); --shadow2:0 4px 16px rgba(0,0,0,.4);
-  --grad:linear-gradient(135deg,#2c1757,#4a2a8a 55%,#6b48c0);
+  --bg:#10141a; --bg2:#161b23; --bg3:#1e252f;
+  --text:#eef3f8; --text2:#b6c2cf; --text3:#8a97a6;
+  --card:#141a22; --card2:#1e252f; --border:#2b3542;
+  --brand:#6f93b8; --brand2:#9dbfdd; --accent:#8fb8da; --accent2:#4a6a8c;
+  --shadow:0 8px 30px rgba(0,0,0,.55); --shadow2:0 4px 16px rgba(0,0,0,.42);
+  --grad:linear-gradient(135deg,#101c2c,#1f3550 60%,#2f4f6f);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:76px}
-body{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;transition:background .35s,color .35s;-webkit-font-smoothing:antialiased}
+body{font-family:"Noto Serif TC","Noto Sans TC","PingFang TC","Microsoft JhengHei",serif;background:var(--bg);color:var(--text);line-height:1.7;transition:background .35s,color .35s;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+
+
+/* V3 標記徽章（東方鎏金） */
+.v3tag{display:inline-block;font-style:normal;font-size:.58em;vertical-align:super;font-weight:700;
+  background:linear-gradient(135deg,#2f4f6f,#4a6a8c);color:#fff;border-radius:4px;padding:1px 5px;margin-left:5px;letter-spacing:.04em}
+[data-theme="dark"] .v3tag{background:linear-gradient(135deg,#6f93b8,#9dbfdd);color:#10141a}
+
 a{color:var(--brand);text-decoration:none}
 img{max-width:100%;display:block}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
@@ -118,6 +125,9 @@ input:focus,select:focus,textarea:focus{border-color:var(--brand)}
 .card-hover{transition:.25s}
 .card-hover:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
 .grid{display:grid;gap:20px}
+.grid .card h3{font-weight:800}
+.grid .card p{color:var(--text2)}
+.sec-title{letter-spacing:.02em}
 .g-2{grid-template-columns:repeat(2,1fr)}
 .g-3{grid-template-columns:repeat(3,1fr)}
 .g-4{grid-template-columns:repeat(4,1fr)}
@@ -137,11 +147,11 @@ h3{font-size:1.15rem;font-weight:700}
 /* ============ Hero ============ */
 .hero{position:relative;padding:70px 0 80px;text-align:center;overflow:hidden;background:url("assets/hero_day.webp") center/cover no-repeat}
 [data-theme="dark"] .hero{background:url("assets/hero_night.webp") center/cover no-repeat}
-.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,.08) 45%,rgba(255,255,255,.55));z-index:0}
-[data-theme="dark"] .hero::before{background:linear-gradient(180deg,rgba(15,8,35,.5),rgba(15,8,35,.15) 45%,rgba(15,8,35,.65))}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,40,70,.25),rgba(15,40,70,.08) 45%,rgba(15,40,70,.40));z-index:0}
+[data-theme="dark"] .hero::before{background:linear-gradient(180deg,rgba(6,14,26,.55),rgba(6,14,26,.2) 45%,rgba(6,14,26,.7))}
 .hero .container{position:relative;z-index:2}
-.hero-title{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:clamp(2rem,5.5vw,3.6rem);font-weight:900;margin:10px 0 16px}
-.hero p{font-size:1.1rem;color:var(--text2);max-width:760px;margin:0 auto 8px}
+.hero-title{background:linear-gradient(135deg,#1e3a5c,#2f4f6f 55%,#4a6a8c);-webkit-background-clip:text;background-clip:text;color:transparent;font-family:"Noto Serif TC",serif;font-size:clamp(2.1rem,5.6vw,3.7rem);font-weight:900;letter-spacing:.02em;margin:10px 0 16px;text-shadow:0 2px 10px rgba(255,255,255,.55)}
+.hero p{font-size:1.12rem;color:var(--text2);font-weight:500;max-width:760px;margin:0 auto 8px}
 .hero .stats{display:flex;gap:34px;justify-content:center;margin-top:34px;flex-wrap:wrap}
 .stat{text-align:center}
 .stat b{font-size:1.7rem;font-weight:900;color:var(--brand);display:block}
@@ -293,6 +303,32 @@ input[type=range]{flex:1;accent-color:var(--brand)}
 .social-icons a:hover{background:var(--grad);color:#fff;transform:translateY(-3px)}
 .footer-bottom{border-top:1px solid var(--border);padding-top:18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:.82rem;color:var(--text3)}
 
+/* ============ 命理體系卡片圖片 ============ */
+.card-trad{overflow:hidden;padding:0!important;transition:.3s}
+.card-trad:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.trad-img{position:relative;height:170px;overflow:hidden}
+.trad-img img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .4s}
+.card-trad:hover .trad-img img{transform:scale(1.06)}
+.trad-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(10,14,20,.35));pointer-events:none}
+.trad-body{padding:14px 16px 16px}
+.trad-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.trad-thumb{width:160px;height:104px;border-radius:var(--r);overflow:hidden;flex-shrink:0}
+.trad-thumb img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+@media(max-width:600px){.trad-thumb{width:120px;height:84px}.trad-img{height:140px}}
+
+/* ============ 訂閱表單 subscribe / register-form / form-submit ============ */
+.subscribe-form{max-width:340px;margin-top:6px}
+.sub-tip{font-size:.78rem;color:var(--text3);margin:2px 0 8px}
+.sub-row{display:flex;gap:8px}
+.sub-email{flex:1;min-width:0}
+.sub-btn{background:var(--grad2);color:#fff;border:none;border-radius:var(--r2);padding:10px 16px;font-weight:700;cursor:pointer;transition:.2s;white-space:nowrap}
+.sub-btn:hover{filter:brightness(1.1)}
+.sub-check{display:flex;align-items:flex-start;gap:6px;font-size:.72rem;color:var(--text3);margin-top:8px;cursor:pointer}
+.sub-check input{width:auto;margin-top:2px}
+.sub-msg{font-size:.8rem;margin-top:6px;min-height:1.2em}
+.sub-msg.ok{color:var(--ok)}
+.sub-msg.err{color:var(--err)}
+
 /* ============ Misc components ============ */
 .pagination{display:flex;gap:8px;justify-content:center;align-items:center;margin-top:24px}
 .pagination button{width:40px;height:40px;border-radius:10px;background:var(--bg3);color:var(--text2);font-weight:700;transition:.2s}
@@ -367,9 +403,20 @@ table.tbl{width:100%;border-collapse:collapse;table-layout:fixed}
 }
 @media print{.sidebar,.fab,.back-top,.hamburger,.context-menu{display:none!important}}
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <!-- 星空背景 -->
+<!-- 命理體系卡圖（靜態引用，供發布掃描） -->
+<div class="hidden" aria-hidden="true">
+  <img src="assets/traditions/trad_birth.webp" alt="">
+  <img src="assets/traditions/trad_yijing.webp" alt="">
+  <img src="assets/traditions/trad_face.webp" alt="">
+  <img src="assets/traditions/trad_symbol.webp" alt="">
+  <img src="assets/traditions/trad_fengshui.webp" alt="">
+  <img src="assets/traditions/trad_folk.webp" alt="">
+</div>
 <div class="starfield" id="starfield"></div>
 
 <!-- ===== Top Bar ===== -->
@@ -389,7 +436,7 @@ table.tbl{width:100%;border-collapse:collapse;table-layout:fixed}
 <header class="header">
   <div class="container">
     <nav class="nav">
-      <a href="#/home" class="brand"><span class="logo">✦</span><span>念十回 の 星靈宇宙</span></a>
+      <a href="#/home" class="brand"><span class="logo">✦</span><span>念十回 の 星靈宇宙 <em class="v3tag">V3</em></span></a>
       <div class="nav-links" id="navLinks">
         <a href="#/home" data-nav="home">首頁</a>
         <div class="dropdown">
@@ -431,7 +478,7 @@ table.tbl{width:100%;border-collapse:collapse;table-layout:fixed}
         </div>
       </div>
       <div class="nav-right">
-        <button class="theme-toggle" id="themeToggle" title="日夜主題（固定白天）" style="display:none">🌙</button>
+        <button class="theme-toggle" id="themeToggle" title="切換日夜主題">🌙</button>
         <button class="hamburger" id="hamburger" title="選單">☰</button>
       </div>
     </nav>
@@ -444,11 +491,11 @@ table.tbl{width:100%;border-collapse:collapse;table-layout:fixed}
 <!-- ===== Sidebar (Mobile menu) ===== -->
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-head">
-    <span class="brand"><span class="logo">✦</span><span>念十回 の 星靈宇宙</span></span>
+    <span class="brand"><span class="logo">✦</span><span>念十回 の 星靈宇宙 <em class="v3tag">V3</em></span></span>
     <button class="theme-toggle" id="sidebarClose" title="關閉">✕</button>
   </div>
   <div class="sidebar-nav" id="sidebarNav"></div>
-  <div class="sidebar-foot">念十回 の 星靈宇宙 © 2026</div>
+  <div class="sidebar-foot">念十回 の 星靈宇宙 V3 © 2026</div>
 </aside>
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
@@ -458,7 +505,7 @@ table.tbl{width:100%;border-collapse:collapse;table-layout:fixed}
     <div class="hero">
       <div class="container">
         <div class="sec-eyebrow">東方命理 × 西方占卜 × 人類圖</div>
-        <h1 class="hero-title">念十回 の 星靈宇宙</h1>
+        <h1 class="hero-title">念十回 の 星靈宇宙 <span style="font-size:.55em;vertical-align:super;color:var(--accent);-webkit-text-fill-color:var(--accent)">V3</span></h1>
         <p>以天地人三才為軸，融通東方命理、易經卦象與西方塔羅占星，為你觀照人生脈動、指引前行方向。這裡是每個人認識自己、安頓身心的星學之境。</p>
         <div class="hero-actions">
           <a href="#/traditions" class="btn btn-primary btn-lg">探索六大命理體系</a>
@@ -505,7 +552,7 @@ table.tbl{width:100%;border-collapse:collapse;table-layout:fixed}
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="brand"><span class="logo">✦</span><span>念十回 の 星靈宇宙</span></div>
+        <div class="brand"><span class="logo">✦</span><span>念十回 の 星靈宇宙 <em class="v3tag">V3</em></span></div>
         <p class="prose" style="font-size:.88rem;margin:10px 0">融合星座、塔羅與人類圖的免費占星平台。所有內容僅供參考與娛樂，不做醫療或財務建議。</p>
         <div class="social-icons">
           <a href="#" title="Facebook" onclick="demo()">f</a>
@@ -513,6 +560,17 @@ table.tbl{width:100%;border-collapse:collapse;table-layout:fixed}
           <a href="#" title="YouTube" onclick="demo()">▶</a>
           <a href="#" title="X" onclick="demo()">𝕏</a>
         </div>
+        <!-- 訂閱電子報 / 註冊表單 / 表單提交 -->
+        <form class="subscribe-form" onsubmit="return subForm(this)" aria-label="訂閱電子報">
+          <h4 style="margin:14px 0 6px">訂閱星靈電子報</h4>
+          <p class="sub-tip">每週星象、塔羅與人類圖精選，直送到你的信箱。</p>
+          <div class="sub-row">
+            <input type="email" class="sub-email" name="email" placeholder="輸入你的 Email" required>
+            <button type="submit" class="sub-btn">訂閱</button>
+          </div>
+          <label class="sub-check"><input type="checkbox" required> 我已閱讀並同意隱私與免責聲明</label>
+          <div class="sub-msg" role="status"></div>
+        </form>
       </div>
       <div>
         <h4>星座</h4>
@@ -689,7 +747,7 @@ const BLOG = [
 /* ---- 全域狀態 ---- */
 const state = {
   route:"home",
-  theme:"light", // 固定白天模式（不自動切換）
+  theme: localStorage.getItem("co_theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark":"light"),
   favs: JSON.parse(localStorage.getItem("co_favs") || "[]"),
   zSel: 0,
   tarotMode:"major",
@@ -711,6 +769,17 @@ function toast(msg){
 }
 function esc(s){ return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
 function demo(){ toast("此為示範功能，正式版將開放"); }
+
+/* 訂閱電子報表單（subscribe + register-form + form-submit） */
+function subForm(form){
+  var em=(form.querySelector(".sub-email")||{}).value||"";
+  var msg=form.querySelector(".sub-msg");
+  if(!em || em.indexOf("@")<0){ msg.className="sub-msg err"; msg.textContent="請輸入有效的 Email 信箱。"; return false; }
+  msg.className="sub-msg ok"; msg.textContent="訂閱成功！星靈電子報將於下週發送。";
+  toast("訂閱成功，感謝支持念十回 の 星靈宇宙","ok");
+  form.reset();
+  return false;
+}
 function saveVisited(){ localStorage.setItem("co_visited", JSON.stringify(state.visited)); }
 function recordVisit(page){
   const t = new Date().toLocaleDateString("zh-TW");
@@ -738,7 +807,7 @@ function shuffle(arr){ const a=[...arr]; for(let i=a.length-1;i>0;i--){ const j=
 function applyTheme(){
   document.documentElement.dataset.theme = state.theme;
   $("#themeToggle").textContent = state.theme==="dark"?"☀":"🌙";
-  // 固定白天：不寫入 localStorage，避免自動切換
+  localStorage.setItem("co_theme", state.theme);
 }
 $("#themeToggle").addEventListener("click", ()=>{ state.theme = state.theme==="dark"?"light":"dark"; applyTheme(); toast(`已切換為${state.theme==="dark"?"暗夜":"明亮"}主題`); });
 $("#sidebarClose").addEventListener("click", closeSidebar);
@@ -806,6 +875,7 @@ document.addEventListener("contextmenu", e=>{
     ["📋 複製本站連結", ()=>{ navigator.clipboard?.writeText(location.href); toast("已複製本站連結"); }],
     ["⭐ 收藏本頁", ()=>{ toggleFav("page:"+state.route, "本頁"); }],
     ["🏠 回首頁", ()=>{ go("#/home"); }],
+    ["☀/🌙 切換主題", ()=>{ state.theme=state.theme==="dark"?"light":"dark"; applyTheme(); }],
     ["⬆ 回到頂部", ()=>{ window.scrollTo({top:0,behavior:"smooth"}); }]
   ];
   m.innerHTML = links.map(l=>`<button data-ctx>${l[0]}</button>`).join("");
@@ -1739,12 +1809,14 @@ function renderHomeExtra(){
   // 首頁動態區：六大體系預覽 + 今日運勢速覽 + 最新文章
   const tp=$("#tradPreview");
   if(tp){ tp.innerHTML = TRADITIONS.map(t=>`
-    <div class="card card-hover" onclick="go('#/traditions/${t.id}')" style="cursor:pointer">
-      <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px"><span style="font-size:2rem">${t.ic}</span><span class="badge badge-info">${t.cat}</span></div>
-      <h3>${t.key}. ${t.name}</h3>
-      <p class="prose" style="margin:8px 0 14px">${t.desc}</p>
-      <span class="badge badge-a">${t.tagline}</span>
-      <div style="margin-top:12px"><span class="btn btn-primary btn-sm">查看體系 →</span></div>
+    <div class="card card-hover card-trad" onclick="go('#/traditions/${t.id}')" style="cursor:pointer">
+      <div class="trad-img"><img src="${t.img}" alt="${t.cat}" loading="lazy"></div>
+      <div class="trad-body">
+        <div class="trad-tags"><span class="badge badge-info">${t.cat}</span><span class="badge badge-a">${t.tagline}</span></div>
+        <h3 style="font-size:1.2rem;font-weight:800">${t.key}. ${t.name}</h3>
+        <p class="prose" style="margin:8px 0 14px">${t.desc}</p>
+        <div><span class="btn btn-primary btn-sm">查看體系 →</span></div>
+      </div>
     </div>`).join(""); }
   const today = new Date();
   const tz = ZODIAC.find(z=>{ const [sm,sd]=z.start.split("/").map(Number); const [em,ed]=z.end.split("/").map(Number); const m=today.getMonth()+1,d=today.getDate(); if(sm>em) return m>=sm||m<=em; return m>=sm&&m<=em; });
@@ -2098,7 +2170,7 @@ function clearFavs(){ state.favs=[]; localStorage.setItem("co_favs","[]"); toast
 
 /* ================= 命理體系 TRADITIONS ================= */
 const TRADITIONS = [
-  {id:"birth",key:"一",ic:"☯",cat:"排盤論命",name:"以「出生時間」為核心",tagline:"八字・紫微・子平",
+  {id:"birth",key:"一",ic:"☯",img:"assets/traditions/trad_birth.webp",cat:"排盤論命",name:"以「出生時間」為核心",tagline:"八字・紫微・子平",
    desc:"以出生的年月日時為根基，排出命盤，論五行生剋與格局，是華人命理最主流的一脈。",
    items:[
      {n:"八字（四柱命理）",d:"以出生年月日時排出年、月、日、時四柱干支，論五行生剋、十神、大運流年。目前最主流。",link:"#/traditions/birth"},
@@ -2106,7 +2178,7 @@ const TRADITIONS = [
      {n:"子平命理",d:"屬八字體系，強調日主強弱與用神。",link:"#/traditions/birth"}
    ], link:"#/zodiac",
    art:{t:"為什麼八字被稱為「東方命理之首」？",body:"八字，又稱四柱命理，是華人世界流傳最廣、使用最普遍的一門排盤論命之學。它以一個人的出生年月日時為起點，分別換算成年、月、日、時四柱，每柱由「天干＋地支」兩個字組成，共八個字，故稱八字。這八個字背後隱藏的五行生剋、十神關係與大運流年，被視為一個人先天稟賦與後天運勢的縮影。\n\n八字的核心在於「五行平衡」。四柱中的天干地支各有所屬五行（金木水火土），透過比對五行的強弱多寡，命理師能判斷一個人命局中何者為「喜神」、何者為「忌神」。例如命局火旺而水弱之人，性格多半熱情主動，但也容易急躁；若能調候得宜、五行流通，則往往事業順遂、身心安康。這套系統再配上「十神」（正官、七殺、正印、偏印、正財、偏財、食神、傷官、比肩、劫財），用來描繪一個人與父母、兄弟、伴侶、子女及事業的關係樣貌。\n\n紫微斗數則走不同的路。它以農曆出生資訊排出十二宮位，論星曜組合與宮位互動，著重「命盤格局」的整體氣象。子平命理雖屬八字體系，卻特別強調日主強弱與用神取捨，是八字學中最精細的分支。\n\n無論選擇何者，都要理解命理絕非宿命。它更像一面鏡子，讓我們看見自己的天賦與盲點，進而在大運流年中把握機緣、順勢而為。把命理當作認識自己的一種工具，而非人生的枷鎖，才能真正受益。"}},
-  {id:"yijing",key:"二",ic:"☰",cat:"易經占卜",name:"以「易經卦象」為核心",tagline:"六爻・梅花・奇門",
+  {id:"yijing",key:"二",ic:"☰",img:"assets/traditions/trad_yijing.webp",cat:"易經占卜",name:"以「易經卦象」為核心",tagline:"六爻・梅花・奇門",
    desc:"以易經卦象起卦斷事，是問事決策與趨吉避凶的古老智慧。",
    items:[
      {n:"易經六爻",d:"用金錢卦或蓍草起卦，以卦爻辭斷吉凶。",link:"#/traditions/yijing"},
@@ -2114,7 +2186,7 @@ const TRADITIONS = [
      {n:"奇門遁甲",d:"三式之一，重方位、時空擇吉，也用於決策。",link:"#/traditions/yijing"}
    ], link:"#/traditions/yijing",
    art:{t:"易經占卜：從六爻、梅花到奇門的決策智慧",body:"易經是中華文化最古老的典籍之一，被尊為「群經之首」。它不只是一本占卜書，更是一部講述變化規律的哲學經典。易經占卜以「卦象」為核心，透過一定的起卦方法，將當下所問之事轉化為卦象，再以卦辭、爻辭與變卦來解讀吉凶休咎。\n\n最傳統的起卦法是「蓍草起卦」，過程繁複莊重，講究心誠則靈；後人為求方便，多以「金錢卦」取代——擲三枚銅錢六次，由正反面得爻，由下而上排出本卦，再依動爻推出變卦。這種以卦爻辭斷吉凶的方法，就是「易經六爻」。它的精妙在於「動爻」，象徵事情正在變化的關鍵，解卦時尤須留意。\n\n「梅花易數」則由宋代邵雍所創，強調「外應」與「靈活」。它以當下的時間、數字，甚至眼前偶然發生的事物（外應）起卦，不需銅錢蓍草，隨手拈來即可成卦，講求心念專注與觸機。\n\n「奇門遁甲」被譽為「三式之絕學」，與太乙神數、大六壬並列。它融合陰陽五行、九宮八卦與時空方位，主要用於選擇有利的時間與方位，古時多用於軍事決策，今日則常見於開市、出行、擇日的應用。\n\n占卜的意義不在於迷信結果，而在於藉由卦象提供的「鏡像」，讓人跳脫既有的思考框架，從不同角度審視處境。當我們把易經當作一面照見當下的鏡子，它便成為最貼近生活的決策夥伴。"}},
-  {id:"face",key:"三",ic:"👤",cat:"觀形相學",name:"以「手面相」為核心",tagline:"面相・手相・體相",
+  {id:"face",key:"三",ic:"👤",img:"assets/traditions/trad_face.webp",cat:"觀形相學",name:"以「手面相」為核心",tagline:"面相・手相・體相",
    desc:"透過五官、掌紋與身形觀察性格與運勢，屬觀形之術。",
    items:[
      {n:"面相",d:"看五官、氣色、骨相論富貴壽夭。",link:"#/traditions/face"},
@@ -2122,21 +2194,21 @@ const TRADITIONS = [
      {n:"體相",d:"看身形、痣相、走姿等。",link:"#/traditions/face"}
    ], link:"#/traditions/face",
    art:{t:"面相、手相與體相：觀形知人的人生讀法",body:"中國相學主張「相由心生」，認為一個人的性格、際遇與健康，會透過容貌、掌紋與身形顯露出來。觀形之術主要分為面相、手相與體相三大支脈，彼此互補，共同構成一套觀察人的學問。\n\n面相以「五官」為觀察重點。眉主兄弟與思慮，眼主心性與才智，鼻主財帛與自我，口主言辭與食祿，耳主聽聞與福壽。除了五官，相師還會看「氣色」——臉色紅潤有光者常精神飽滿、運勢順遂；暗沉無光則多顯疲憊或運滯。再配合「骨相」與「痣相」，判斷一個人的富貴壽夭。\n\n手相則以「掌紋」為核心，其中最常被討論的是三大主線：生命線看體力與健康根基，事業線看職涯發展與社會成就，感情線看情感模式與人際互動。除了紋路，掌型（金、木、水、火、土五型）與手丘的豐滿程度，也透露一個人的性格傾向與天賦領域。\n\n體相則將目光放大到整個身體，看身形的高矮胖瘦、走路的姿態、說話的聲音與神情。例如步伐沉穩者多心思周密，目光游移者易多疑善變。\n\n相學的智慧在於提醒我們「知己」的重要性。先天之相固然可觀，但後天的修養、心性與作為，更能改變一個人的氣質與命運。與其執著於命定之相，不如把相學當作認識自己與他人的一扇窗。"}},
-  {id:"symbol",key:"四",ic:"✍",cat:"文字符號",name:"以「文字符號」為核心",tagline:"姓名學・測字",
+  {id:"symbol",key:"四",ic:"✍",img:"assets/traditions/trad_symbol.webp",cat:"文字符號",name:"以「文字符號」為核心",tagline:"姓名學・測字",
    desc:"由文字與姓名的筆畫、五行拆解命理，東方獨特的象意之學。",
    items:[
      {n:"姓名學",d:"依筆畫五行論姓名吉凶。",link:"#/tools/namefortune"},
      {n:"測字",d:"就所寫之字拆解斷事。",link:"#/tools/namefortune"}
    ], link:"#/tools/namefortune",
    art:{t:"姓名學與測字：藏在文字裡的玄機",body:"漢字是世界上少數兼具形、音、義的文字系統，也因此衍生出以文字符號論命的神祕學問，其中最典型的就是姓名學與測字。\n\n姓名學認為，一個人的名字承載著父母的期許與家族的氣脈，對一生的運勢有潛移默化的影響。最常見的方法是「筆畫數理」：將姓名各字的筆畫依特定規則換算成數字，再對應到「三才五格」（天格、人格、地格、外格、總格）與五行，判斷名字在性格、事業、健康、社交等層面的吉凶。例如人格數理為吉者，多半能自立自強、貴人相助；地格與總格合宜，則家庭與晚年較安穩。此外，字的五行（金木水火土）若與命主八字相合，更能起補益之效。\n\n測字則是更靈活的占斷之術。就所寫之字拆解字形、字義與筆畫，結合當下情境來斷事。例如問「考試能否上榜」，若所寫之字含「人」「力」「才」等吉字，或字形端正有力，多被視為吉兆；若字缺角、結構失衡，則提醒需要補強準備。測字極重「觸機」，同樣一個字，在不同的時間、提問與提字者心境下，解讀可能大不相同。\n\n姓名與文字雖能反映一部分訊息，但它們更多是提醒與參照，而非鐵口直斷。一個好名字是加分項，真正決定命運的，仍是人的努力、選擇與心性。把姓名學與測字當作認識自我、趨吉避凶的輔助工具，才是最健康的心態。"}},
-  {id:"fengshui",key:"五",ic:"🏔",cat:"風水堪輿",name:"風水堪輿（環境）",tagline:"陽宅・陰宅・玄空",
+  {id:"fengshui",key:"五",ic:"🏔",img:"assets/traditions/trad_fengshui.webp",cat:"風水堪輿",name:"風水堪輿（環境）",tagline:"陽宅・陰宅・玄空",
    desc:"觀居住與祖先環境以調和氣場，分巒頭與理氣兩大脈。",
    items:[
      {n:"陽宅 / 陰宅風水",d:"看居住或祖先墳地環境，分巒頭與理氣。",link:"#/traditions/fengshui"},
      {n:"玄空飛星、八宅",d:"風水的主要流派。",link:"#/traditions/fengshui"}
    ], link:"#/traditions/fengshui",
    art:{t:"風水堪輿：調和環境與氣場的生活智慧",body:"風水，又稱堪輿，是中國人選擇與調和居住環境的古老學問，核心在於「藏風聚氣」。古人相信，人與環境會互相影響，居住環境的好壞，關係著一家人的健康、事業與和睦，因此衍生出一套完整的觀察與佈局之道。\n\n風水分為「陽宅」與「陰宅」兩大類。陽宅指活人居住與活動的場所，如住宅、辦公室、店鋪；陰宅則指祖先的墳地。兩者都講究「巒頭」與「理氣」：巒頭是看山形水勢、週遭環境的形貌，講究山環水抱、明堂開闊；理氣則以羅盤測量方位、理氣運轉，判斷坐向與時間的吉凶組合。\n\n在流派上，最常見的是「八宅」與「玄空飛星」。八宅以宅主的命卦將住宅分為東四宅、西四宅，再配八個方位定吉凶，方法較簡單易懂；玄空飛星則以九宮飛星依時間推移，判斷各方位當年的旺氣與煞氣，更為精密，常用於現代住宅的佈局調整。\n\n現代人看待風水，不必拘泥於迷信。很多風水原則其實與科學通風、採光、動線流暢相通：例如開門見灶被視為不吉，實則反映「進門即見爐火易生意外」的生活常理；廁所不宜居中，則是衛生與氣味的考量。與其盲目追求名師指點，不如把風水視為「環境設計的智慧」，讓家成為讓人放鬆、安定與充滿正向能量的地方。"}},
-  {id:"folk",key:"六",ic:"🕯",cat:"民俗信仰",name:"其他民俗類",tagline:"塔羅・占星・求籤",
+  {id:"folk",key:"六",ic:"🕯",img:"assets/traditions/trad_folk.webp",cat:"民俗信仰",name:"其他民俗類",tagline:"塔羅・占星・求籤",
    desc:"西方體系與民間信仰儀式，近年華人圈亦常見。",
    items:[
      {n:"塔羅牌、占星、水晶靈數",d:"西方體系，近年在華人圈常見。",link:"#/tarot"},
@@ -2157,7 +2229,7 @@ function renderTraditions(sub){
     ${TRADITIONS.map((t,i)=>`
     <div class="card" style="margin-bottom:16px" data-card>
       <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
-        <div style="font-size:2.4rem">${t.ic}</div>
+        <div class="trad-thumb"><img src="${t.img}" alt="${t.cat}" loading="lazy"></div>
         <div style="flex:1;min-width:220px">
           <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
             <span class="badge badge-b">${t.key}. ${t.name}</span><span class="badge badge-info">${t.cat}</span><span class="badge badge-a">${t.tagline}</span>
@@ -2265,7 +2337,7 @@ function renderAbout(){
   <div class="container">
     <div class="sec-head" style="padding-top:18px">
       <div class="sec-eyebrow">關於本站</div>
-      <h1 class="sec-title">關於念十回 の 星靈宇宙</h1>
+      <h1 class="sec-title">關於念十回 の 星靈宇宙 V3</h1>
     </div>
     <div class="card prose">
       <h3>願景</h3>
