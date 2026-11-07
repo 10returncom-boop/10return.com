@@ -1,0 +1,121 @@
+/* 奇門遁甲百科 · 排盤頁樣式 */
+.qm-wrap{max-width:1180px;margin:0 auto}
+.qm-form{
+  background:linear-gradient(140deg,#0e1a3d,#1e3566 70%,#2a4380);
+  border-radius:18px;padding:24px 26px;box-shadow:0 18px 40px rgba(14,26,61,.28);
+  color:#fff;margin-bottom:26px;
+}
+.qm-form h2{color:#fff;font-size:17px;margin-bottom:4px}
+.qm-form .hint{font-size:13px;color:#a9bce4;margin-bottom:16px}
+.qm-row{display:grid;grid-template-columns:repeat(5,1fr) auto;gap:12px;align-items:end}
+.qm-field label{display:block;font-size:12px;font-weight:700;color:#cfe0ff;margin-bottom:6px;letter-spacing:.5px}
+.qm-field input,.qm-field select{
+  width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.22);
+  background:rgba(255,255,255,.08);color:#fff;font-size:14px;font-family:inherit;
+}
+.qm-field select option{color:#16264f;background:#fff}
+.qm-field input:focus,.qm-field select:focus{outline:none;border-color:#f5973f;background:rgba(255,255,255,.14)}
+.qm-submit{
+  padding:11px 22px;border:0;border-radius:10px;cursor:pointer;
+  background:linear-gradient(120deg,#f07a2e,#e8732a);color:#fff;font-weight:800;font-size:15px;
+  box-shadow:0 6px 16px rgba(232,115,42,.35);
+}
+.qm-submit:hover{background:linear-gradient(120deg,#f5973f,#f07a2e)}
+.qm-quick{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.qm-quick button{
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#cfe0ff;
+  border-radius:999px;padding:7px 14px;font-size:12.5px;cursor:pointer;font-family:inherit;
+}
+.qm-quick button:hover{color:#fff;border-color:#f5973f}
+.qm-tip{font-size:12.5px;color:#a9bce4;margin-top:14px;line-height:1.7}
+
+.qm-result{display:none}
+.qm-result.on{display:block;animation:qmfade .3s ease}
+@keyframes qmfade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.qm-panels{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
+.qm-panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow-sm)}
+.qm-panel span{display:block;font-size:11.5px;color:#8a97b1;font-weight:700;letter-spacing:1px}
+.qm-panel b{display:block;font-size:16px;color:var(--navy-900);margin-top:5px;line-height:1.4}
+.qm-panel b em{font-style:normal;color:var(--orange-600)}
+
+.qm-headline{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.qm-badge{
+  background:linear-gradient(120deg,#16264f,#2a4380);color:#fff;border-radius:999px;
+  padding:8px 16px;font-size:13.5px;font-weight:800;letter-spacing:1px;box-shadow:var(--shadow-sm);
+}
+.qm-badge.orange{background:linear-gradient(120deg,#f07a2e,#e8732a)}
+.qm-badge.gray{background:#eef2fa;color:#3d4d70}
+
+.qm-board{
+  border-radius:18px;padding:12px;background:linear-gradient(150deg,#0e1a3d,#16264f 60%,#1e3566);
+  box-shadow:0 18px 40px rgba(14,26,61,.28);
+}
+.qm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.qm-cell{
+  position:relative;background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:10px 12px 12px;min-height:132px;
+  transition:.2s;color:#e8eeff;
+}
+.qm-cell.hl{border-color:#f5973f;background:linear-gradient(160deg,rgba(240,122,46,.28),rgba(240,122,46,.08));box-shadow:0 0 0 2px rgba(245,151,63,.35) inset}
+.qm-cell.empty::after{
+  content:"空";position:absolute;right:10px;top:8px;font-size:10px;color:#ffb37a;
+  border:1px solid rgba(255,179,122,.6);border-radius:4px;padding:1px 4px;letter-spacing:1px;
+}
+.qm-cell.ma::before{
+  content:"馬";position:absolute;right:10px;bottom:8px;font-size:10px;color:#8fd0ff;
+  border:1px solid rgba(143,208,255,.5);border-radius:4px;padding:1px 4px;
+}
+.qm-cell .c-top{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#93a7d1;letter-spacing:.5px}
+.qm-cell .c-god{color:#ffd9b0;font-weight:800}
+.qm-cell .c-mid{display:flex;align-items:baseline;gap:8px;margin:6px 0 2px}
+.qm-cell .c-gan{font-size:26px;font-weight:800;color:#fff;line-height:1.15;padding-left:11px}
+.qm-cell .c-gan.di{font-size:17px;color:#9fc0ff;font-weight:700;position:relative;padding-left:11px}
+.qm-cell .c-gan.di::before{content:"地";font-size:9px;color:#7d93bf;position:absolute;top:2px;left:0}
+.qm-cell .c-gan.ti::before{content:"天";font-size:9px;color:#7d93bf;position:absolute;top:2px;left:0}
+.qm-cell .c-gan.ti{position:relative}
+.qm-cell .c-door{font-size:14px;font-weight:800;color:#f7c07a}
+.qm-cell .c-star{font-size:13px;color:#dfe8ff}
+.qm-cell .c-foot{display:flex;justify-content:space-between;font-size:10.5px;color:#8497c0;margin-top:6px;border-top:1px dashed rgba(255,255,255,.14);padding-top:6px}
+.qm-cell .c-mean{font-size:10.5px;color:#93a7d1;margin-top:5px;line-height:1.5}
+.qm-cell.center .c-gan{color:#ffd9b0}
+
+.qm-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:#5b6983;margin:14px 0 4px}
+.qm-legend i{font-style:normal;color:#16264f;font-weight:800}
+
+.qm-flags{display:flex;flex-direction:column;gap:9px;margin-top:20px}
+.qm-flag{padding:12px 15px;border-radius:11px;font-size:13.5px;line-height:1.75;border-left:4px solid #dbe3f2;background:#f5f8fe;color:#3d4d70}
+.qm-flag.good{border-color:#2f9e6e;background:#effaf4;color:#1f6b4a}
+.qm-flag.warn{border-color:#d9534f;background:#fdf1f0;color:#8f322f}
+.qm-flag.info{border-color:#2a5aa8;background:#eff4fd;color:#274a83}
+
+.qm-use{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 12px}
+.qm-use button{
+  border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 15px;font-size:13px;
+  color:#3d4d70;cursor:pointer;font-family:inherit;font-weight:700;transition:.2s;
+}
+.qm-use button:hover{border-color:var(--orange-500);color:var(--orange-600)}
+.qm-use button.on{background:linear-gradient(120deg,#f07a2e,#e8732a);border-color:transparent;color:#fff;box-shadow:0 4px 12px rgba(240,122,46,.3)}
+.qm-usetip{background:#f5f8fe;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:13.5px;color:#3d4d70;line-height:1.8}
+
+.qm-table-wrap{overflow-x:auto;margin-top:22px;border-radius:12px;border:1px solid var(--line)}
+table.qm-table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;min-width:620px}
+table.qm-table th{background:#eef2fa;color:#16264f;font-weight:800;padding:10px 12px;text-align:left;white-space:nowrap}
+table.qm-table td{padding:9px 12px;border-top:1px solid #eef1f8;color:#3d4d70;vertical-align:top}
+table.qm-table tr.hl td{background:#fff6ee;color:#8f4a13;font-weight:700}
+table.qm-table .tagx{display:inline-block;font-size:11px;border-radius:999px;padding:1px 8px;background:#eef2fa;color:#4a5a80;margin-right:4px}
+
+@media (max-width:1024px){
+  .qm-panels{grid-template-columns:repeat(2,1fr)}
+  .qm-row{grid-template-columns:repeat(3,1fr)}
+  .qm-submit{grid-column:span 3;width:100%}
+}
+@media (max-width:640px){
+  .qm-panels{grid-template-columns:1fr 1fr}
+  .qm-cell{min-height:118px;padding:8px 9px 9px}
+  .qm-cell .c-gan{font-size:24px}
+  .qm-cell .c-mean{display:none}
+  .qm-row{grid-template-columns:1fr 1fr}
+  .qm-submit{grid-column:span 2}
+  .qm-form{padding:18px}
+}

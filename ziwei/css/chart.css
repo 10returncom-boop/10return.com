@@ -1,0 +1,106 @@
+/* ============================================================
+   紫微斗數 · 線上排盤頁專用樣式
+   ============================================================ */
+.chart-form{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px;box-shadow:var(--shadow-sm);
+}
+.chart-form .form-row{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:14px}
+.chart-form label{display:flex;flex-direction:column;gap:6px;font-size:13.5px;font-weight:700;color:var(--navy-700);flex:1 1 180px}
+.chart-form input,.chart-form select{
+  font-family:inherit;font-size:15px;font-weight:500;color:var(--ink-900);
+  border:1.5px solid var(--sky-200);border-radius:10px;padding:10px 12px;background:#fff;
+}
+.chart-form input:focus,.chart-form select:focus{outline:none;border-color:var(--navy-500);box-shadow:0 0 0 3px rgba(58,90,156,.12)}
+.form-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:6px}
+.form-note{font-size:12.5px;color:var(--ink-300)}
+.chart-result{margin-top:28px}
+.chart-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.chart-meta span{
+  font-size:13px;font-weight:600;color:var(--navy-700);background:var(--sky-100);
+  border:1px solid var(--sky-200);border-radius:999px;padding:5px 12px;
+}
+.chart-meta span b{color:var(--orange-600);margin-left:4px}
+.chart-wrap{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:22px;align-items:start}
+@media (max-width:1024px){.chart-wrap{grid-template-columns:1fr}}
+.chart-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+.ziwei-chart{
+  display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,minmax(112px,auto));
+  gap:5px;min-width:700px;padding:7px;border-radius:16px;
+  background:linear-gradient(140deg,#0e1a3d,#1e3566 60%,#2a4380);
+  box-shadow:var(--shadow-lg);
+}
+.pcell{
+  border:1px solid rgba(255,255,255,.16);border-radius:9px;padding:7px 8px;
+  background:rgba(255,255,255,.05);display:flex;flex-direction:column;gap:4px;position:relative;
+  min-width:0;
+}
+.pcell.is-ming{background:rgba(240,122,46,.16);border-color:rgba(245,151,63,.55)}
+.pcell.is-liunian{box-shadow:0 0 0 2px rgba(245,151,63,.75) inset}
+.pcell-h{display:flex;align-items:baseline;justify-content:space-between;gap:4px}
+.pcell-h .pname{font-size:12.5px;font-weight:800;color:#fff;letter-spacing:.5px}
+.pcell-h .pgan{font-size:10.5px;color:#9fb2d6;font-family:ui-monospace,Consolas,monospace}
+.pcell-stars{display:flex;flex-wrap:wrap;gap:3px;align-items:flex-start}
+.pstar{
+  font-size:12.5px;font-weight:800;color:#ffe2c4;letter-spacing:.5px;
+  background:rgba(240,122,46,.22);border-radius:5px;padding:1px 5px;white-space:nowrap;
+}
+.paux{font-size:10.5px;color:#c3d2ec;line-height:1.5;display:flex;flex-wrap:wrap;gap:3px}
+.paux i{font-style:normal;background:rgba(255,255,255,.09);border-radius:4px;padding:1px 4px}
+.pcell-f{margin-top:auto;display:flex;justify-content:space-between;align-items:center;font-size:10px;color:#8ea4cd}
+.pcell-f .pzhi{font-weight:800;color:rgba(255,255,255,.55);font-size:11px}
+.hua{font-style:normal;font-size:9.5px;font-weight:800;border-radius:4px;padding:0 3px;margin-left:2px;vertical-align:1px}
+.hua-lu{background:#1f7a4d;color:#e7fff2}
+.hua-quan{background:#8a5a12;color:#fff6e2}
+.hua-ke{background:#1d5f8a;color:#e7f4ff}
+.hua-ji{background:#8f2430;color:#ffe8ea}
+.chart-center{
+  grid-row:2/4;grid-column:2/4;border-radius:12px;padding:12px;
+  background:radial-gradient(circle at 50% 20%,rgba(240,122,46,.22),transparent 62%);
+  border:1px solid rgba(255,255,255,.14);display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:6px;text-align:center;color:#fff;
+}
+.chart-center .cc-title{font-size:16px;font-weight:800;letter-spacing:2px}
+.chart-center .cc-sub{font-size:10.5px;color:#aebfe6;letter-spacing:1px}
+.chart-center .cc-facts{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:4px}
+.chart-center .cc-facts span{font-size:10.5px;color:#dfe7f7;background:rgba(255,255,255,.08);border-radius:5px;padding:2px 7px}
+.chart-readout{display:flex;flex-direction:column;gap:12px}
+.readout-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-s);padding:15px 16px;box-shadow:var(--shadow-sm)}
+.readout-card h3{font-size:14.5px;color:var(--navy-800);margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid var(--sky-200);display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.readout-card h3 em{font-style:normal;font-size:11px;color:var(--orange-600);font-weight:700}
+.readout-card p{font-size:13.5px;color:var(--ink-700);line-height:1.75;margin:4px 0}
+.readout-card p b{color:var(--navy-900)}
+.readout-card ul{margin:6px 0 0 18px;font-size:13px;color:var(--ink-700)}
+.readout-card li{margin:3px 0}
+.limit-block{margin-top:30px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm)}
+.limit-head{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.limit-head h2{font-size:20px;padding-bottom:8px;border-bottom:2px solid var(--sky-200)}
+.year-pick{font-size:13.5px;font-weight:700;color:var(--navy-700);display:flex;align-items:center;gap:8px}
+.year-pick select{font-family:inherit;font-size:14px;padding:8px 10px;border:1.5px solid var(--sky-200);border-radius:9px;background:#fff;color:var(--ink-900)}
+.liunian-box{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:16px}
+.liunian-box .lb{background:var(--sky-50);border:1px solid var(--line);border-radius:10px;padding:11px 13px}
+.liunian-box .lb span{display:block;font-size:11.5px;color:var(--ink-300)}
+.liunian-box .lb b{display:block;font-size:14.5px;color:var(--navy-900);margin-top:2px}
+.limit-table-wrap{overflow-x:auto}
+.limit-table{width:100%;border-collapse:collapse;font-size:13px;min-width:560px}
+.limit-table th,.limit-table td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+.limit-table thead th{background:var(--navy-800);color:#fff;white-space:nowrap}
+.limit-table tbody tr:nth-child(even) td{background:var(--sky-50)}
+.limit-table tr.now td{background:#fff3e6;font-weight:700}
+.limit-table td.age{white-space:nowrap;font-variant-numeric:tabular-nums}
+.chart-note{margin-top:18px;font-size:12.5px;color:var(--ink-300);line-height:1.8}
+.chart-empty{
+  margin-top:26px;background:var(--sky-50);border:1px dashed var(--sky-200);border-radius:var(--radius);
+  padding:26px;text-align:center;color:var(--ink-500);font-size:14px;
+}
+.chart-empty b{display:block;color:var(--navy-800);font-size:17px;margin-bottom:8px}
+.chart-legend{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--ink-500);margin-top:12px}
+.chart-legend span{display:inline-flex;align-items:center;gap:5px}
+.chart-legend .dot{width:10px;height:10px;border-radius:3px;display:inline-block}
+@media print{
+  .site-header,.site-footer,.chart-form,.page-head,.chart-legend,details,.toc-mobile{display:none!important}
+  .ziwei-chart{box-shadow:none;min-width:0}
+  .chart-wrap{grid-template-columns:1fr}
+  .chart-result{margin-top:0}
+  .limit-block{break-inside:avoid}
+}

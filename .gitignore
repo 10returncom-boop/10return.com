@@ -1,0 +1,11 @@
+_backup/
+_build/
+node_modules/
+.wrangler/
+*.zip
+*.log
+_check_links.py
+_fix_links.py
+_fix_zodiac_tarot.py
+Thumbs.db
+.DS_Store

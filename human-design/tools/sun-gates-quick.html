@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>人類圖太陽閘門計算器：輸入出生時間算出太陽、地球與南北交｜人類圖知識分析</title>
+<meta name="description" content="線上人類圖太陽閘門計算器。以天文黃經公式計算出生時刻的太陽、地球與月亮節點，換算成 64 閘門與爻線，並顯示所屬能量中心。">
+<meta name="keywords" content="人類圖計算,太陽閘門,閘門查詢,黃經,爻線,南北交,線上排圖">
+<meta property="og:title" content="人類圖太陽閘門計算器：輸入出生時間算出太陽、地球與南北交｜人類圖知識分析">
+<meta property="og:description" content="線上人類圖太陽閘門計算器。以天文黃經公式計算出生時刻的太陽、地球與月亮節點，換算成 64 閘門與爻線，並顯示所屬能量中心。">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<meta name="theme-color" content="#16264f">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316264f'/%3E%3Ccircle cx='32' cy='14' r='5' fill='%23f07a2e'/%3E%3Ccircle cx='18' cy='32' r='5' fill='%23f07a2e'/%3E%3Ccircle cx='46' cy='32' r='5' fill='%23fff'/%3E%3Ccircle cx='32' cy='50' r='5' fill='%23fff'/%3E%3Cpath d='M32 19v26M23 32h18' stroke='%239db3dd' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"../index.html"},{"@type":"ListItem","position":2,"name":"分析工具","item":"../工具/index.html"},{"@type":"ListItem","position":3,"name":"太陽閘門速查：用出生時刻算出你的六個啟動","item":"工具/太陽閘門速查.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"人類圖太陽閘門計算器：輸入出生時間算出太陽、地球與南北交","description":"線上人類圖太陽閘門計算器。以天文黃經公式計算出生時刻的太陽、地球與月亮節點，換算成 64 閘門與爻線，並顯示所屬能量中心。","inLanguage":"zh-Hant","isPartOf":{"@type":"WebSite","name":"人類圖知識分析"},"publisher":{"@type":"Organization","name":"人類圖知識分析"}}
+</script>
+</head>
+<body data-nav="工具"><!-- 10return.com 共享導航（自動注入） -->
+<section class="page-head"><div class="container"><div class="crumb"><a href="../index.html">首頁</a> › <a href="../tools/index.html">分析工具</a> › 太陽閘門速查</div><h1>太陽閘門速查：用出生時刻算出你的六個啟動</h1><p>這是本站唯一「真的在算」的工具：用天文公式算出太陽黃經，再換算成閘門與爻線。它不是完整的 26 個啟動，但每個數字都可以被檢驗。</p></div></section><section class="section"><div class="container"><div class="article-layout"><div class="article-main"><details class="toc-mobile"><summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>本頁目錄／快速跳章</summary><nav class="toc-nav"><a href="#工具" class="lv2">1. 輸入出生資料</a><a href="#原理" class="lv2">2. 它怎麼算：四個步驟</a><a href="#限制" class="lv2">3. 這張簡版圖有什麼、沒有什麼</a><a href="#讀法" class="lv2">4. 結果怎麼讀</a></nav></details><div class="article"><h2 id="工具">1. 輸入出生資料</h2><div class="tool-card" id="sunTool">
+  <div class="tool-grid">
+    <label class="tf"><span>出生日期</span><input type="date" id="hdDate" value="1990-01-01"></label>
+    <label class="tf"><span>出生時間（當地時間）</span><input type="time" id="hdTime" value="12:00" step="60"></label>
+    <label class="tf"><span>時區</span>
+      <select id="hdTz">
+        <option value="8" selected>UTC+8（台北・香港・新加坡）</option>
+        <option value="9">UTC+9（東京・首爾）</option>
+        <option value="7">UTC+7（曼谷・雅加達）</option>
+        <option value="5.5">UTC+5:30（印度）</option>
+        <option value="1">UTC+1（中歐）</option>
+        <option value="0">UTC+0（倫敦冬令）</option>
+        <option value="-5">UTC-5（紐約冬令）</option>
+        <option value="-8">UTC-8（洛杉磯冬令）</option>
+        <option value="10">UTC+10（雪梨冬令）</option>
+      </select>
+    </label>
+  </div>
+  <div class="tool-actions">
+    <button class="btn btn-main" id="hdCalc" type="button">計算我的閘門</button>
+    <button class="btn btn-sky" id="hdNow" type="button">帶入現在時間</button>
+    <span class="tool-hint" id="hdHint">出生時間誤差 4 小時以上，月亮與部分行星會失準。</span>
+  </div>
+  <div id="hdResult" class="tool-result"><p class="tool-empty">輸入資料後按「計算我的閘門」，結果會顯示在這裡。</p></div>
+</div><h2 id="原理">2. 它怎麼算：四個步驟</h2><p>整個計算只有四個步驟，沒有神祕環節：</p>
+<ol>
+<li><strong>把當地時間換成世界時（UT）</strong>，再換成儒略日（JD）。</li>
+<li><strong>用天文公式算出太陽的視黃經</strong>（Meeus 低精度公式，誤差約 0.01°，等於 0.6 角分）。</li>
+<li><strong>把黃經對到閘門</strong>：以水瓶座 2°（黃經 302°）為四十一號閘門起點，每 5.625° 換一個閘門，每 0.9375° 換一條爻線。</li>
+<li><strong>地球取太陽的對宮</strong>（+180°，等於曼陀羅上往後 32 個閘門）；南北交則取月亮平均節點。</li>
+</ol>
+<div class="notice info">0.01° 的誤差，相當於約 15 分鐘的時間差。也就是說，只有在你的太陽剛好落在閘門或爻線邊界 15 分鐘內時，結果才可能不同。這比多數網站的精度高。</div><h2 id="限制">3. 這張簡版圖有什麼、沒有什麼</h2><div class="cmp-wrap"><table class="cmp-table">
+<caption><span class="cnum">表 1</span>簡版與完整圖的差異</caption>
+<thead><tr><th>項目</th><th>本站簡版</th><th>完整人類圖</th></tr></thead>
+<tbody>
+<tr><th>太陽・地球</th><td>有（人格＋設計）</td><td>有</td></tr>
+<tr><th>南北交</th><td>有（平均節點，參考值）</td><td>有（多採真節點）</td></tr>
+<tr><th>月亮、水星至冥王星</th><td>無</td><td>有（各 2 個時刻）</td></tr>
+<tr><th>總啟動數</th><td>6 個</td><td>26 個</td></tr>
+<tr><th>可推導類型</th><td>不可</td><td>可</td></tr>
+<tr><th>可推導權威</th><td>不可</td><td>可</td></tr>
+</tbody></table></div>
+<p>因此這張圖<strong>只能告訴你太陽與地球的主題，不能告訴你類型與權威</strong>。想知道類型，請用<a href="bodygraph-builder.html">體圖建構器</a>手動勾選你已知的閘門，或使用完整排圖服務。</p><h2 id="讀法">4. 結果怎麼讀</h2><p>結果會給你六個欄位，讀法如下：</p>
+<ul>
+<li><strong>人格太陽</strong>：你自覺的主題，也是別人最容易感受到你的地方。</li>
+<li><strong>人格地球</strong>：支撐太陽的基礎，你站穩腳步的方式。</li>
+<li><strong>設計太陽</strong>：身體與無意識的主題，常在你「沒在想」的時候表現出來。</li>
+<li><strong>設計地球</strong>：身體的根，你的生存底盤。</li>
+<li><strong>北交／南交</strong>：人生方向的兩端，南交是熟悉區，北交是成長區。</li>
+</ul>
+<p>每個閘門都會標示它所屬的能量中心。如果太陽與地球剛好構成一條通道的兩端（少見），那個通道就會被接通。</p>
+<div class="notice warn">本工具為教育與自我觀察用途，不構成任何醫療、法律、財務或人生決策建議。</div><div class="article-end"><h2 class="no-num" id="related">延伸閱讀</h2><div class="related-grid"><a class="related-card" href="bodygraph-builder.html"><b>體圖建構器</b><span>手動勾選閘門，推導類型與權威</span></a><a class="related-card" href="../gates/index.html"><b>六十四閘門總表</b><span>查詢每個閘門的主題</span></a></div></div><div class="article-nav"><a class="btn btn-sky" href="index.html">← 回工具總覽</a> <a class="btn btn-main" href="bodygraph-builder.html">體圖建構器 →</a></div></div></div><aside class="article-sidebar"><div class="toc-box"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>本頁目錄</h3><nav class="toc-nav"><a href="#工具" class="lv2">1. 輸入出生資料</a><a href="#原理" class="lv2">2. 它怎麼算：四個步驟</a><a href="#限制" class="lv2">3. 這張簡版圖有什麼、沒有什麼</a><a href="#讀法" class="lv2">4. 結果怎麼讀</a></nav></div><div class="side-nav-box"><h4>全站分類</h4><a href="../intro/index.html">基礎概論</a><a href="../types/index.html">類型與策略</a><a href="../centers/index.html">九大能量中心</a><a href="../authority/index.html">內在權威</a><a href="../profile/index.html">人生角色</a><a href="../gates/index.html">六十四閘門</a><a href="../channels/index.html">三十六通道</a><a href="../incarnation/index.html">輪迴交叉</a><a href="../analysis/index.html">知識分析</a><a href="../tools/index.html" class="cur">分析工具</a></div><div class="side-nav-box" style="margin-top:16px"><h4>常用工具</h4><a href="../tools/sun-gates-quick.html">太陽閘門速查</a><a href="../tools/bodygraph-builder.html">體圖建構器</a><a href="../tools/type-test.html">類型傾向自測</a></div></aside></div></div></section><footer class="site-footer"><div class="footer-inner"><div class="footer-about"><h4>人類圖知識分析</h4><p>把人類圖拆成可理解的零件：九個能量中心、三十六條通道、六十四個閘門與七種內在權威。所有內容以繁體中文撰寫，計算工具公開方法與誤差，並以知識分析的立場看待命理語言。</p></div><div><h4>入門</h4><a href="../intro/what-is-human-design.html">人類圖是什麼</a><a href="../types/5-types.html">五大類型</a><a href="../authority/7-authority.html">內在權威</a><a href="../intro/how-to-read.html">讀圖方法</a></div><div><h4>圖的零件</h4><a href="../centers/index.html">九大能量中心</a><a href="../gates/index.html">六十四閘門</a><a href="../channels/index.html">三十六通道</a><a href="../incarnation/index.html">輪迴交叉</a></div><div><h4>知識分析</h4><a href="../analysis/compare-systems.html">命理體系對照</a><a href="../analysis/critique.html">批判與實驗</a><a href="../tools/index.html">分析工具</a><a href="../tools/sun-gates-quick.html">閘門速查</a></div></div><div class="footer-bottom"><span>人類圖知識分析 · 繁體中文知識庫</span><span>先實驗，再相信。</span></div><div class="footer-legal" style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;font-size:13px;padding:14px 20px 18px;border-top:1px solid rgba(255,255,255,.08)"><a href="../../about/index.html" style="opacity:.85">關於我們</a><a href="../../sitemap/index.html" style="opacity:.85">站內導覽</a><a href="../../privacy/index.html" style="opacity:.85">隱私政策</a><a href="../../disclaimer/index.html" style="opacity:.85">免責聲明</a><a href="../../contact/index.html" style="opacity:.85">聯絡我們</a></div>
+</footer><script src="../js/main.js"></script><script src="../js/hd-data.js"></script><script src="../js/hd-core.js"></script><script src="../js/tools.js"></script><!-- fab-nav -->
+<style>
+.fab-nav{position:fixed;left:16px;bottom:16px;z-index:9990;font-family:inherit}
+.fab-nav .fab-menu{display:flex;flex-direction:column;gap:8px;margin-bottom:10px;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .22s,transform .22s,visibility .22s}
+.fab-nav.open .fab-menu{opacity:1;visibility:visible;transform:none}
+.fab-nav .fab-item{display:inline-flex;align-items:center;gap:9px;padding:9px 15px;border-radius:999px;background:rgba(26,16,48,.94);color:#f0e2c2;border:1px solid rgba(212,175,110,.5);box-shadow:0 6px 18px rgba(0,0,0,.32);font-size:13px;line-height:1;letter-spacing:.06em;text-decoration:none;cursor:pointer;white-space:nowrap;transition:border-color .2s,color .2s}
+.fab-nav .fab-item:hover{border-color:#d4af6e;color:#fff}
+.fab-nav .fab-item svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.fab-nav .fab-toggle{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#241644,#3c2a70);color:#e9d3a0;border:1px solid rgba(212,175,110,.62);box-shadow:0 8px 22px rgba(0,0,0,.38);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;transition:transform .2s}
+.fab-nav .fab-toggle:hover{transform:translateY(-2px)}
+.fab-nav .fab-toggle svg{width:22px;height:22px;stroke:#e9d3a0;fill:none;stroke-width:1.9;stroke-linecap:round}
+.fab-nav.open .fab-toggle{background:linear-gradient(135deg,#3c2a70,#241644)}
+@media (max-width:640px){.fab-nav{left:12px;bottom:12px}.fab-nav .fab-item{padding:11px 15px;font-size:13.5px}.fab-nav .fab-toggle{width:50px;height:50px}}
+</style>
+
+<div id="fabNav" class="fab-nav" role="navigation" aria-label="網站導覽">
+  <div class="fab-menu">
+    <a class="fab-item" href="../../index.html"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/></svg>回首頁</a>
+    <button class="fab-item" type="button" data-fab-back><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>上一頁</button>
+    <a class="fab-item" href="../../sitemap.xml"><svg viewBox="0 0 24 24"><path d="M12 3v6"/><path d="M12 9l-6 4H3v8h6v-8"/><path d="M12 9l6 4h3v8h-6v-8"/></svg>網站地圖</a>
+    <a class="fab-item" href="https://line.me/ti/p/g-FTLSqJAR" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21l4-4"/></svg>LINE 諮詢</a>
+  </div>
+  <button class="fab-toggle" type="button" aria-label="開啟網站導覽" aria-expanded="false" aria-controls="fabNav">
+    <svg viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+  </button>
+</div>
+<script>
+(function(){
+  var n=document.getElementById('fabNav'); if(!n) return;
+  var t=n.querySelector('.fab-toggle');
+  function toggle(){ var o=n.classList.toggle('open'); t.setAttribute('aria-expanded', o?'true':'false'); }
+  t.addEventListener('click', function(e){ e.stopPropagation(); toggle(); });
+  document.addEventListener('click', function(e){ if(!n.contains(e.target)) n.classList.remove('open'); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') n.classList.remove('open'); });
+  var b=n.querySelector('[data-fab-back]');
+  if(b) b.addEventListener('click', function(){ history.back(); });
+})();
+</script>
+
+</body></html>

@@ -1,655 +1,41 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#1a1030">
-<meta name="description" content="史上最強整合【星座算命＋塔羅盤＋人類圖】旗艦平台：12星座運勢、每日/週/月運、星座配對、78張塔羅牌意、三牌陣、凱爾特十字、每日一牌、人類圖四大類型、能量中心、閘門通道。免費線上算命運勢。">
-<meta name="keywords" content="星座,星座運勢,塔羅,塔羅牌,塔羅占卜,人類圖,Human Design,每日運勢,星座配對,上升星座,塔羅牌陣,能量中心">
-<meta name="author" content="念十回 の 星靈宇宙">
-<link rel="canonical" href="index.html">
-
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="念十回 の 星靈宇宙">
-<meta property="og:title" content="念十回 の 星靈宇宙 — 星座算命×塔羅盤×人類圖 最強旗艦平台">
-<meta property="og:description" content="史上最強整合星座算命、塔羅占卜與人類圖：12星座運勢、78張塔羅牌意、人類圖四大類型、能量中心與閘門通道。免費線上算命運勢。">
-<meta property="og:image" content="assets/social_share.webp">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:url" content="https://10return.com/">
-<meta property="og:locale" content="zh_TW">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="念十回 の 星靈宇宙 — 星座算命×塔羅盤×人類圖">
-<meta name="twitter:description" content="星座、塔羅、人類圖最強整合平台，免費線上算命運勢。">
-<meta name="twitter:image" content="assets/social_share.webp">
-
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3CradialGradient id='bg' cx='0.5' cy='0.4' r='0.75'%3E%3Cstop offset='0' stop-color='%232b1a55'/%3E%3Cstop offset='1' stop-color='%23100a24'/%3E%3C/radialGradient%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ffd86b'/%3E%3Cstop offset='1' stop-color='%23ff9d5c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='31' fill='url(%23bg)'/%3E%3Cellipse cx='32' cy='32' rx='26' ry='10' fill='none' stroke='%23a25dff' stroke-width='1.6' opacity='0.7' transform='rotate(-24 32 32)'/%3E%3Cpath d='M32 12l3 6.1 6.7 1-4.8 4.7 1.1 6.7L32 27l-6 3.5 1.1-6.7-4.8-4.7 6.7-1z' fill='url(%23g)'/%3E%3Ccircle cx='20' cy='18' r='1.6' fill='%23ffd86b'/%3E%3Ccircle cx='46' cy='22' r='1.2' fill='%23b388ff'/%3E%3Ccircle cx='14' cy='40' r='1.1' fill='%23ff9d5c'/%3E%3Ccircle cx='49' cy='46' r='1.4' fill='%23ffd86b'/%3E%3Ccircle cx='27' cy='48' r='1' fill='%23b388ff'/%3E%3Ccircle cx='32' cy='50' r='2.2' fill='%23a25dff'/%3E%3C/svg%3E">
-<title>念十回 の 星靈宇宙 — 星座算命×塔羅盤×人類圖 最強旗艦平台</title>
-<style>
-/* ============ 設計系統 Design Tokens ============ */
-:root{
-  --bg:#eceaf5; --bg2:#f7f5fc; --bg3:#dcd8ee;
-  --text:#111111; --text2:#333333; --text3:#555555;
-  --card:#ffffff; --card2:#f6f3fd; --border:#d8d2ee;
-  --brand:#4a2a8a; --brand2:#6b48c0; --accent:#e8c66a; --accent2:#e8935c;
-  --ok:#2ecc71; --warn:#f39c12; --err:#e74c3c; --info:#3a6ea5;
-  --shadow:0 8px 30px rgba(50,25,110,.14); --shadow2:0 4px 16px rgba(50,25,110,.10);
-  --r:14px; --r2:10px;
-  --maxw:1200px;
-  --grad:linear-gradient(135deg,#2c1757,#4a2a8a 55%,#6b48c0);
-  --grad2:linear-gradient(135deg,#e8c66a,#e8935c);
+/*! 念十回 の 星靈宇宙 — 靜態站共用腳本
+ *  由原 index.html 內嵌腳本抽出，改寫為「多頁靜態站 + 共用 JS」架構：
+ *  - 移除 hash 路由，改以真實目錄路徑（routeUrl）導覽
+ *  - 資產與連結一律經過 __ROOT__ 前綴，支援任意目錄深度
+ */
+const __ROOT__ = (typeof window !== "undefined" && window.__SITE_ROOT__) || "";
+const __ROUTE__ = (typeof window !== "undefined" && window.__SITE_ROUTE__) || "home";
+function __q(){ return new URLSearchParams((String(__ROUTE__).split("?")[1]) || ""); }
+function routeUrl(route){
+  let r = String(route == null ? "" : route).replace(/^#?\/?/, "");
+  const qi = r.indexOf("?"); const p = qi < 0 ? r : r.slice(0, qi); const q = new URLSearchParams(qi < 0 ? "" : r.slice(qi + 1));
+  const seg = p.split("/").filter(Boolean);
+  if(!seg.length || seg[0] === "home") return "index.html";
+  if(seg[0] === "zodiac"){
+    if(seg[1] === "detail"){ const i = Math.min(Math.max(parseInt(q.get("z") || 0, 10) || 0, 0), 11); return "zodiac/" + ZODIAC[i].key + "/index.html"; }
+    if(["daily","match","rising"].indexOf(seg[1]) >= 0) return "zodiac/" + seg[1] + "/index.html";
+    return "zodiac/index.html";
+  }
+  if(seg[0] === "tarot"){
+    if(seg[1] === "detail"){ const i = Math.min(Math.max(parseInt(q.get("c") || 0, 10) || 0, 0), 21); return "tarot/" + TAROT_IMG[i] + "/index.html"; }
+    if(["three","celtic","daily"].indexOf(seg[1]) >= 0) return "tarot/" + seg[1] + "/index.html";
+    return "tarot/index.html";
+  }
+  if(seg[0] === "humandesign"){
+    if(seg[1] === "detail"){ const i = Math.min(Math.max(parseInt(q.get("t") || 0, 10) || 0, 0), 4); return "humandesign/" + HD_TYPES[i].key + "/index.html"; }
+    if(["types","centers","calculator"].indexOf(seg[1]) >= 0) return "humandesign/" + seg[1] + "/index.html";
+    return "humandesign/index.html";
+  }
+  if(seg[0] === "tools"){ if(seg[1] && TOOLS.some(t => t.id === seg[1])) return "tools/" + seg[1] + "/index.html"; return "tools/index.html"; }
+  if(seg[0] === "traditions"){ if(seg[1] && TRADITIONS.some(t => t.id === seg[1])) return "traditions/" + seg[1] + "/index.html"; return "traditions/index.html"; }
+  if(seg[0] === "blog") return "blog/index.html";
+  if(["favorite","sitemap","about"].indexOf(seg[0]) >= 0) return seg[0] + "/index.html";
+  return "index.html";
 }
-[data-theme="dark"]{
-  --bg:#0b0719; --bg2:#110b26; --bg3:#1a1238;
-  --text:#e6e0fb; --text2:#a99cd8; --text3:#7d73ac;
-  --card:#140d2e; --card2:#1a1238; --border:#2a1f52;
-  --brand:#8a63e8; --brand2:#b89bff; --accent:#e8c66a; --accent2:#e8935c;
-  --shadow:0 8px 30px rgba(0,0,0,.5); --shadow2:0 4px 16px rgba(0,0,0,.4);
-  --grad:linear-gradient(135deg,#2c1757,#4a2a8a 55%,#6b48c0);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:76px}
-body{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;transition:background .35s,color .35s;-webkit-font-smoothing:antialiased}
-a{color:var(--brand);text-decoration:none}
-img{max-width:100%;display:block}
-button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
-input,select,textarea{font-family:inherit;color:var(--text);background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px;outline:none;transition:border .2s}
-input:focus,select:focus,textarea:focus{border-color:var(--brand)}
-.container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
-.hidden{display:none!important}
-/* 星塵背景 */
-.starfield{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
-.starfield .star{position:absolute;border-radius:50%;background:#fff;animation:twinkle 4s ease-in-out infinite}
-@keyframes twinkle{0%,100%{opacity:.15}50%{opacity:.9}}
-
-/* ============ Top Nav + Sticky Nav ============ */
-.topbar{background:linear-gradient(90deg,var(--brand),var(--brand2));color:#fff;font-size:.82rem;padding:6px 0}
-.topbar .container{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.topbar a{color:#fff;opacity:.9}
-.topbar .top-links{display:flex;gap:16px;flex-wrap:wrap}
-.header{position:sticky;top:0;z-index:900;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.2rem}
-.brand .logo{width:38px;height:38px;border-radius:10px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#fff}
-.nav-links{display:flex;gap:6px;align-items:center}
-.nav-links a{padding:8px 14px;border-radius:var(--r2);color:var(--text2);font-weight:600;font-size:.95rem;transition:.2s;position:relative}
-.nav-links a:hover{background:var(--bg3);color:var(--brand)}
-.nav-links a.active{background:var(--grad);color:#fff}
-.dropdown{position:relative}
-.dropdown>.dd-btn{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--r2);color:var(--text2);font-weight:600;font-size:.95rem;cursor:pointer}
-.dropdown:hover>.dd-btn{color:var(--brand)}
-.dd-menu{position:absolute;top:110%;left:0;min-width:220px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow);padding:8px;display:none;flex-direction:column;gap:2px;z-index:50}
-.dropdown:hover .dd-menu{display:flex}
-.dropdown.open .dd-menu{display:flex}
-.dd-menu a{padding:9px 12px;border-radius:8px;color:var(--text2);font-weight:500}
-.dd-menu a:hover{background:var(--bg3);color:var(--brand)}
-.nav-right{display:flex;align-items:center;gap:8px}
-.theme-toggle,.hamburger{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;background:var(--bg3);color:var(--text2);transition:.2s}
-.theme-toggle:hover,.hamburger:hover{color:var(--brand);background:var(--border)}
-.hamburger{display:none}
-/* 麵包屑 breadcrumb */
-.breadcrumb{display:flex;align-items:center;gap:6px;font-size:.85rem;color:var(--text3);padding:14px 0 0;flex-wrap:wrap}
-.breadcrumb a{color:var(--text3)}
-.breadcrumb a:hover{color:var(--brand)}
-.breadcrumb .sep{opacity:.5}
-.breadcrumb .cur{color:var(--brand);font-weight:600}
-
-/* ============ Sidebar + Mobile Menu ============ */
-.sidebar{position:fixed;top:0;left:0;height:100vh;width:290px;background:var(--card);border-right:1px solid var(--border);z-index:1000;transform:translateX(-100%);transition:transform .3s ease;display:flex;flex-direction:column;box-shadow:var(--shadow)}
-.sidebar.open{transform:translateX(0)}
-.sidebar-head{padding:18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.sidebar-nav{flex:1;overflow-y:auto;padding:12px;min-height:0}
-.sidebar-nav .grp{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);padding:14px 12px 6px;font-weight:700}
-.sidebar-nav a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;color:var(--text2);font-weight:500}
-.sidebar-nav a:hover{background:var(--bg3);color:var(--brand)}
-.sidebar-nav a.active{background:var(--grad);color:#fff}
-.sidebar-foot{padding:14px;border-top:1px solid var(--border);font-size:.8rem;color:var(--text3);text-align:center}
-.sidebar-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999;opacity:0;pointer-events:none;transition:.3s}
-.sidebar-overlay.show{opacity:1;pointer-events:auto}
-
-/* ============ Buttons / Badges / Chips ============ */
-.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:var(--r2);font-weight:700;font-size:.95rem;transition:.2s;border:1px solid transparent}
-.btn-primary{background:var(--grad);color:#fff;box-shadow:var(--shadow2)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
-.btn-outline{background:transparent;border-color:var(--border);color:var(--text2)}
-.btn-outline:hover{border-color:var(--brand);color:var(--brand)}
-.btn-ghost{background:var(--bg3);color:var(--text2)}
-.btn-ghost:hover{color:var(--brand)}
-.btn-sm{padding:7px 14px;font-size:.85rem}
-.btn-lg{padding:15px 30px;font-size:1.05rem}
-.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:.75rem;font-weight:700}
-.badge-b{background:var(--brand);color:#fff}
-.badge-a{background:var(--accent);color:#3a2a00}
-.badge-ok{background:var(--ok);color:#fff}
-.badge-warn{background:var(--warn);color:#fff}
-.badge-err{background:var(--err);color:#fff}
-.badge-info{background:var(--info);color:#fff}
-.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;background:var(--bg3);color:var(--text2);font-size:.85rem;cursor:pointer;transition:.2s;border:1px solid transparent}
-.chip:hover{border-color:var(--brand);color:var(--brand)}
-.chip.on{background:var(--grad);color:#fff}
-
-/* ============ Cards ============ */
-.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px;box-shadow:var(--shadow2)}
-.card-hover{transition:.25s}
-.card-hover:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-.grid{display:grid;gap:20px}
-.g-2{grid-template-columns:repeat(2,1fr)}
-.g-3{grid-template-columns:repeat(3,1fr)}
-.g-4{grid-template-columns:repeat(4,1fr)}
-.g-5{grid-template-columns:repeat(5,1fr)}
-.g-6{grid-template-columns:repeat(6,1fr)}
-
-/* ============ Section / Headings ============ */
-.section{padding:52px 0}
-.sec-head{margin-bottom:26px}
-.sec-eyebrow{color:var(--brand);font-weight:800;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase}
-.sec-title{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;margin:6px 0 8px}
-.sec-sub{color:var(--text2);max-width:720px}
-h1{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;line-height:1.25}
-h2{font-size:1.5rem;font-weight:800}
-h3{font-size:1.15rem;font-weight:700}
-
-/* ============ Hero ============ */
-.hero{position:relative;padding:70px 0 80px;text-align:center;overflow:hidden;background:url("assets/hero_day.webp") center/cover no-repeat}
-[data-theme="dark"] .hero{background:url("assets/hero_night.webp") center/cover no-repeat}
-.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,.08) 45%,rgba(255,255,255,.55));z-index:0}
-[data-theme="dark"] .hero::before{background:linear-gradient(180deg,rgba(15,8,35,.5),rgba(15,8,35,.15) 45%,rgba(15,8,35,.65))}
-.hero .container{position:relative;z-index:2}
-.hero-title{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:clamp(2rem,5.5vw,3.6rem);font-weight:900;margin:10px 0 16px}
-.hero p{font-size:1.1rem;color:var(--text2);max-width:760px;margin:0 auto 8px}
-.hero .stats{display:flex;gap:34px;justify-content:center;margin-top:34px;flex-wrap:wrap}
-.stat{text-align:center}
-.stat b{font-size:1.7rem;font-weight:900;color:var(--brand);display:block}
-.stat span{color:var(--text3);font-size:.85rem}
-.hero-actions{display:flex;gap:14px;justify-content:center;margin-top:28px;flex-wrap:wrap}
-
-/* ============ Tabs ============ */
-.tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:2px solid var(--border);margin-bottom:22px}
-.tab{padding:11px 20px;font-weight:700;color:var(--text3);border-bottom:3px solid transparent;margin-bottom:-2px;cursor:pointer;transition:.2s}
-.tab:hover{color:var(--brand)}
-.tab.on{color:var(--brand);border-color:var(--brand)}
-
-/* ============ Accordion ============ */
-.accordion{border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
-.acc-item{border-bottom:1px solid var(--border)}
-.acc-item:last-child{border-bottom:none}
-.acc-head{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;cursor:pointer;font-weight:700;transition:.2s}
-.acc-head:hover{background:var(--bg3)}
-.acc-head .acc-ico{transition:transform .3s;color:var(--brand)}
-.acc-item.open .acc-ico{transform:rotate(180deg)}
-.acc-body{max-height:0;overflow:hidden;transition:max-height .35s ease;background:var(--card2)}
-.acc-body-in{padding:0 18px 16px;color:var(--text2)}
-
-/* ============ Timeline ============ */
-.timeline{display:grid;grid-template-columns:90px 30px 1fr;gap:0;position:relative}
-.tl-item{display:contents}
-.tl-time{padding:14px 0;font-weight:700;color:var(--brand);text-align:right;font-size:.9rem}
-.tl-node{display:flex;justify-content:center;align-items:center;position:relative}
-.tl-dot{width:14px;height:14px;border-radius:50%;background:var(--grad);box-shadow:0 0 0 4px var(--bg3);justify-self:center}
-.tl-line{position:absolute;top:0;bottom:0;width:2px;background:var(--border);left:50%;transform:translateX(-50%)}
-.tl-content{padding:14px 0 22px 6px}
-.tl-content h4{font-size:1rem}
-.tl-content p{font-size:.9rem;color:var(--text2);margin-top:4px}
-
-/* ============ Tree View ============ */
-.tree{list-style:none}
-.tree li{margin:2px 0}
-.tree .tree-node{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;cursor:pointer;transition:.15s;font-weight:500}
-.tree .tree-node:hover{background:var(--bg3)}
-.tree .tree-children{margin-left:22px;border-left:1px dashed var(--border);padding-left:8px;list-style:none}
-.tree .tgl{color:var(--brand);width:18px;text-align:center;transition:.2s}
-.tree li.collapsed>.tree-children{display:none}
-.tree li.collapsed>.tree-node .tgl{transform:rotate(-90deg)}
-
-/* ============ Tag Cloud ============ */
-.tagcloud{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
-.tagcloud a{padding:6px 14px;border-radius:20px;background:var(--bg3);color:var(--text2);font-size:.85rem;transition:.2s}
-.tagcloud a:hover{background:var(--grad);color:#fff;transform:scale(1.05)}
-
-/* ============ FAB + Back to top + Context menu ============ */
-.fab{position:fixed;right:22px;bottom:90px;width:56px;height:56px;border-radius:18px;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:var(--shadow);z-index:800;transition:.25s}
-.fab:hover{transform:scale(1.08) rotate(10deg)}
-.fab-label{position:absolute;right:66px;background:var(--card);color:var(--text);padding:6px 12px;border-radius:8px;font-size:.8rem;white-space:nowrap;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.2s}
-.fab:hover .fab-label{opacity:1}
-
-/* ============ 浮動站內導覽 Floating Sitemap Nav ============ */
-.fabnav{position:fixed;right:22px;bottom:150px;width:58px;height:58px;border-radius:50%;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:var(--shadow2);z-index:820;cursor:pointer;border:none;transition:.25s}
-.fabnav:hover{transform:scale(1.08) rotate(10deg)}
-.fabnav .fn-label{position:absolute;right:70px;background:var(--card);color:var(--text);padding:6px 12px;border-radius:8px;font-size:.8rem;white-space:nowrap;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.2s}
-.fabnav:hover .fn-label{opacity:1}
-.fn-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:1080;opacity:0;pointer-events:none;transition:.3s}
-.fn-overlay.show{opacity:1;pointer-events:auto}
-.fn-panel{position:fixed;right:20px;bottom:150px;width:min(320px,86vw);max-height:66vh;overflow-y:auto;background:var(--card);border:1px solid var(--border);border-radius:var(--r2);box-shadow:var(--shadow2);z-index:1090;transform:translateY(12px);opacity:0;pointer-events:none;transition:.28s}
-.fn-panel.show{transform:translateY(0);opacity:1;pointer-events:auto}
-.fn-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--border);font-weight:800;font-size:1rem}
-.fn-head .fn-close{background:var(--bg3);border:none;border-radius:8px;width:30px;height:30px;cursor:pointer;font-weight:700;color:var(--text2)}
-.fn-body{padding:8px 14px 14px}
-.fn-grp{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);padding:14px 4px 6px;font-weight:700;border-top:1px dashed var(--border)}
-.fn-grp:first-child{border-top:none}
-.fn-body a{display:flex;align-items:center;gap:10px;padding:9px 8px;border-radius:9px;color:var(--text2);font-weight:500;text-decoration:none;font-size:.92rem}
-.fn-body a:hover{background:var(--bg3);color:var(--brand)}
-.fn-foot{padding:10px 16px;border-top:1px solid var(--border);font-size:.72rem;color:var(--text3);text-align:center;line-height:1.7}
-@media print{.fabnav,.fn-overlay,.fn-panel{display:none!important}}
-@media(max-width:600px){.fabnav{bottom:150px;right:16px;width:54px;height:54px}.fn-panel{right:12px;bottom:140px;width:min(92vw,320px);max-height:70vh}}
-
-.back-top{position:fixed;right:22px;bottom:22px;width:48px;height:48px;border-radius:14px;background:var(--card);border:1px solid var(--border);color:var(--brand);display:flex;align-items:center;justify-content:center;font-size:1.3rem;box-shadow:var(--shadow);z-index:800;opacity:0;pointer-events:none;transition:.3s}
-.back-top.show{opacity:1;pointer-events:auto}
-.context-menu{position:fixed;min-width:200px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow);z-index:1200;padding:6px;display:none}
-.context-menu.show{display:block}
-.context-menu button{display:flex;align-items:center;gap:10px;width:100%;padding:9px 12px;border-radius:8px;font-size:.9rem;text-align:left}
-.context-menu button:hover{background:var(--bg3)}
-
-/* ============ Popover（彈出浮層） ============ */
-.popover{position:relative;display:inline-flex}
-.popover > .pv-btn{cursor:pointer;display:inline-flex;align-items:center;gap:5px;border:1px solid var(--border);background:var(--card);color:var(--text2);border-radius:var(--r2);padding:6px 12px;font-size:.85rem;font-weight:600;transition:.2s}
-.popover > .pv-btn:hover{color:var(--brand);border-color:var(--brand);box-shadow:var(--shadow2)}
-.popover > .pv-btn .pv-caret{margin-left:2px;font-size:.7rem;opacity:.7}
-.pv-panel{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translate(-50%,6px);min-width:230px;max-width:300px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow);padding:14px 16px;z-index:60;opacity:0;visibility:hidden;pointer-events:none;transition:.22s}
-.popover.pv-top-right .pv-panel{left:auto;right:0;transform:translateY(6px)}
-.popover.pv-top-left .pv-panel{left:0;transform:translateY(6px)}
-.popover.pv-bottom .pv-panel{top:calc(100% + 10px);bottom:auto;transform:translate(-50%,-6px)}
-.popover.pv-bottom.pv-top-left .pv-panel,.popover.pv-bottom.pv-top-right .pv-panel{transform:translateY(-6px)}
-.popover:hover .pv-panel,.popover:focus-within .pv-panel,.popover.open .pv-panel{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,0)}
-.popover.pv-top-right:hover .pv-panel,.popover.pv-top-right.open .pv-panel,.popover.pv-top-right:focus-within .pv-panel{transform:translateY(0)}
-.popover.pv-top-left:hover .pv-panel,.popover.pv-top-left.open .pv-panel,.popover.pv-top-left:focus-within .pv-panel{transform:translateY(0)}
-.popover.pv-bottom:hover .pv-panel,.popover.pv-bottom.open .pv-panel,.popover.pv-bottom:focus-within .pv-panel{transform:translate(-50%,0)}
-.popover.pv-bottom.pv-top-left:hover .pv-panel,.popover.pv-bottom.pv-top-right:hover .pv-panel,.popover.pv-bottom.pv-top-left.open .pv-panel,.popover.pv-bottom.pv-top-right.open .pv-panel{transform:translateY(0)}
-.pv-panel::before{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:7px solid transparent;border-top-color:var(--border)}
-.popover.pv-top-right .pv-panel::before{left:auto;right:18px}
-.popover.pv-top-left .pv-panel::before{left:18px}
-.popover.pv-bottom .pv-panel::before{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--border)}
-.pv-panel h4{margin-bottom:8px;font-size:.95rem}
-.pv-panel p{margin:4px 0;font-size:.82rem;color:var(--text3);line-height:1.55}
-.pv-panel .pv-tag{display:inline-block;font-size:.68rem;background:var(--bg3);color:var(--brand);padding:2px 8px;border-radius:20px;margin:6px 4px 2px 0;font-weight:600}
-.pv-panel .pv-cta{display:inline-flex;margin-top:10px;font-size:.8rem}
-.pv-panel .pv-close{position:absolute;top:8px;right:10px;font-size:.8rem;opacity:.6;cursor:pointer;border:none;background:none;color:var(--text2)}
-.pv-panel .pv-close:hover{opacity:1;color:var(--brand)}
-
-.hd-info-table td{padding:10px 12px;border-bottom:1px solid var(--border);font-size:.9rem}
-.hd-info-table tr:last-child td{border-bottom:none}
-.hd-info-table td:first-child{color:var(--text3);width:110px;white-space:nowrap}
-
-/* ============ Cards grid for tarot / zodiac ============ */
-.cd{background:var(--card);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow2);cursor:pointer;transition:.25s;display:flex;flex-direction:column}
-.cd .cd-top{overflow:hidden}
-.cd:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
-.cd .cd-top{height:150px;display:flex;align-items:center;justify-content:center;font-size:2.6rem;background:var(--grad);color:#fff;font-weight:900;position:relative}
-.cd .cd-top img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease}
-.cd:hover .cd-top img{transform:scale(1.08)}
-.cd .cd-top .cd-sym{position:absolute;right:8px;bottom:4px;font-size:1.7rem;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.65);line-height:1;font-weight:900}
-.cd .cd-body{padding:14px 16px;flex:1}
-.cd .cd-body h4{font-size:1rem;margin-bottom:4px}
-.cd .cd-body p{font-size:.82rem;color:var(--text3);line-height:1.5}
-.cd .cd-foot{padding:10px 16px;border-top:1px solid var(--border);font-size:.78rem;color:var(--text3)}
-.tarot-card{aspect-ratio:2/3;border-radius:14px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:2.8rem;background:var(--card2);cursor:pointer;transition:.3s;box-shadow:var(--shadow2);position:relative;overflow:hidden}
-.tarot-card:hover{transform:translateY(-6px) rotate(1deg)}
-.tarot-card.back{background:var(--grad)}
-.tarot-card.back::after{content:"✦";color:#fff;font-size:2rem}
-.tarot-card.reveal{animation:revealCard .7s ease}
-@keyframes revealCard{0%{transform:rotateY(90deg);opacity:0}100%{transform:rotateY(0);opacity:1}}
-/* ---- 翻牌卡 flip-card（整合自星盤閣塔羅） ---- */
-.flip-wrap{perspective:900px}
-.flip-card{position:relative;width:100%;aspect-ratio:2/3;border-radius:14px;cursor:pointer;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.4,.1,.2,1);box-shadow:var(--shadow2)}
-.flip-card.flipped{transform:rotateY(180deg)}
-.flip-card .face{position:absolute;inset:0;border-radius:14px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid var(--border);overflow:hidden}
-.flip-card .face.front{background:var(--grad) center/cover no-repeat;color:#fff;transform:rotateY(180deg);padding:10px}
-.flip-card .face.front::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,transparent 30%,transparent 55%,rgba(0,0,0,.72) 100%)}
-.flip-card .face.front > *{position:relative;z-index:1;text-shadow:0 1px 3px rgba(0,0,0,.7)}
-.flip-card .face.back{background:var(--card2)}
-.flip-card .face.back::before{content:"✦";font-size:2.2rem;color:var(--brand);opacity:.5}
-.flip-card .t-num{font-size:1.9rem;font-weight:900;line-height:1}
-.flip-card .t-name{font-size:1.05rem;font-weight:800;margin-top:6px;text-align:center}
-.flip-card .t-en{font-size:.6rem;opacity:.85;text-align:center;margin-top:2px}
-.flip-card .t-ele{font-size:.62rem;background:rgba(255,255,255,.25);padding:2px 9px;border-radius:20px;margin-top:8px}
-.flip-card .t-sym{font-size:.7rem;opacity:.9;text-align:center;margin-top:7px;padding:0 8px}
-.flip-card:hover{transform:rotateY(0) translateY(-4px);box-shadow:var(--shadow)}
-.flip-card.flipped:hover{transform:rotateY(180deg) translateY(-4px)}
-.flip-card .t-link{font-size:.62rem;color:#fff;text-decoration:underline;margin-top:8px}
-
-/* ============ Forms ============ */
-.form-group{margin-bottom:16px}
-.form-group label{display:block;font-weight:600;margin-bottom:6px;font-size:.9rem}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-select option{background:var(--card)}
-.radio-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-.radio-row label{display:flex;align-items:center;gap:6px;font-weight:500;cursor:pointer}
-input[type=radio],input[type=checkbox]{accent-color:var(--brand);width:17px;height:17px}
-.range-wrap{display:flex;align-items:center;gap:12px}
-input[type=range]{flex:1;accent-color:var(--brand)}
-
-/* ============ Footer ============ */
-.footer{background:var(--bg3);border-top:1px solid var(--border);margin-top:60px;padding:44px 0 20px}
-
-/* ============ 手機端 footer 字體縮小 ============ */
-@media(max-width:600px){
-  .footer{padding:32px 0 14px}
-  .footer .footer-grid h4{font-size:.9rem;margin-bottom:8px}
-  .footer .footer-grid a{font-size:.78rem}
-  .footer .brand{font-size:.9rem}
-  .footer .prose{font-size:.78rem}
-  .footer .sub-tip{font-size:.72rem}
-  .footer .sub-email,.footer .sub-btn{font-size:.78rem}
-  .footer .sub-check{font-size:.72rem}
-  .footer .footer-copy,.footer .footer-legal,.footer p,.footer span{font-size:.72rem}
-}
-
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:28px;margin-bottom:30px}
-.footer h4{font-size:.95rem;margin-bottom:12px}
-.footer a{display:block;padding:4px 0;color:var(--text2);font-size:.88rem}
-.footer a:hover{color:var(--brand)}
-.footer .brand{color:var(--text);margin-bottom:10px}
-.social-icons{display:flex;gap:10px;margin-top:12px}
-.social-icons a{width:38px;height:38px;border-radius:10px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:.2s}
-.social-icons a:hover{background:var(--grad);color:#fff;transform:translateY(-3px)}
-.footer-bottom{border-top:1px solid var(--border);padding-top:18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:.82rem;color:var(--text3)}
-
-/* ============ 命理體系卡片圖片 ============ */
-.card-trad{overflow:hidden;padding:0!important;transition:.3s}
-.card-trad:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-.trad-img{position:relative;height:170px;overflow:hidden}
-.trad-img img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .4s}
-.card-trad:hover .trad-img img{transform:scale(1.06)}
-.trad-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(10,14,20,.35));pointer-events:none}
-.trad-body{padding:14px 16px 16px}
-.trad-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
-.trad-thumb{width:160px;height:104px;border-radius:var(--r);overflow:hidden;flex-shrink:0}
-.trad-thumb img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
-
-/* ============ 六大命理體系卡：黃底黑字 ============ */
-.trad-yellow{background:linear-gradient(135deg,#ffffff,#eef0f2);border:1px solid #d9d9de;color:#222}
-.trad-yellow h1,.trad-yellow h2,.trad-yellow h3,.trad-yellow h4,.trad-yellow .sec-title{color:#222}
-.trad-yellow .prose,.trad-yellow p,.trad-yellow li{color:#333}
-.trad-yellow .badge-info{background:#2f4a35;color:#fff}
-.trad-yellow .badge-a{background:#eef0f2;color:#333}
-.trad-yellow .badge-b{background:#333;color:#fff}
-.trad-yellow .btn-primary{background:#333;color:#fff}
-.trad-yellow .btn-outline{border-color:#999;color:#333}
-.trad-yellow .card,.trad-yellow .cd{background:rgba(255,255,255,.92);border-color:#d9d9de}
-.trad-yellow .cd-top{color:#666}
-.trad-yellow .acc-head{color:#222}
-.trad-yellow .callout{background:rgba(255,255,255,.92);border-color:#d9d9de}
-.trad-yellow a{color:#2f4a35}
+function pl(route){ return __ROOT__ + routeUrl(route); }
+function articleUrl(i){ return "blog/post-" + (i + 1) + "/index.html"; }
 
 
-/* ============ 首頁卡片圖片（藍咖啡現代風） ============ */
-.card-sky{overflow:hidden;padding:0!important;transition:.3s}
-.card-sky:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-.sky-img{height:130px;overflow:hidden}
-.sky-img img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .4s}
-.card-sky:hover .sky-img img{transform:scale(1.06)}
-.sky-body{padding:14px 14px 16px}
-.sky-body .prose{font-size:.9rem}
-.card-post{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px;padding:12px 16px;cursor:pointer}
-.card-post:hover{transform:translateY(-2px)}
-.post-thumb{width:120px;height:80px;border-radius:var(--r);overflow:hidden;flex-shrink:0}
-.post-thumb img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
-.post-info{flex:1;min-width:200px}
-.post-info h3{margin:6px 0 2px;font-size:1.05rem}
-.post-info time{font-size:.82rem;color:var(--text3)}
-.sky-body h3{font-size:1.05rem;margin-bottom:6px}
-.sky-body .prose{font-size:.88rem;line-height:1.5}
-.trad-body h3{font-size:1.2rem;font-weight:800;margin:10px 0 6px}
-.trad-body .prose{margin:0 0 14px}
-@media(max-width:600px){.post-thumb{width:88px;height:64px}.sky-img{height:110px}.card-post{padding:10px 12px}}
-
-@media(max-width:600px){.trad-thumb{width:120px;height:84px}.trad-img{height:140px}}
-
-/* ============ 訂閱表單 subscribe / register-form / form-submit ============ */
-.subscribe-form{max-width:340px;margin-top:6px}
-.sub-tip{font-size:.78rem;color:var(--text3);margin:2px 0 8px}
-.sub-row{display:flex;gap:8px}
-.sub-email{flex:1;min-width:0}
-.sub-btn{background:var(--grad2);color:#fff;border:none;border-radius:var(--r2);padding:10px 16px;font-weight:700;cursor:pointer;transition:.2s;white-space:nowrap}
-.sub-btn:hover{filter:brightness(1.1)}
-.sub-check{display:flex;align-items:flex-start;gap:6px;font-size:.72rem;color:var(--text3);margin-top:8px;cursor:pointer}
-.sub-check input{width:auto;margin-top:2px}
-.sub-msg{font-size:.8rem;margin-top:6px;min-height:1.2em}
-.sub-msg.ok{color:var(--ok)}
-.sub-msg.err{color:var(--err)}
-
-/* ============ Misc components ============ */
-.pagination{display:flex;gap:8px;justify-content:center;align-items:center;margin-top:24px}
-.pagination button{width:40px;height:40px;border-radius:10px;background:var(--bg3);color:var(--text2);font-weight:700;transition:.2s}
-.pagination button.on{background:var(--grad);color:#fff}
-.pagination button:hover:not(.on){color:var(--brand)}
-.loading{display:flex;align-items:center;justify-content:center;padding:40px;color:var(--text3)}
-.spinner{width:34px;height:34px;border:3px solid var(--border);border-top-color:var(--brand);border-radius:50%;animation:spin .8s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120%);background:var(--card);color:var(--text);border:1px solid var(--border);padding:13px 22px;border-radius:var(--r2);box-shadow:var(--shadow);z-index:2000;transition:transform .35s ease;font-weight:600}
-.toast.show{transform:translateX(-50%) translateY(0)}
-.progress{height:8px;background:var(--bg3);border-radius:20px;overflow:hidden}
-.progress>span{display:block;height:100%;background:var(--grad);border-radius:20px;transition:width .6s ease}
-.meter{display:flex;align-items:center;gap:12px}
-.meter .bar{flex:1;height:10px;background:var(--bg3);border-radius:20px;overflow:hidden}
-.meter .bar>span{display:block;height:100%;border-radius:20px;background:var(--grad)}
-.lazy-img{opacity:0;transition:opacity .5s}
-.lazy-img.loaded{opacity:1}
-.pre-next{display:flex;justify-content:space-between;gap:14px;margin-top:30px}
-.pre-next a{flex:1;padding:14px 18px;border:1px solid var(--border);border-radius:var(--r);color:var(--text2);transition:.2s;display:block}
-.pre-next a:hover{border-color:var(--brand);color:var(--brand)}
-.pre-next .dir{font-size:.75rem;color:var(--text3)}
-.related{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:16px}
-.callout{padding:14px 18px;border-radius:var(--r2);border-left:4px solid;margin:14px 0;font-size:.92rem}
-.callout-info{background:var(--bg3);border-color:var(--info)}
-.callout-warn{background:var(--bg3);border-color:var(--warn)}
-.callout-ok{background:var(--bg3);border-color:var(--ok)}
-.prose{color:var(--text2)}
-.prose h3{margin:18px 0 8px;color:var(--text)}
-.prose p{margin-bottom:10px}
-.prose ul{padding-left:20px;margin-bottom:10px}
-table.tbl{width:100%;border-collapse:collapse;table-layout:fixed}
-.tbl th,.tbl td{padding:10px 12px;border-bottom:1px solid var(--border);font-size:.88rem;text-align:left;overflow-wrap:break-word}
-.tbl th{background:var(--bg3);font-weight:700;color:var(--text2)}
-.tbl tr:hover td{background:var(--bg3)}
-.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--r)}
-.scroll-x{overflow-x:auto}
-.dash-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
-.dash-stat{padding:18px;border-radius:var(--r);background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow2)}
-.dash-stat .k{font-size:.8rem;color:var(--text3)}
-.dash-stat .v{font-size:1.8rem;font-weight:900;color:var(--brand);margin:4px 0}
-.dash-stat .d{font-size:.8rem;color:var(--ok)}
-.zodiac-ring{--p:50;width:130px;height:130px;border-radius:50%;background:conic-gradient(var(--brand) calc(var(--p)*1%),var(--bg3) 0);display:flex;align-items:center;justify-content:center;position:relative}
-.zodiac-ring::before{content:"";position:absolute;inset:12px;border-radius:50%;background:var(--card)}
-.zodiac-ring b{position:relative;z-index:2;font-size:1.3rem}
-/* human design body */
-.hd-body{position:relative;max-width:340px;margin:0 auto}
-.hd-center{position:relative;width:300px;height:440px;margin:0 auto}
-.hd-chakra{position:absolute;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:800;border:3px solid;transition:.3s;cursor:pointer;z-index:2}
-.hd-chakra:hover{transform:scale(1.12)}
-.hd-chakra.def{background:var(--bg3);border-color:var(--text3);color:var(--text3)}
-.hd-chakra.defined{background:var(--grad);border-color:#fff;color:#fff;box-shadow:var(--shadow)}
-.hd-legend{display:flex;gap:16px;justify-content:center;margin-top:16px;font-size:.85rem;color:var(--text2)}
-.hd-legend i{display:inline-block;width:14px;height:14px;border-radius:50%;margin-right:6px;vertical-align:middle}
-
-/* ============ Responsive ============ */
-@media(max-width:1024px){.g-4{grid-template-columns:repeat(2,1fr)}.g-5{grid-template-columns:repeat(3,1fr)}.g-6{grid-template-columns:repeat(3,1fr)}.footer-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:860px){
-  .nav-links,.nav-right .theme-toggle{display:none}
-  .hamburger{display:flex}
-  .g-3{grid-template-columns:repeat(2,1fr)}
-  .form-grid{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr}
-  .topbar .top-links{display:none}
-}
-@media(max-width:600px){
-  .g-2,.g-3,.g-4,.g-5,.g-6{grid-template-columns:1fr}
-  .section{padding:38px 0}
-  .hero{padding:50px 0 60px}
-  .hero .stats{gap:22px}
-  .timeline{grid-template-columns:64px 24px 1fr}
-  .hd-center{width:240px;height:360px}
-}
-@media print{.sidebar,.fab,.back-top,.hamburger,.context-menu{display:none!important}}
-</style>
-</head>
-<body>
-<!-- 星空背景 -->
-<!-- 命理體系卡圖（靜態引用，供發布掃描） -->
-<div class="hidden" aria-hidden="true">
-  <img src="assets/home/trad_birth_blue.webp" alt="">
-  <img src="assets/home/trad_yijing_blue.webp" alt="">
-  <img src="assets/home/trad_face_blue.webp" alt="">
-  <img src="assets/home/trad_symbol_blue.webp" alt="">
-  <img src="assets/home/trad_fengshui_blue.webp" alt="">
-  <img src="assets/home/trad_folk_blue.webp" alt="">
-</div>
-<div class="starfield" id="starfield"></div>
-
-<!-- ===== Top Bar ===== -->
-<div class="topbar">
-  <div class="container">
-    <div>✦ 今日星象：月亮進入天秤座 · 適宜溝通與合作</div>
-    <div class="top-links">
-      <div class="popover pv-bottom pv-top-left"><a href="index.html#/zodiac">每日運勢</a><div class="pv-panel"><h4>每日運勢</h4><p>十二星座今日整體／愛情／事業運勢與幸運指數，依今日星象即時呈現。</p><span class="pv-tag">星座</span><span class="pv-tag">每日</span><a href="index.html#/zodiac" class="pv-cta btn btn-outline btn-sm">查看 →</a></div></div>
-      <div class="popover pv-bottom"><a href="index.html#/tarot">免費塔羅</a><div class="pv-panel"><h4>免費塔羅占卜</h4><p>22 張大阿爾克那＋56 張小阿爾克那，支援三牌陣、凱爾特十字與每日一牌互動抽牌。</p><span class="pv-tag">塔羅</span><span class="pv-tag">免費</span><a href="index.html#/tarot" class="pv-cta btn btn-outline btn-sm">開始抽牌 →</a></div></div>
-      <div class="popover pv-bottom"><a href="index.html#/humandesign">人類圖</a><div class="pv-panel"><h4>人類圖</h4><p>認識你的能量類型、策略與九大能量中心，輸入出生資料即可繪製專屬能量藍圖。</p><span class="pv-tag">人類圖</span><span class="pv-tag">能量</span><a href="index.html#/humandesign" class="pv-cta btn btn-outline btn-sm">繪圖 →</a></div></div>
-      <div class="popover pv-bottom pv-top-right"><a href="index.html#/favorite">我的收藏</a><div class="pv-panel"><h4>我的收藏</h4><p>集中管理你收藏的星座、塔羅與文章，快速回到關注的內容。</p><span class="pv-tag">收藏</span><span class="pv-tag">個人</span><a href="index.html#/favorite" class="pv-cta btn btn-outline btn-sm">前往 →</a></div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== Sticky Header / Nav ===== -->
-<header class="header">
-  <div class="container">
-    <nav class="nav">
-      <a href="index.html#/home" class="brand"><span class="logo">✦</span><span>念十回 の 星靈宇宙</span></a>
-      <div class="nav-links" id="navLinks">
-        <a href="index.html#/home" data-nav="home">首頁</a>
-        <div class="dropdown">
-          <span class="dd-btn">星座算命 ▾</span>
-          <div class="dd-menu">
-            <a href="index.html#/zodiac">十二星座總覽</a>
-            <a href="index.html#/zodiac/daily">每日運勢</a>
-            <a href="index.html#/zodiac/match">星座配對</a>
-            <a href="index.html#/zodiac/rising">上升星座</a>
-          </div>
-        </div>
-        <div class="dropdown">
-          <span class="dd-btn">塔羅占卜 ▾</span>
-          <div class="dd-menu">
-            <a href="index.html#/tarot">78張塔羅牌意</a>
-            <a href="index.html#/tarot/three">三牌陣占卜</a>
-            <a href="index.html#/tarot/celtic">凱爾特十字</a>
-            <a href="index.html#/tarot/daily">每日一牌</a>
-          </div>
-        </div>
-        <div class="dropdown">
-          <span class="dd-btn">人類圖 ▾</span>
-          <div class="dd-menu">
-            <a href="index.html#/humandesign">人類圖總覽</a>
-            <a href="index.html#/humandesign/types">四大類型</a>
-            <a href="index.html#/humandesign/centers">能量中心</a>
-            <a href="index.html#/humandesign/calculator">人類圖計算</a>
-          </div>
-        </div>
-        <div class="dropdown">
-          <span class="dd-btn">更多 ▾</span>
-          <div class="dd-menu">
-            <a href="index.html#/blog" data-nav="blog">星學知識庫</a>
-            <a href="index.html#/traditions" data-nav="traditions">命理體系</a>
-            <a href="index.html#/tools" data-nav="tools">工具庫</a>
-            <a href="index.html#/sitemap" data-nav="sitemap">站內導覽</a>
-            <a href="index.html#/about">關於</a>
-          </div>
-        </div>
-      </div>
-      <div class="nav-right">
-        <button class="theme-toggle" id="themeToggle" title="日夜主題（固定白天）" style="display:none">🌙</button>
-        <button class="hamburger" id="hamburger" title="選單">☰</button>
-      </div>
-    </nav>
-  </div>
-</header>
-
-<!-- Breadcrumb -->
-<div class="container"><nav class="breadcrumb" id="breadcrumb" aria-label="麵包屑"></nav></div>
-
-<!-- ===== Sidebar (Mobile menu) ===== -->
-<aside class="sidebar" id="sidebar">
-  <div class="sidebar-head">
-    <span class="brand"><span class="logo">✦</span><span>念十回 の 星靈宇宙</span></span>
-    <button class="theme-toggle" id="sidebarClose" title="關閉">✕</button>
-  </div>
-  <div class="sidebar-nav" id="sidebarNav"></div>
-  <div class="sidebar-foot">念十回 の 星靈宇宙 © 2026</div>
-</aside>
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-<main>
-  <!-- ===== 首頁 HOME ===== -->
-  <section class="view" id="view-home">
-    <div class="hero">
-      <div class="container">
-        <div class="sec-eyebrow">東方命理 × 西方占卜 × 人類圖</div>
-        <h1 class="hero-title">念十回 の 星靈宇宙</h1>
-        <p>以天地人三才為軸，融通東方命理、易經卦象與西方塔羅占星，為你觀照人生脈動、指引前行方向。這裡是每個人認識自己、安頓身心的星學之境。</p>
-        <div class="hero-actions">
-          <a href="index.html#/traditions" class="btn btn-primary btn-lg">探索六大命理體系</a>
-          <a href="index.html#/tarot/three" class="btn btn-primary btn-lg">免費塔羅占卜</a>
-          <a href="index.html#/zodiac/daily" class="btn btn-primary btn-lg">今日星座運勢</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="section">
-        <div class="sec-head">
-          <div class="sec-eyebrow">六大命理體系</div>
-          <h2 class="sec-title">東方命理 × 易經占卜 × 觀形相學</h2>
-          <p class="sec-sub">念十回 の 星靈宇宙融通東西兩大命理傳統。點擊任一體系，認識其原理並連結對應專業主題。</p>
-        </div>
-        <div class="grid g-3" id="tradPreview"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== 星座 ===== -->
-  <section class="view hidden" id="view-zodiac"></section>
-  <!-- ===== 塔羅 ===== -->
-  <section class="view hidden" id="view-tarot"></section>
-  <!-- ===== 人類圖 ===== -->
-  <section class="view hidden" id="view-humandesign"></section>
-  <!-- ===== 部落格 ===== -->
-  <section class="view hidden" id="view-blog"></section>
-  <!-- ===== 工具庫 ===== -->
-  <section class="view hidden" id="view-tools"></section>
-  <!-- ===== 收藏 ===== -->
-  <section class="view hidden" id="view-favorite"></section>
-  <!-- ===== 站內導覽 ===== -->
-  <section class="view hidden" id="view-sitemap"></section>
-  <!-- ===== 命理體系 traditions ===== -->
-  <section class="view hidden" id="view-traditions"></section>
-  <!-- ===== 關於 ===== -->
-  <section class="view hidden" id="view-about"></section>
-</main>
-
-<!-- ===== 浮動站內導覽 ===== -->
-<button class="fabnav" id="fabNav" title="站內導覽"><span>🗺</span><span class="fn-label">站內導覽</span></button>
-<div class="fn-overlay" id="fnOverlay"></div>
-<div class="fn-panel" id="fnPanel">
-  <div class="fn-head"><span>✦ 站內導覽</span><button class="fn-close" id="fnClose">✕</button></div>
-  <div class="fn-body" id="fnBody"></div>
-  <div class="fn-foot">規劃設計開發：舒安境　TEL：<a href="tel:0968222201">0968-222201</a>　Line：<a href="https://line.me/ti/p/g-FTLSqJAR" target="_blank" rel="noopener">331.today</a><br>© 2026 念十回 の 星靈宇宙 · 版權所有 · 內容僅供參考娛樂</div>
-</div>
-
-
-<!-- ===== Footer ===== -->
-<footer class="footer" id="siteFooter">
-  <div class="container">
-    <div class="footer-bottom" style="justify-content:center;text-align:center">
-      <span>規劃設計開發：舒安境　·　Line：<a href="https://line.me/ti/p/g-FTLSqJAR" target="_blank" rel="noopener" style="display:inline;padding:0">331.today</a>　·　📱 <a href="tel:0968222201" style="display:inline;padding:0">0968-222201</a></span>
-    </div>
-    <div style="text-align:center;margin-top:10px;font-size:.78rem;color:var(--text3)">© 2026 念十回 の 星靈宇宙 · 版權所有 · 內容僅供參考娛樂</div>
-  </div>
-</footer>
-
-<!-- ===== FAB / Back-to-top / Context menu / Toast ===== -->
-<button class="fab" id="fab" title="快速抽牌"><span>🃏</span><span class="fab-label">每日塔羅抽牌</span></button>
-<button class="back-top" id="backTop" title="回到頂部">↑</button>
-<div class="context-menu" id="contextMenu"></div>
-<div class="toast" id="toast"></div>
-
-<script>
 /* ============ 星座資料庫 ============ */
 const ZODIAC = [
   {key:"aries",cn:"牡羊座",en:"Aries",sym:"♈",start:"3/21",end:"4/19",el:"火",mode:"開創",planet:"火星",lucky:"紅色",num:9,date:"3/21-4/19",
@@ -785,7 +171,7 @@ const BLOG = [
 /* ================= 應用程式核心 ================= */
 /* ---- 全域狀態 ---- */
 const state = {
-  route:"home",
+  route:__ROUTE__,
   theme:"light", // 固定白天模式（不自動切換）
   favs: JSON.parse(localStorage.getItem("co_favs") || "[]"),
   zSel: 0,
@@ -896,7 +282,7 @@ function renderSidebar(){
   ];
   $("#sidebarNav").innerHTML = groups.map(grp=>`
     <div class="grp">${grp.g}</div>
-    ${grp.items.map(it=>`<a href="https://10return.com/${it[0]}" class="${state.route.split('/')[1]===it[0].split('/')[1]?'active':''}" onclick="closeSidebar()">${it[2]} ${it[1]}</a>`).join("")}
+    ${grp.items.map(it=>`<a href="${pl(it[0])}" class="${state.route.split('/')[1]===it[0].split('/')[1]?'active':''}" onclick="closeSidebar()">${it[2]} ${it[1]}</a>`).join("")}
   `).join("");
 }
 
@@ -911,7 +297,7 @@ function renderFabNav(){
   ];
   $("#fnBody").innerHTML = groups.map(grp=>`
     <div class="fn-grp">${grp.g}</div>
-    ${grp.items.map(it=>`<a href="https://10return.com/${it[0]}" onclick="closeFabNav()">${it[2]} ${it[1]}</a>`).join("")}
+    ${grp.items.map(it=>`<a href="${pl(it[0])}" onclick="closeFabNav()">${it[2]} ${it[1]}</a>`).join("")}
   `).join("");
 }
 function openFabNav(){ renderFabNav(); $("#fnPanel").classList.add("show"); $("#fnOverlay").classList.add("show"); }
@@ -970,28 +356,28 @@ function renderZodiacList(v){
     <div class="callout callout-info"><b>今日星座：${todayTz.cn}</b> — ${esc(todayTz.today)}</div>
     <div class="grid g-4">
       ${ZODIAC.map((z,i)=>`
-      <div class="cd card-hover" onclick="go('#/zodiac/detail?z=${i}')" data-card>
-        <div class="cd-top cd-img"><img src="https://10return.com/assets/cards/zodiac_${z.key}.webp" alt="${z.cn}" loading="lazy"><span class="cd-sym">${z.sym}</span></div>
+      <a class="cd card-hover" href="${pl('#/zodiac/detail?z=' + i)}" data-card>
+        <div class="cd-top cd-img"><img src="${__ROOT__}assets/cards/zodiac_${z.key}.webp" alt="${z.cn}" loading="lazy"><span class="cd-sym">${z.sym}</span></div>
         <div class="cd-body">
           <h4>${z.cn} <span style="font-size:.8rem;color:var(--text3)">${z.en}</span></h4>
           <p>${z.date} · ${z.el}象 · ${z.mode}星座</p>
         </div>
         <div class="cd-foot"><button class="btn btn-outline btn-sm" onclick="event.stopPropagation();toggleFav('z:${z.key}','${z.cn}')" data-fav="z:${z.key}">${isFav('z:'+z.key)?'★':'☆'}</button></div>
-      </div>`).join("")}
+      </a>`).join("")}
     </div>
     <div style="height:40px"></div>
   </div>`;
   renderFavBtns();
 }
 function renderZodiacDetail(v){
-  const q = new URLSearchParams(location.hash.split("?")[1]);
+  const q = __q();
   const i = Math.min(Math.max(parseInt(q.get("z")||0,10)||0,0),11);
   const z = ZODIAC[i];
   v.innerHTML = `
   <div class="container">
     <div style="padding-top:18px" class="card" data-card>
       <div style="display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap">
-        <div style="width:120px;height:150px;border-radius:14px;overflow:hidden;position:relative;flex-shrink:0"><img src="https://10return.com/assets/cards/zodiac_${z.key}.webp" alt="${z.cn}" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy"><span style="position:absolute;bottom:4px;right:8px;font-size:1.6rem;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6)">${z.sym}</span></div>
+        <div style="width:120px;height:150px;border-radius:14px;overflow:hidden;position:relative;flex-shrink:0"><img src="${__ROOT__}assets/cards/zodiac_${z.key}.webp" alt="${z.cn}" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy"><span style="position:absolute;bottom:4px;right:8px;font-size:1.6rem;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6)">${z.sym}</span></div>
         <div style="flex:1;min-width:240px">
           <div class="sec-eyebrow">${z.en}</div>
           <h1 class="sec-title" style="margin:4px 0">${z.cn} 完整檔案</h1>
@@ -1034,7 +420,7 @@ function renderZodiacDetail(v){
   renderFavBtns();
 }
 function zodiacStep(d){
-  const q = new URLSearchParams(location.hash.split("?")[1]);
+  const q = __q();
   const i = Math.min(Math.max(parseInt(q.get("z")||0,10)||0,0),11);
   go(`#/zodiac/detail?z=${(i+d+12)%12}`);
 }
@@ -1192,7 +578,7 @@ function renderTarotOverview(v){
     <div id="tarotGrid" class="grid g-6"></div>
     <div style="height:40px"></div>
   </div>`;
-  const initMode = (new URLSearchParams(location.hash.split("?")[1])).get("m") || "major";
+  const initMode = (__q()).get("m") || "major";
   setTarotMode(initMode);
 }
 function setTarotMode(mode){
@@ -1200,36 +586,37 @@ function setTarotMode(mode){
   $$("#tarotTabs .tab").forEach(t=>t.classList.toggle("on", t.dataset.tab===mode));
   const grid = $("#tarotGrid"); if(!grid) return;
   if(mode==="major"){
-    grid.className="grid g-6";
+    grid.className="grid g-6 show-front";
     grid.innerHTML = TAROT_MAJOR.map(c=>{
       const ex = TAROT_EXTRA[c.n] || {ele:"",sym:"",color:"#6a3de8"};
       const img = "assets/cards/tarot_" + String(c.n).padStart(2,"0") + "_" + (TAROT_IMG[c.n]||"x") + ".webp";
       return `
       <div class="flip-wrap">
         <div class="flip-card" data-flip="t${c.n}" onclick="flipTarot(this)" title="點擊翻牌">
-          <span class="face front" style="background-image:url('https://10return.com/${img}')">
+          <span class="face front" style="background-image:url('${__ROOT__}${img}')">
             <span class="t-num">${c.num==="0"?"0":c.num}</span>
             <span class="t-name">${c.cn}</span>
             <span class="t-en">${c.en}</span>
             ${ex.ele?`<span class="t-ele">元素 ${ex.ele}</span>`:""}
-            <a class="t-link" href="index.html#/tarot/detail?c=${c.n}&m=major" onclick="event.stopPropagation()">查看詳解 →</a>
+            <a class="t-link" href="${pl('#/tarot/detail?c=' + c.n + '&m=major')}" onclick="event.stopPropagation()">查看詳解 →</a>
           </span>
           <span class="face back"></span>
         </div>
       </div>`;
     }).join("") + `<div style="grid-column:1/-1;text-align:center;color:var(--text3);font-size:.85rem">點擊牌卡翻面，查看元素、象徵意象與代表色；點「查看詳解」看正逆位完整解讀</div>`;
   }else{
-    grid.className="grid g-5";
+    grid.className="grid g-5 show-front";
     const suitKeys=["wands","cups","swords","pentacles"];
     const rankKeys=["ace","2","3","4","5","6","7","8","9","10","page","knight","queen","king"];
     const rankCn=["王牌","2","3","4","5","6","7","8","9","10","侍從","騎士","女王","國王"];
     grid.innerHTML = TAROT_MINOR_SUITS.map((s,si)=> s.cards.map((cn,ri)=>{
-        const img = "assets/cards/"+suitKeys[si]+"_"+rankKeys[ri]+".webp";
+        const glyph = ["杖","杯","劍","幣"][si];
         const cnPart = cn.split("：")[0];
         const meaning = cn.split("：")[1] || "";
         return `<div class="flip-wrap">
           <div class="flip-card" data-flip="m${si}_${ri}" onclick="flipTarot(this)" title="點擊翻牌">
-            <span class="face front" style="background-image:url('https://10return.com/${img}')">
+            <span class="face front minor" style="--sc:${["#c0563f","#3f7f9a","#4a4a5a","#8a7a2b"][si]}">
+              <span class="t-glyph">${glyph}</span>
               <span class="t-name">${s.suit} ${cnPart}</span>
               <span class="t-ele">${s.el}象 · ${meaning}</span>
             </span>
@@ -1245,7 +632,7 @@ function flipTarot(el){
   else el.classList.add("flipped");
 }
 function renderTarotDetail(v){
-  const q=new URLSearchParams(location.hash.split("?")[1]);
+  const q=__q();
   const m=q.get("m")||"major";
   let c;
   if(m==="major"){ const i=parseInt(q.get("c")||0); c=TAROT_MAJOR[i]; }
@@ -1282,7 +669,7 @@ function renderTarotDetail(v){
   </div>`;
   renderFavBtns();
 }
-function tarotStep(d){ const i=parseInt(new URLSearchParams(location.hash.split("?")[1]).get("c")||0); go(`#/tarot/detail?c=${(i+d+22)%22}&m=major`); }
+function tarotStep(d){ const i=parseInt(__q().get("c")||0); go(`#/tarot/detail?c=${(i+d+22)%22}&m=major`); }
 
 function renderTarotThree(v){
   v.innerHTML = `
@@ -1481,7 +868,7 @@ function renderHDTypes(v){
   </div>`;
 }
 function renderHDTypeDetail(v){
-  const i=parseInt(new URLSearchParams(location.hash.split("?")[1]).get("t")||0);
+  const i=parseInt(__q().get("t")||0);
   const t=HD_TYPES[i];
   v.innerHTML = `
   <div class="container">
@@ -1511,7 +898,7 @@ function renderHDTypeDetail(v){
     <div style="height:40px"></div>
   </div>`;
 }
-function hdStep(d){ const i=parseInt(new URLSearchParams(location.hash.split("?")[1]).get("t")||0); go(`#/humandesign/detail?t=${(i+d+5)%5}`); }
+function hdStep(d){ const i=parseInt(__q().get("t")||0); go(`#/humandesign/detail?t=${(i+d+5)%5}`); }
 
 function renderHDCenters(v){
   v.innerHTML = `
@@ -1812,8 +1199,8 @@ function downloadHDChart(){
 
 
 
-function go(hash){ location.hash = hash; }
-window.addEventListener("hashchange", router);
+function go(hash){ const u = routeUrl(hash); if(u) location.href = __ROOT__ + u; }
+/* 靜態站：不使用 hashchange 路由 */
 
 function router(){
   let h = location.hash.replace(/^#\/?/, ""); // 去掉 #/ 前綴
@@ -1859,12 +1246,12 @@ function renderBreadcrumb(){
   const seg = state.route.split("/")[0].split("?")[0];
   const names = {home:["首頁","#/home"],zodiac:["星座算命","#/zodiac"],tarot:["塔羅占卜","#/tarot"],humandesign:["人類圖","#/humandesign"],blog:["星學知識庫","#/blog"],favorite:["我的收藏","#/favorite"],about:["關於本站","#/about"],tools:["工具庫","#/tools"],sitemap:["站內導覽","#/sitemap"],traditions:["命理體系","#/traditions"]};
   let html = `<a href="index.html#/home">首頁</a>`;
-  if(seg!=="home") html += `<span class="sep">/</span><a href="https://10return.com/${names[seg][1]}">${names[seg][0]}</a>`;
+  if(seg!=="home") html += `<span class="sep">/</span><a href="${pl(names[seg][1])}">${names[seg][0]}</a>`;
   // 子路徑
   const sub = (state.route.split("/")[1]||"").split("?")[0];
   const subNames = {daily:"每日運勢",match:"星座配對",rising:"上升星座",three:"三牌陣",celtic:"凱爾特十字",types:"四大類型",centers:"能量中心",calculator:"人類圖計算"};
   if(sub && subNames[sub]) html += `<span class="sep">/</span><span class="cur">${subNames[sub]}</span>`;
-  $("#breadcrumb").innerHTML = html;
+  const _bc = $("#breadcrumb"); if(_bc) _bc.innerHTML = html;
 }
 /* 首頁快取：六大體系只渲染一次，星象+文章每日更新 */
 let _tradBuilt = false;
@@ -1874,7 +1261,7 @@ function renderHomeExtra(){
     const tp = $("#tradPreview");
     if(tp){ tp.innerHTML = TRADITIONS.map(t=>`
       <div class="card card-hover card-trad trad-yellow" onclick="go('#/traditions/${t.id}')" style="cursor:pointer">
-        <div class="trad-img"><img src="https://10return.com/${t.img}" alt="${t.cat}" loading="lazy"></div>
+        <div class="trad-img"><img src="${t.img}" alt="${t.cat}" loading="lazy"></div>
         <div class="trad-body">
           <div class="trad-tags"><span class="badge badge-info">${t.cat}</span><span class="badge badge-a">${t.tagline}</span></div>
           <h3>${t.key}. ${t.name}</h3>
@@ -1893,7 +1280,7 @@ function renderHomeExtra(){
   const blogImgs = ["blog_tarot_blue","blog_ascendant_blue","blog_humandesign_blue"];
   const posts = BLOG.slice(0,3).map((b,i)=>`
     <div class="card card-hover card-post" onclick="go('#/blog')" style="cursor:pointer">
-      <div class="post-thumb"><img src="https://10return.com/assets/home/${blogImgs[i]}.webp" alt="${b.cat}" loading="lazy"></div>
+      <div class="post-thumb"><img src="assets/home/${blogImgs[i]}.webp" alt="${b.cat}" loading="lazy"></div>
       <div class="post-info"><span class="badge badge-b">${b.cat}</span><h3>${b.t}</h3><time>${b.date}</time></div>
       <span class="btn btn-outline btn-sm">閱讀 →</span>
     </div>`).join("");
@@ -1959,7 +1346,7 @@ function renderBlog(){
         <div><span class="badge badge-b">${b.cat}</span><span style="font-size:.8rem;color:var(--text3);margin-left:8px">${b.date}</span></div>
         <h3 style="margin:10px 0 6px">${b.t}</h3>
         <p class="prose" style="flex:1;font-size:.88rem">${esc(b.ex)}</p>
-        <button class="btn btn-outline btn-sm" style="margin-top:12px" onclick="openArticle(${i})">閱讀全文</button>
+        <a class="btn btn-outline btn-sm" style="margin-top:12px" href="${__ROOT__}blog/post-${i+1}/index.html">閱讀全文</a>
       </div>`).join("") : `<div class="card" style="grid-column:1/-1;text-align:center;color:var(--text3)">沒有符合「${esc(state.searchQ)}」的文章</div>`}
     </div>
     <div style="height:40px"></div>
@@ -1967,7 +1354,8 @@ function renderBlog(){
 }
 function doBlogSearch(){ state.searchQ=$("#blogSearch").value.trim(); renderBlog(); }
 function blogFilter(c){ state.searchQ = c==="全部"?"":c; renderBlog(); }
-function openArticle(i){
+function openArticle(i){ location.href = __ROOT__ + articleUrl(i); }
+function renderArticlePage(i){
   const b=BLOG[i];
   const v=$("#view-blog");
   v.innerHTML = `
@@ -2076,7 +1464,7 @@ function filterTools(cat){
         <p style="margin-top:6px">${t.desc}</p>
       </div>
       <div class="cd-foot" style="display:flex;align-items:center;justify-content:space-between">
-        <span style="color:var(--brand);font-weight:600">開啟工具 →</span>
+        <a href="${pl('#/tools/' + t.id)}" style="color:var(--brand);font-weight:600">開啟工具 →</a>
         <span class="popover pv-top-right" onclick="event.stopPropagation()">
           <button class="pv-btn" style="padding:3px 9px;font-size:.72rem">ⓘ 說明</button>
           <span class="pv-panel">
@@ -2240,7 +1628,7 @@ function clearFavs(){ state.favs=[]; localStorage.setItem("co_favs","[]"); toast
 
 /* ================= 命理體系 TRADITIONS ================= */
 const TRADITIONS = [
-  {id:"birth",key:"一",ic:"☯",img:"assets/traditions/trad_birth.webp",cat:"排盤論命",name:"以「出生時間」為核心",tagline:"八字・紫微・子平",
+  {id:"birth",key:"一",ic:"☯",img:"assets/home/trad_birth_blue.webp",cat:"排盤論命",name:"以「出生時間」為核心",tagline:"八字・紫微・子平",
    desc:"以出生的年月日時為根基，排出命盤，論五行生剋與格局，是華人命理最主流的一脈。",
    items:[
      {n:"八字（四柱命理）",d:"以出生年月日時排出年、月、日、時四柱干支，論五行生剋、十神、大運流年。目前最主流。",link:"#/traditions/birth"},
@@ -2248,7 +1636,7 @@ const TRADITIONS = [
      {n:"子平命理",d:"屬八字體系，強調日主強弱與用神。",link:"#/traditions/birth"}
    ], link:"#/zodiac",
    art:{t:"為什麼八字被稱為「東方命理之首」？",body:"八字，又稱四柱命理，是華人世界流傳最廣、使用最普遍的一門排盤論命之學。它以一個人的出生年月日時為起點，分別換算成年、月、日、時四柱，每柱由「天干＋地支」兩個字組成，共八個字，故稱八字。這八個字背後隱藏的五行生剋、十神關係與大運流年，被視為一個人先天稟賦與後天運勢的縮影。\n\n八字的核心在於「五行平衡」。四柱中的天干地支各有所屬五行（金木水火土），透過比對五行的強弱多寡，命理師能判斷一個人命局中何者為「喜神」、何者為「忌神」。例如命局火旺而水弱之人，性格多半熱情主動，但也容易急躁；若能調候得宜、五行流通，則往往事業順遂、身心安康。這套系統再配上「十神」（正官、七殺、正印、偏印、正財、偏財、食神、傷官、比肩、劫財），用來描繪一個人與父母、兄弟、伴侶、子女及事業的關係樣貌。\n\n紫微斗數則走不同的路。它以農曆出生資訊排出十二宮位，論星曜組合與宮位互動，著重「命盤格局」的整體氣象。子平命理雖屬八字體系，卻特別強調日主強弱與用神取捨，是八字學中最精細的分支。\n\n無論選擇何者，都要理解命理絕非宿命。它更像一面鏡子，讓我們看見自己的天賦與盲點，進而在大運流年中把握機緣、順勢而為。把命理當作認識自己的一種工具，而非人生的枷鎖，才能真正受益。"}},
-  {id:"yijing",key:"二",ic:"☰",img:"assets/traditions/trad_yijing.webp",cat:"易經占卜",name:"以「易經卦象」為核心",tagline:"六爻・梅花・奇門",
+  {id:"yijing",key:"二",ic:"☰",img:"assets/home/trad_yijing_blue.webp",cat:"易經占卜",name:"以「易經卦象」為核心",tagline:"六爻・梅花・奇門",
    desc:"以易經卦象起卦斷事，是問事決策與趨吉避凶的古老智慧。",
    items:[
      {n:"易經六爻",d:"用金錢卦或蓍草起卦，以卦爻辭斷吉凶。",link:"#/traditions/yijing"},
@@ -2256,7 +1644,7 @@ const TRADITIONS = [
      {n:"奇門遁甲",d:"三式之一，重方位、時空擇吉，也用於決策。",link:"#/traditions/yijing"}
    ], link:"#/traditions/yijing",
    art:{t:"易經占卜：從六爻、梅花到奇門的決策智慧",body:"易經是中華文化最古老的典籍之一，被尊為「群經之首」。它不只是一本占卜書，更是一部講述變化規律的哲學經典。易經占卜以「卦象」為核心，透過一定的起卦方法，將當下所問之事轉化為卦象，再以卦辭、爻辭與變卦來解讀吉凶休咎。\n\n最傳統的起卦法是「蓍草起卦」，過程繁複莊重，講究心誠則靈；後人為求方便，多以「金錢卦」取代——擲三枚銅錢六次，由正反面得爻，由下而上排出本卦，再依動爻推出變卦。這種以卦爻辭斷吉凶的方法，就是「易經六爻」。它的精妙在於「動爻」，象徵事情正在變化的關鍵，解卦時尤須留意。\n\n「梅花易數」則由宋代邵雍所創，強調「外應」與「靈活」。它以當下的時間、數字，甚至眼前偶然發生的事物（外應）起卦，不需銅錢蓍草，隨手拈來即可成卦，講求心念專注與觸機。\n\n「奇門遁甲」被譽為「三式之絕學」，與太乙神數、大六壬並列。它融合陰陽五行、九宮八卦與時空方位，主要用於選擇有利的時間與方位，古時多用於軍事決策，今日則常見於開市、出行、擇日的應用。\n\n占卜的意義不在於迷信結果，而在於藉由卦象提供的「鏡像」，讓人跳脫既有的思考框架，從不同角度審視處境。當我們把易經當作一面照見當下的鏡子，它便成為最貼近生活的決策夥伴。"}},
-  {id:"face",key:"三",ic:"👤",img:"assets/traditions/trad_face.webp",cat:"觀形相學",name:"以「手面相」為核心",tagline:"面相・手相・體相",
+  {id:"face",key:"三",ic:"👤",img:"assets/home/trad_face_blue.webp",cat:"觀形相學",name:"以「手面相」為核心",tagline:"面相・手相・體相",
    desc:"透過五官、掌紋與身形觀察性格與運勢，屬觀形之術。",
    items:[
      {n:"面相",d:"看五官、氣色、骨相論富貴壽夭。",link:"#/traditions/face"},
@@ -2264,21 +1652,21 @@ const TRADITIONS = [
      {n:"體相",d:"看身形、痣相、走姿等。",link:"#/traditions/face"}
    ], link:"#/traditions/face",
    art:{t:"面相、手相與體相：觀形知人的人生讀法",body:"中國相學主張「相由心生」，認為一個人的性格、際遇與健康，會透過容貌、掌紋與身形顯露出來。觀形之術主要分為面相、手相與體相三大支脈，彼此互補，共同構成一套觀察人的學問。\n\n面相以「五官」為觀察重點。眉主兄弟與思慮，眼主心性與才智，鼻主財帛與自我，口主言辭與食祿，耳主聽聞與福壽。除了五官，相師還會看「氣色」——臉色紅潤有光者常精神飽滿、運勢順遂；暗沉無光則多顯疲憊或運滯。再配合「骨相」與「痣相」，判斷一個人的富貴壽夭。\n\n手相則以「掌紋」為核心，其中最常被討論的是三大主線：生命線看體力與健康根基，事業線看職涯發展與社會成就，感情線看情感模式與人際互動。除了紋路，掌型（金、木、水、火、土五型）與手丘的豐滿程度，也透露一個人的性格傾向與天賦領域。\n\n體相則將目光放大到整個身體，看身形的高矮胖瘦、走路的姿態、說話的聲音與神情。例如步伐沉穩者多心思周密，目光游移者易多疑善變。\n\n相學的智慧在於提醒我們「知己」的重要性。先天之相固然可觀，但後天的修養、心性與作為，更能改變一個人的氣質與命運。與其執著於命定之相，不如把相學當作認識自己與他人的一扇窗。"}},
-  {id:"symbol",key:"四",ic:"✍",img:"assets/traditions/trad_symbol.webp",cat:"文字符號",name:"以「文字符號」為核心",tagline:"姓名學・測字",
+  {id:"symbol",key:"四",ic:"✍",img:"assets/home/trad_symbol_blue.webp",cat:"文字符號",name:"以「文字符號」為核心",tagline:"姓名學・測字",
    desc:"由文字與姓名的筆畫、五行拆解命理，東方獨特的象意之學。",
    items:[
      {n:"姓名學",d:"依筆畫五行論姓名吉凶。",link:"#/tools/namefortune"},
      {n:"測字",d:"就所寫之字拆解斷事。",link:"#/tools/namefortune"}
    ], link:"#/tools/namefortune",
    art:{t:"姓名學與測字：藏在文字裡的玄機",body:"漢字是世界上少數兼具形、音、義的文字系統，也因此衍生出以文字符號論命的神祕學問，其中最典型的就是姓名學與測字。\n\n姓名學認為，一個人的名字承載著父母的期許與家族的氣脈，對一生的運勢有潛移默化的影響。最常見的方法是「筆畫數理」：將姓名各字的筆畫依特定規則換算成數字，再對應到「三才五格」（天格、人格、地格、外格、總格）與五行，判斷名字在性格、事業、健康、社交等層面的吉凶。例如人格數理為吉者，多半能自立自強、貴人相助；地格與總格合宜，則家庭與晚年較安穩。此外，字的五行（金木水火土）若與命主八字相合，更能起補益之效。\n\n測字則是更靈活的占斷之術。就所寫之字拆解字形、字義與筆畫，結合當下情境來斷事。例如問「考試能否上榜」，若所寫之字含「人」「力」「才」等吉字，或字形端正有力，多被視為吉兆；若字缺角、結構失衡，則提醒需要補強準備。測字極重「觸機」，同樣一個字，在不同的時間、提問與提字者心境下，解讀可能大不相同。\n\n姓名與文字雖能反映一部分訊息，但它們更多是提醒與參照，而非鐵口直斷。一個好名字是加分項，真正決定命運的，仍是人的努力、選擇與心性。把姓名學與測字當作認識自我、趨吉避凶的輔助工具，才是最健康的心態。"}},
-  {id:"fengshui",key:"五",ic:"🏔",img:"assets/traditions/trad_fengshui.webp",cat:"風水堪輿",name:"風水堪輿（環境）",tagline:"陽宅・陰宅・玄空",
+  {id:"fengshui",key:"五",ic:"🏔",img:"assets/home/trad_fengshui_blue.webp",cat:"風水堪輿",name:"風水堪輿（環境）",tagline:"陽宅・陰宅・玄空",
    desc:"觀居住與祖先環境以調和氣場，分巒頭與理氣兩大脈。",
    items:[
      {n:"陽宅 / 陰宅風水",d:"看居住或祖先墳地環境，分巒頭與理氣。",link:"#/traditions/fengshui"},
      {n:"玄空飛星、八宅",d:"風水的主要流派。",link:"#/traditions/fengshui"}
    ], link:"#/traditions/fengshui",
    art:{t:"風水堪輿：調和環境與氣場的生活智慧",body:"風水，又稱堪輿，是中國人選擇與調和居住環境的古老學問，核心在於「藏風聚氣」。古人相信，人與環境會互相影響，居住環境的好壞，關係著一家人的健康、事業與和睦，因此衍生出一套完整的觀察與佈局之道。\n\n風水分為「陽宅」與「陰宅」兩大類。陽宅指活人居住與活動的場所，如住宅、辦公室、店鋪；陰宅則指祖先的墳地。兩者都講究「巒頭」與「理氣」：巒頭是看山形水勢、週遭環境的形貌，講究山環水抱、明堂開闊；理氣則以羅盤測量方位、理氣運轉，判斷坐向與時間的吉凶組合。\n\n在流派上，最常見的是「八宅」與「玄空飛星」。八宅以宅主的命卦將住宅分為東四宅、西四宅，再配八個方位定吉凶，方法較簡單易懂；玄空飛星則以九宮飛星依時間推移，判斷各方位當年的旺氣與煞氣，更為精密，常用於現代住宅的佈局調整。\n\n現代人看待風水，不必拘泥於迷信。很多風水原則其實與科學通風、採光、動線流暢相通：例如開門見灶被視為不吉，實則反映「進門即見爐火易生意外」的生活常理；廁所不宜居中，則是衛生與氣味的考量。與其盲目追求名師指點，不如把風水視為「環境設計的智慧」，讓家成為讓人放鬆、安定與充滿正向能量的地方。"}},
-  {id:"folk",key:"六",ic:"🕯",img:"assets/traditions/trad_folk.webp",cat:"民俗信仰",name:"其他民俗類",tagline:"塔羅・占星・求籤",
+  {id:"folk",key:"六",ic:"🕯",img:"assets/home/trad_folk_blue.webp",cat:"民俗信仰",name:"其他民俗類",tagline:"塔羅・占星・求籤",
    desc:"西方體系與民間信仰儀式，近年華人圈亦常見。",
    items:[
      {n:"塔羅牌、占星、水晶靈數",d:"西方體系，近年在華人圈常見。",link:"#/tarot"},
@@ -2299,7 +1687,7 @@ function renderTraditions(sub){
     ${TRADITIONS.map((t,i)=>`
     <div class="card trad-yellow" style="margin-bottom:16px" data-card>
       <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
-        <div class="trad-thumb"><img src="https://10return.com/${t.img}" alt="${t.cat}" loading="lazy"></div>
+        <div class="trad-thumb"><img src="${__ROOT__}${t.img}" alt="${t.cat}" loading="lazy"></div>
         <div style="flex:1;min-width:220px">
           <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
             <span class="badge badge-b">${t.key}. ${t.name}</span><span class="badge badge-info">${t.cat}</span><span class="badge badge-a">${t.tagline}</span>
@@ -2316,7 +1704,7 @@ function renderTraditions(sub){
           <div class="acc-body" style="max-height:400px"><div class="acc-body-in">
             ${t.items.map(it=>`<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed var(--border)">
               <div><b>${it.n}</b><div style="font-size:.85rem;color:var(--text3)">${it.d}</div></div>
-              <a href="https://10return.com/${it.link}" class="btn btn-outline btn-sm" style="white-space:nowrap">前往</a>
+              <a href="${pl(it.link)}" class="btn btn-outline btn-sm" style="white-space:nowrap">前往</a>
             </div>`).join("")}
           </div></div>
         </div>
@@ -2348,7 +1736,7 @@ function renderTraditionDetail(v,t){
     </article>`:""}
     <div class="grid g-3">
       ${t.items.map((it,i)=>`
-      <a href="https://10return.com/${it.link}" class="cd card-hover" style="text-decoration:none;padding:0" data-card>
+      <a href="${pl(it.link)}" class="cd card-hover" style="text-decoration:none;padding:0" data-card>
         <div class="cd-top" style="font-size:1.3rem">${it.n[0]}</div>
         <div class="cd-body"><h4>${it.n}</h4><p>${it.d}</p></div>
         <div class="cd-foot" style="color:var(--brand);font-weight:600">前往 →</div>
@@ -2387,7 +1775,7 @@ function renderSitemap(){
       <h3 style="margin-bottom:12px">${grp.g} <span class="badge badge-b" style="margin-left:8px">${grp.items.length}</span></h3>
       <div class="related" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr))">
         ${grp.items.map(it=>`
-        <a href="https://10return.com/${it[0]}" class="cd card-hover" style="padding:0;text-decoration:none" data-card>
+        <a href="${pl(it[0])}" class="cd card-hover" style="padding:0;text-decoration:none" data-card>
           <div class="cd-body" style="padding:14px 16px">
             <h4 style="color:var(--text)">${it[1]}</h4>
             <p style="font-size:.8rem;color:var(--text3);margin-top:4px">${esc(it[2])}</p>
@@ -2484,11 +1872,9 @@ function init(){
   renderSidebar();
   renderNavActive();
   renderBreadcrumb();
-  if(!location.hash) location.hash="#/home";
-  router();
   easeIn();
+  lazyLoadAll();
+  renderFavBtns();
+  if(typeof window.__PAGE_HOOK__ === "function") window.__PAGE_HOOK__();
 }
 window.addEventListener("DOMContentLoaded", init);
-</script>
-
-</body>

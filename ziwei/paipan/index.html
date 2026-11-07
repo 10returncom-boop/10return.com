@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>紫微斗數線上排盤｜免費命盤、十二宮、主星與四化</title>
+<meta name="description" content="免費紫微斗數線上排盤：輸入國曆生日、出生時間與性別，自動換算農曆、安十二宮與十四主星、標示生年四化，並顯示五行局、命主身主、大限與流年命宮。">
+<meta name="keywords" content="紫微斗數排盤,線上排盤,免費命盤,紫微斗數命盤,十二宮,十四主星,四化,大限流年">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://ziwei-encyclopedia.tw/paipan/index.html">
+<meta property="og:title" content="紫微斗數線上排盤｜免費命盤、十二宮、主星與四化">
+<meta property="og:description" content="免費紫微斗數線上排盤：輸入國曆生日、出生時間與性別，自動換算農曆、安十二宮與十四主星、標示生年四化，並顯示五行局、命主身主、大限與流年命宮。">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:site_name" content="紫微斗數百科">
+<meta property="og:url" content="https://ziwei-encyclopedia.tw/排盤/index.html">
+<meta property="og:image" content="https://ziwei-encyclopedia.tw/assets/img/og-default.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#16264f">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316264f'/%3E%3Ccircle cx='32' cy='32' r='19' fill='none' stroke='%23f07a2e' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='5' fill='%23fff'/%3E%3Cpath d='M32 9v7M32 48v7M9 32h7M48 32h7' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/chart.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "紫微斗數線上排盤",
+ "url": "https://ziwei-encyclopedia.tw/排盤/index.html",
+ "applicationCategory": "LifestyleApplication",
+ "operatingSystem": "Web",
+ "inLanguage": "zh-Hant",
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "TWD"
+ },
+ "description": "輸入國曆生日與時辰，自動換算農曆、排十二宮、安十四主星與四化，並顯示大限與流年。"
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "首頁",
+   "item": "https://ziwei-encyclopedia.tw/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "線上排盤",
+   "item": "https://ziwei-encyclopedia.tw/排盤/index.html"
+  }
+ ]
+}
+</script>
+</head>
+<body data-nav="首頁"><!-- 10return.com 共享導航（自動注入） -->
+<section class="page-head">
+  <div class="container">
+    <div class="crumb"><a href="../index.html">首頁</a><span>›</span>線上排盤</div>
+    <h1>紫微斗數線上排盤</h1>
+    <p>輸入國曆生日、出生時間與性別，系統自動換算農曆、排十二宮、安十四主星與生年四化，並列出五行局、命主身主、大限與流年命宮。所有運算都在你的瀏覽器本機完成，不上傳任何資料。</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:40px">
+  <div class="container">
+    <form id="chartForm" class="chart-form" autocomplete="off">
+      <div class="form-row">
+        <label>出生日期（國曆）
+          <input type="date" id="birthDate" required min="1900-01-31" max="2100-12-31">
+        </label>
+        <label>出生時間（當地鐘錶時間）
+          <select id="birthHour"></select>
+        </label>
+        <label>性別
+          <select id="gender">
+            <option value="M">男</option>
+            <option value="F">女</option>
+          </select>
+        </label>
+      </div>
+      <div class="form-row">
+        <label>閏月處理
+          <select id="leapRule">
+            <option value="thisMonth">閏月視同本月（預設）</option>
+            <option value="after15">閏月十五日前算本月、之後算下月</option>
+            <option value="nextMonth">閏月一律算下月</option>
+          </select>
+        </label>
+        <label>出生地經度（真太陽時校正，可留空）
+          <input type="number" id="longitude" step="0.1" min="70" max="150" placeholder="例：高雄 120.3、花蓮 121.6">
+        </label>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-main">開始排盤</button>
+        <button type="button" class="btn btn-sky" id="printBtn">列印／存成 PDF</button>
+        <span class="form-note">不確定時辰？先看 <a href="../paipan-shiwu/shichen.html">時辰與真太陽時</a>。</span>
+      </div>
+    </form>
+
+    <div id="chartError" class="chart-error" hidden></div>
+
+    <div id="chartResult" class="chart-result" hidden>
+      <div id="chartMeta" class="chart-meta"></div>
+      <div class="chart-wrap">
+        <div>
+          <div class="chart-scroll"><div class="ziwei-chart" id="chartGrid"></div></div>
+          <div class="chart-legend">
+            <span><i class="dot" style="background:#ffe2c4"></i>主星</span>
+            <span><i class="dot" style="background:#c3d2ec"></i>輔星與雜曜</span>
+            <span><i class="dot" style="background:#f07a2e"></i>命宮</span>
+            <span><i class="dot" style="background:#f5973f"></i>流年命宮</span>
+            <span>祿／權／科／忌 為生年四化</span>
+          </div>
+
+          <div class="limit-block">
+            <div class="limit-head">
+              <h2>大限與流年</h2>
+              <div class="year-pick">看流年：<select id="yearSelect"></select></div>
+            </div>
+            <div id="liunianBox" class="liunian-box"></div>
+            <div class="limit-table-wrap"><table class="limit-table" id="limitTable"></table></div>
+          </div>
+        </div>
+        <aside class="chart-readout" id="chartReadout"></aside>
+      </div>
+
+      <div class="chart-note">
+        ※ 本排盤採傳統子平農曆（以農曆年為年干支基準）、紫微星系逆行與天府星系順行、庚干四化採「太陽、武曲、太陰、天同」。不同流派在閏月、晚子時與庚干四化上可能有差異，建議與 <a href="../paipan-shiwu/anxing.html">安星十二步</a> 對照，並以 <a href="../paipan-shiwu/anxing.html#定盤">定盤</a> 驗證。
+      </div>
+    </div>
+
+    <div id="chartEmpty" class="chart-empty">
+      <b>排盤結果會顯示在這裡</b>
+      十二宮以 4×4 方格呈現，中央為基本資料；右側列出命宮、三方四正、生年四化與五大宮位解讀，下方為大限表與流年。
+    </div>
+
+    <div class="article" style="margin-top:44px">
+      <h2 id="read">怎麼讀這張盤</h2>
+      <p>排盤只是把規則算出來，讀盤才是重點。建議依這個順序看：</p>
+      <ol>
+        <li><strong>先看命宮與身宮</strong>：命宮是「你是誰」，身宮是「你後天會往哪裡走」。身宮落在財帛、事業、遷移的人，後半生的重心通常往那個方向偏。</li>
+        <li><strong>再看三方四正</strong>：命宮、遷移宮、財帛宮、事業宮的星曜組合，決定這張盤的「主結構」與「舞台大小」。</li>
+        <li><strong>接著看生年四化</strong>：化祿落在哪一宮，是資源；化忌落在哪一宮，是課題。四化是整張盤的「重點標記」。</li>
+        <li><strong>然後看五大宮位</strong>：財帛（賺錢方式）、事業（職業性向）、夫妻（關係模式）、疾厄（體質壓力）、福德（情緒來源）。</li>
+        <li><strong>最後疊大限與流年</strong>：本命看「有沒有」，大限看「這十年」，流年看「今年」。</li>
+      </ol>
+
+      <h2 id="terms">名詞對照</h2>
+      <div class="cmp-wrap">
+        <table class="cmp-table">
+          <caption>排盤結果中的名詞</caption>
+          <thead><tr><th>名詞</th><th>說明</th></tr></thead>
+          <tbody>
+            <tr><td><b class="cnum">1</b>五行局</td><td>由命宮干支的納音決定，分水二、木三、金四、土五、火六局。局數同時是起運歲數，也是安紫微星的除數。</td></tr>
+            <tr><td><b class="cnum">2</b>命主／身主</td><td>命主依命宮地支、身主依生年地支而定，用來輔助判斷個性與後天傾向，不影響主星結構。</td></tr>
+            <tr><td><b class="cnum">3</b>三方四正</td><td>本宮、對宮，以及與本宮成三合的兩個宮位。命宮的三方四正即命、遷、財、官。</td></tr>
+            <tr><td><b class="cnum">4</b>生年四化</td><td>依出生年干而定的化祿、化權、化科、化忌，標在對應的星曜上。</td></tr>
+            <tr><td><b class="cnum">5</b>大限</td><td>十年一期的運勢單位，起運歲由五行局決定，陽男陰女順行、陰男陽女逆行。</td></tr>
+            <tr><td><b class="cnum">6</b>流年命宮</td><td>該年地支所在的宮位。例：2026 丙午年，流年命宮在午宮。</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="notice info">
+        <strong>提醒</strong>：排盤結果為命理文化之推演，呈現的是「傾向」而非「必然」。任何醫療、投資、法律與婚姻的重大決定，請回到現實條件與專業意見。
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="../js/solarlunar.min.js"></script>
+<script src="../js/ziwei.js"></script>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-about">
+      <h4>紫微斗數百科</h4>
+      <p>以繁體中文完整整理紫微斗數的知識體系：從命盤結構、十四主星、輔煞星與四化，到格局、運限與專題應用，並提供可直接操作的線上排盤工具。內容為傳統命理文化之整理與教學，供研究與自我覺察參考。</p>
+    </div>
+    <div><h4>開始認識</h4><a href="../intro/index.html">紫微斗數概論</a><a href="../mingpan/index.html">命盤結構</a><a href="../zhuxing/index.html">十四主星</a><a href="../gongwei/index.html">十二宮各論</a><a href="../fuxing/index.html">輔星與煞星</a></div><div><h4>盤面與動態</h4><a href="../mingpan/sanfang-sizheng.html">三方四正</a><a href="../sihua/index.html">四化飛星</a><a href="../geju/index.html">格局判讀</a><a href="../yunxian/index.html">運限流年</a><a href="../mingli/index.html">命例解析</a></div><div><h4>實作與應用</h4><a href="../paipan/index.html">線上排盤</a><a href="../paipan-shiwu/anxing.html">安星步驟</a><a href="../paipan-shiwu/shichen.html">時辰校正</a><a href="../zhuanti/index.html">專題應用</a><a href="../sucha/index.html">星曜速查</a><a href="../wenda/index.html">常見問題</a></div>
+  </div>
+  <div class="footer-bottom">
+    <span>紫微斗數百科 · 繁體中文知識庫</span>
+    <span>星曜是演員，宮位是舞台，四化是劇情。</span>
+  </div>
+<div class="footer-legal" style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;font-size:13px;padding:14px 20px 18px;border-top:1px solid rgba(255,255,255,.08)"><a href="../../about/index.html" style="opacity:.85">關於我們</a><a href="../../sitemap/index.html" style="opacity:.85">站內導覽</a><a href="../../privacy/index.html" style="opacity:.85">隱私政策</a><a href="../../disclaimer/index.html" style="opacity:.85">免責聲明</a><a href="../../contact/index.html" style="opacity:.85">聯絡我們</a></div>
+</footer><!-- fab-nav -->
+<style>
+.fab-nav{position:fixed;left:16px;bottom:16px;z-index:9990;font-family:inherit}
+.fab-nav .fab-menu{display:flex;flex-direction:column;gap:8px;margin-bottom:10px;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .22s,transform .22s,visibility .22s}
+.fab-nav.open .fab-menu{opacity:1;visibility:visible;transform:none}
+.fab-nav .fab-item{display:inline-flex;align-items:center;gap:9px;padding:9px 15px;border-radius:999px;background:rgba(26,16,48,.94);color:#f0e2c2;border:1px solid rgba(212,175,110,.5);box-shadow:0 6px 18px rgba(0,0,0,.32);font-size:13px;line-height:1;letter-spacing:.06em;text-decoration:none;cursor:pointer;white-space:nowrap;transition:border-color .2s,color .2s}
+.fab-nav .fab-item:hover{border-color:#d4af6e;color:#fff}
+.fab-nav .fab-item svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.fab-nav .fab-toggle{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#241644,#3c2a70);color:#e9d3a0;border:1px solid rgba(212,175,110,.62);box-shadow:0 8px 22px rgba(0,0,0,.38);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;transition:transform .2s}
+.fab-nav .fab-toggle:hover{transform:translateY(-2px)}
+.fab-nav .fab-toggle svg{width:22px;height:22px;stroke:#e9d3a0;fill:none;stroke-width:1.9;stroke-linecap:round}
+.fab-nav.open .fab-toggle{background:linear-gradient(135deg,#3c2a70,#241644)}
+@media (max-width:640px){.fab-nav{left:12px;bottom:12px}.fab-nav .fab-item{padding:11px 15px;font-size:13.5px}.fab-nav .fab-toggle{width:50px;height:50px}}
+</style>
+
+<div id="fabNav" class="fab-nav" role="navigation" aria-label="網站導覽">
+  <div class="fab-menu">
+    <a class="fab-item" href="../../index.html"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/></svg>回首頁</a>
+    <button class="fab-item" type="button" data-fab-back><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>上一頁</button>
+    <a class="fab-item" href="../../sitemap.xml"><svg viewBox="0 0 24 24"><path d="M12 3v6"/><path d="M12 9l-6 4H3v8h6v-8"/><path d="M12 9l6 4h3v8h-6v-8"/></svg>網站地圖</a>
+    <a class="fab-item" href="https://line.me/ti/p/g-FTLSqJAR" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21l4-4"/></svg>LINE 諮詢</a>
+  </div>
+  <button class="fab-toggle" type="button" aria-label="開啟網站導覽" aria-expanded="false" aria-controls="fabNav">
+    <svg viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+  </button>
+</div>
+<script>
+(function(){
+  var n=document.getElementById('fabNav'); if(!n) return;
+  var t=n.querySelector('.fab-toggle');
+  function toggle(){ var o=n.classList.toggle('open'); t.setAttribute('aria-expanded', o?'true':'false'); }
+  t.addEventListener('click', function(e){ e.stopPropagation(); toggle(); });
+  document.addEventListener('click', function(e){ if(!n.contains(e.target)) n.classList.remove('open'); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') n.classList.remove('open'); });
+  var b=n.querySelector('[data-fab-back]');
+  if(b) b.addEventListener('click', function(){ history.back(); });
+})();
+</script>

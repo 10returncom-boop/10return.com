@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>奇門遁甲線上排盤｜九宮、八門、九星、八神一次排出來</title>
+<meta name="description" content="免費奇門遁甲線上排盤：輸入國曆日期與時辰，系統依節氣三元定局，排出陰陽遁局數、地盤三奇六儀、天盤九星、八門、八神、值符值使、旬空與驛馬，並提供用神定位。">
+<meta name="keywords" content="奇門遁甲排盤,線上排盤,免費奇門,九宮,八門,九星,八神,三奇六儀,陰陽遁,值符值使">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://qimen-encyclopedia.tw/paipan/index.html">
+<meta property="og:title" content="奇門遁甲線上排盤｜九宮、八門、九星、八神一次排出來">
+<meta property="og:description" content="免費奇門遁甲線上排盤：輸入國曆日期與時辰，系統依節氣三元定局，排出陰陽遁局數、地盤三奇六儀、天盤九星、八門、八神、值符值使、旬空與驛馬，並提供用神定位。">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:site_name" content="奇門遁甲百科">
+<meta property="og:url" content="https://qimen-encyclopedia.tw/排盤/index.html">
+<meta property="og:image" content="https://qimen-encyclopedia.tw/assets/img/og-default.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#16264f">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316264f'/%3E%3Ccircle cx='32' cy='32' r='19' fill='none' stroke='%23f07a2e' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='5' fill='%23fff'/%3E%3Cpath d='M32 9v7M32 48v7M9 32h7M48 32h7' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/chart.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "奇門遁甲線上排盤",
+ "url": "https://qimen-encyclopedia.tw/排盤/index.html",
+ "applicationCategory": "LifestyleApplication",
+ "operatingSystem": "Web",
+ "inLanguage": "zh-Hant",
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "TWD"
+ },
+ "description": "輸入日期與時辰，依時家奇門拆補法排出九宮盤：地盤三奇六儀、天盤九星、八門、八神、值符值使、旬空與驛馬。"
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "首頁",
+   "item": "https://qimen-encyclopedia.tw/index.html"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "線上排奇門盤",
+   "item": "https://qimen-encyclopedia.tw/排盤/index.html"
+  }
+ ]
+}
+</script>
+</head>
+<body data-nav="首頁"><!-- 10return.com 共享導航（自動注入） -->
+<section class="page-head"><div class="container">
+<div class="crumb"><a href="../index.html">首頁</a> <span>›</span> 線上排奇門盤</div>
+<h1>線上排奇門遁甲盤</h1>
+<p>輸入國曆日期與時辰，系統依時家奇門「拆補法」定局，排出地盤三奇六儀、天盤九星、八門、八神，並標出值符、值使、旬空與驛馬。所有運算都在本機完成，不需要連線。</p>
+</div></section>
+
+<section class="section"><div class="container">
+<div class="qm-wrap">
+
+  <div class="qm-form">
+    <h2>起一個時盤</h2>
+    <p class="hint">時間以台灣標準時間（UTC+8）輸入；奇門以「時」為單位，一個時辰一張盤。</p>
+    <div class="qm-row">
+      <div class="qm-field"><label for="qmYear">年</label><select id="qmYear"></select></div>
+      <div class="qm-field"><label for="qmMonth">月</label><select id="qmMonth"></select></div>
+      <div class="qm-field"><label for="qmDay">日</label><select id="qmDay"></select></div>
+      <div class="qm-field"><label for="qmHour">時辰</label><select id="qmHour"></select></div>
+      <div class="qm-field"><label>排盤</label><button class="qm-submit" id="qmSubmit" type="button" style="width:100%">排出盤面</button></div>
+    </div>
+    <div class="qm-quick">
+      <button type="button" id="qmNow">現在起盤</button>
+      <span style="font-size:12px;color:#a9bce4;align-self:center">或先選日期，再按「排出盤面」</span>
+    </div>
+    <p class="qm-tip">定局採「拆補法」：以節氣為界，每節氣十五日分上、中、下三元。不同流派（超神接氣、置閏）在節氣交界前後可能相差一局，重要事項建議對照兩種說法。</p>
+  </div>
+
+  <div class="qm-result" id="qmResult">
+    <div class="qm-headline" id="qmHeadline"></div>
+    <div class="qm-panels" id="qmPanels"></div>
+    <div class="qm-board" id="qmBoard"></div>
+    <div class="qm-legend">
+      <span><i>盤面讀法</i>：右上為八神，大字為九星；下方左為八門、右為星門旺衰；「天」為天盤干、「地」為地盤干。</span>
+    </div>
+    <p style="font-size:12.5px;color:#5b6983;margin-top:10px" id="qmLunar"></p>
+
+    <div class="qm-use" id="qmUse"></div>
+    <div class="qm-usetip" id="qmUseTip"></div>
+
+    <div class="qm-flags" id="qmFlags"></div>
+
+    <div class="qm-table-wrap"><table class="qm-table" id="qmTable"></table></div>
+
+    <div class="notice info" style="margin-top:24px">
+      盤面為傳統時家奇門的一種排法，用於文化研究與自我覺察。宮位、門、星、神的吉凶是「傾向」而非結論；涉及醫療、法律、投資的決定，請以專業意見為準。
+    </div>
+  </div>
+
+</div>
+</div></section>
+<script src="../js/solarlunar.min.js"></script>
+<script src="../js/qimen.js"></script>
+<script src="../js/qimen-ui.js"></script>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-about">
+      <h4>奇門遁甲百科</h4>
+      <p>以繁體中文完整整理時家奇門的知識體系：從九宮盤面、三奇六儀、八門九星八神，到格局克應、陰陽遁定局與用神取象，並提供可直接操作的線上排盤工具。內容為傳統術數文化之整理與教學，供研究與自我覺察參考。</p>
+    </div>
+    <div><h4>開始認識</h4><a href="../intro/index.html">奇門概論</a><a href="../panmian/index.html">九宮盤面</a><a href="../qiyi/index.html">三奇六儀</a><a href="../bamen/index.html">八門</a><a href="../jiuxing/index.html">九星</a></div><div><h4>判斷方法</h4><a href="../bashen/index.html">八神</a><a href="../geju/index.html">格局與克應</a><a href="../qiju/index.html">定局與起局</a><a href="../yongshen/index.html">用神與取象</a><a href="../anli/index.html">案例解析</a></div><div><h4>實作與應用</h4><a href="../paipan/index.html">線上排奇門盤</a><a href="../paipan-shiwu/paipan-5steps.html">排盤五步</a><a href="../paipan-shiwu/zeshi.html">擇時與用盤</a><a href="../zhuanti/index.html">專題應用</a><a href="../sucha/index.html">速查表</a><a href="../wenda/index.html">常見問題</a></div>
+  </div>
+  <div class="footer-bottom">
+    <span>奇門遁甲百科 · 繁體中文知識庫</span>
+    <span>九宮是地圖，八門是選擇，時機是節奏。</span>
+  </div>
+<div class="footer-legal" style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;font-size:13px;padding:14px 20px 18px;border-top:1px solid rgba(255,255,255,.08)"><a href="../../about/index.html" style="opacity:.85">關於我們</a><a href="../../sitemap/index.html" style="opacity:.85">站內導覽</a><a href="../../privacy/index.html" style="opacity:.85">隱私政策</a><a href="../../disclaimer/index.html" style="opacity:.85">免責聲明</a><a href="../../contact/index.html" style="opacity:.85">聯絡我們</a></div>
+</footer><!-- fab-nav -->
+<style>
+.fab-nav{position:fixed;left:16px;bottom:16px;z-index:9990;font-family:inherit}
+.fab-nav .fab-menu{display:flex;flex-direction:column;gap:8px;margin-bottom:10px;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .22s,transform .22s,visibility .22s}
+.fab-nav.open .fab-menu{opacity:1;visibility:visible;transform:none}
+.fab-nav .fab-item{display:inline-flex;align-items:center;gap:9px;padding:9px 15px;border-radius:999px;background:rgba(26,16,48,.94);color:#f0e2c2;border:1px solid rgba(212,175,110,.5);box-shadow:0 6px 18px rgba(0,0,0,.32);font-size:13px;line-height:1;letter-spacing:.06em;text-decoration:none;cursor:pointer;white-space:nowrap;transition:border-color .2s,color .2s}
+.fab-nav .fab-item:hover{border-color:#d4af6e;color:#fff}
+.fab-nav .fab-item svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.fab-nav .fab-toggle{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#241644,#3c2a70);color:#e9d3a0;border:1px solid rgba(212,175,110,.62);box-shadow:0 8px 22px rgba(0,0,0,.38);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;transition:transform .2s}
+.fab-nav .fab-toggle:hover{transform:translateY(-2px)}
+.fab-nav .fab-toggle svg{width:22px;height:22px;stroke:#e9d3a0;fill:none;stroke-width:1.9;stroke-linecap:round}
+.fab-nav.open .fab-toggle{background:linear-gradient(135deg,#3c2a70,#241644)}
+@media (max-width:640px){.fab-nav{left:12px;bottom:12px}.fab-nav .fab-item{padding:11px 15px;font-size:13.5px}.fab-nav .fab-toggle{width:50px;height:50px}}
+</style>
+
+<div id="fabNav" class="fab-nav" role="navigation" aria-label="網站導覽">
+  <div class="fab-menu">
+    <a class="fab-item" href="../../index.html"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/></svg>回首頁</a>
+    <button class="fab-item" type="button" data-fab-back><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>上一頁</button>
+    <a class="fab-item" href="../../sitemap.xml"><svg viewBox="0 0 24 24"><path d="M12 3v6"/><path d="M12 9l-6 4H3v8h6v-8"/><path d="M12 9l6 4h3v8h-6v-8"/></svg>網站地圖</a>
+    <a class="fab-item" href="https://line.me/ti/p/g-FTLSqJAR" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21l4-4"/></svg>LINE 諮詢</a>
+  </div>
+  <button class="fab-toggle" type="button" aria-label="開啟網站導覽" aria-expanded="false" aria-controls="fabNav">
+    <svg viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+  </button>
+</div>
+<script>
+(function(){
+  var n=document.getElementById('fabNav'); if(!n) return;
+  var t=n.querySelector('.fab-toggle');
+  function toggle(){ var o=n.classList.toggle('open'); t.setAttribute('aria-expanded', o?'true':'false'); }
+  t.addEventListener('click', function(e){ e.stopPropagation(); toggle(); });
+  document.addEventListener('click', function(e){ if(!n.contains(e.target)) n.classList.remove('open'); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') n.classList.remove('open'); });
+  var b=n.querySelector('[data-fab-back]');
+  if(b) b.addEventListener('click', function(){ history.back(); });
+})();
+</script>
